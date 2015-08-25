@@ -14,6 +14,7 @@ namespace KingSurvival.Players
         {
             this.Color = color;
             this.Name = name;
+            this.figures=new List<IFigure>();
         }
 
         public ChessColor Color { get; private set; }

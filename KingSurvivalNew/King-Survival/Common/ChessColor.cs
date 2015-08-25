@@ -3,6 +3,11 @@
     public enum ChessColor
     {
         White,
-        Black
+        Black,
+        A,
+        B,
+        C,
+        D,
+        K
     }
 }

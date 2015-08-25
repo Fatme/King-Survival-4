@@ -26,9 +26,8 @@ namespace KingSurvival.Board
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             this.CheckIfPositionIsValid(position);
-            int arrRow = this.GetArrayRow(position.Row);
-            int arrCol = this.GetArrayCol(position.Col);
-            this.board[arrRow, arrCol] = figure;
+            
+            this.board[position.Row, position.Col] = figure;
             //the logic for adding figure
         }
 
@@ -55,6 +54,10 @@ namespace KingSurvival.Board
             {
                 throw new IndexOutOfRangeException("Selected column position on the board is not valid!");
             }
+        }
+        public IFigure GetFigureAtPosition(Position position)
+        {
+            return this.board[position.Row, position.Col];
         }
 
         

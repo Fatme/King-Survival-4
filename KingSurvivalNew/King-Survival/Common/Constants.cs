@@ -5,13 +5,15 @@
         public const int StandardChessRows = 8;
         public const int StandarsChessColumns = 8;
 
-        public const int MinimumRowValueOnBoard = 1;
-        public const int MaximumRowValueOnBoard = 8;
+        public const int MinimumRowValueOnBoard = 0;
+        public const int MaximumRowValueOnBoard = 7;
 
-        public const char MinimumColumnValueOnBoard = 'a';
-        public const char MaximumColumnValueOnBoard ='h' ;
+        public const int MinimumColumnValueOnBoard = 0;
+        public const int MaximumColumnValueOnBoard =7;
 
         public const int StandardNumberOfPlayers = 2;
+
+        public const int numberOfPawns=4;
 
 
     }

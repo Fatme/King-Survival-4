@@ -10,5 +10,7 @@
         int NumberOfColumns { get; }
        
         void AddFigure(IFigure figure,Position position);
+
+        IFigure GetFigureAtPosition(Position position);
     }
 }

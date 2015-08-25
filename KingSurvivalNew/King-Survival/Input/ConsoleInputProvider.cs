@@ -18,10 +18,10 @@ namespace KingSurvival.Input
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 Console.Clear();
-                Console.Write(string.Format("Enter player {0} name", i));
+                Console.Write(string.Format("Enter player {0} name ", i));
                 string name = Console.ReadLine();
 
-                var player = new Player(name, (ChessColor)(i - 1));
+                var player = new Player(name, (ChessColor)(i));
                 players.Add(player);
             }
             return players;

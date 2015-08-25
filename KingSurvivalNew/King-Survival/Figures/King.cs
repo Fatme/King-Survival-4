@@ -9,5 +9,6 @@
         public King(ChessColor color):base(color)
         {
         }
+
     }
 }

@@ -10,5 +10,7 @@
         }
 
         public ChessColor Color { get; private set; }
+
+        
     }
 }

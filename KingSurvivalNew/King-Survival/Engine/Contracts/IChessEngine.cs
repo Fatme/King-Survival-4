@@ -10,7 +10,7 @@ namespace KingSurvival.Engine.Contracts
     {
         IEnumerable<IPlayer> Players { get; } 
 
-        void Initialize(IList<IPlayer> players,IBoard board);
+        void Initialize();
 
         void Start();
 

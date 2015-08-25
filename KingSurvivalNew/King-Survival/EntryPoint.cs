@@ -1,4 +1,6 @@
-﻿using KingSurvival.Input;
+﻿using KingSurvival.Engine;
+using KingSurvival.Engine.Contracts;
+using KingSurvival.Input;
 using KingSurvival.Input.Contracts;
 
 namespace KingSurvival
@@ -12,7 +14,10 @@ namespace KingSurvival
         {
             IRenderer renderer = new ConsoleRenderer();
             renderer.RenderMainMenu();
-           
+            IInputProvider provider = new ConsoleInputProvider();
+            IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider);
+            chessEngine.Initialize();
+           // chessEngine.Start();
             //TODO:add main menu
 
         }
