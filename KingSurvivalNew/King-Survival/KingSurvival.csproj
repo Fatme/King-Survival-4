@@ -47,6 +47,7 @@
     <Compile Include="Common\Console\ConsoleHelpers.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\GlobalErrorMessages.cs" />
+    <Compile Include="Common\Move.cs" />
     <Compile Include="Common\Position.cs" />
     <Compile Include="Common\Validator.cs" />
     <Compile Include="Engine\Contracts\IChessEngine.cs" />

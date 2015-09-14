@@ -6,7 +6,7 @@
 
     public class King : Figure, IFigure
     {
-        public King(ChessColor color):base(color)
+        public King(ChessColor color,Position position):base(color,position)
         {
         }
 

@@ -13,25 +13,32 @@
     using KingSurvival.Board;
 
 
+
     public class KingSurvivalEngine : IChessEngine
     {
 
         private const int BoardTotalNUmberOfColumns = 8;
         private const int BoardTotalNUmberOfRows = 8;
-       
+
         private readonly IRenderer renderer;
         private readonly IInputProvider provider;
         private IList<IPlayer> players;
         private IBoard board;
 
+        private int currentPlayerIndex;
 
         public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
-            board=new Board();
-           // players=new List<IPlayer>();
+            board = new Board();
+
+
+            // players=new List<IPlayer>();
         }
+
+
+
 
         public IEnumerable<IPlayer> Players
         {
@@ -41,8 +48,8 @@
         public void Initialize()
         {
             //TODO:Extract to another class and interface
-            players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
-            
+            this.players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
+
             this.ValidateGameInitialization();
 
             var firstPlayer = players[0];
@@ -50,15 +57,16 @@
             int positionColPawn = 0;
             for (var i = 0; i < Constants.numberOfPawns; i++)
             {
-                var pawn = new Pawn((ChessColor)(i+2));
-                firstPlayer.AddFigure(pawn);
                 var positionPawn = new Position(0, positionColPawn);
+                var pawn = new Pawn((ChessColor)(i + 2),positionPawn);
+                firstPlayer.AddFigure(pawn);
                 this.board.AddFigure(pawn, positionPawn);
                 positionColPawn += 2;
             }
-
-            var king = new King(ChessColor.K);
+            this.SetFirstPlayerIndex();
             var positionKing = new Position(7, 3);
+            var king = new King(ChessColor.K,positionKing);
+         
             secondPlayer.AddFigure(king);
             this.board.AddFigure(king, positionKing);
             this.renderer.RenderBoard(this.board);
@@ -79,7 +87,54 @@
         }
         public void Start()
         {
-            throw new NotImplementedException();
+      
+            while (true)
+            {
+                      
+                try
+                {
+                    var player = this.GetNextPlayer();
+                    Move move = this.provider.GetNextMoveFigure(player);
+                    var from = move.From;
+                    var to = move.To;
+                    var figure=this.board.GetFigureAtPosition(from);
+                    this.board.AddFigure(figure,to);
+                    this.renderer.RenderBoard(this.board);
+                }
+                catch (Exception ex)
+                {
+                    //TODO:MAke a good error
+                    this.renderer.PrintErrorMessage("Erroorr");
+                }
+            }
+
+
+
+
+        }
+
+        private IPlayer GetNextPlayer()
+        {
+            this.currentPlayerIndex++;
+            if (currentPlayerIndex >= this.players.Count)
+            {
+                this.currentPlayerIndex = 0;
+            }
+         
+            return this.players[this.currentPlayerIndex];
+        }
+
+
+        private void SetFirstPlayerIndex()
+        {
+            for (int i = 0; i < this.players.Count; i++)
+            {
+                if (this.players[i].Color == ChessColor.K)
+                {
+                    this.currentPlayerIndex = i;
+                    return;
+                }
+            }
         }
 
         public void WinningConditions()

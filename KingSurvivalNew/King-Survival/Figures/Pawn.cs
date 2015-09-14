@@ -5,8 +5,8 @@
 
     public class Pawn : Figure,IFigure
     {
-        public Pawn(ChessColor color)
-            : base(color)
+        public Pawn(ChessColor color,Position position)
+            : base(color,position)
         {
         }
 

@@ -6,9 +6,12 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using KingSurvival.Common;
 
    public interface IInputProvider
    {
         IList<IPlayer> GetPlayers(int numberOfPlayers);
+
+        Move GetNextMoveFigure(IPlayer player);
    }
 }

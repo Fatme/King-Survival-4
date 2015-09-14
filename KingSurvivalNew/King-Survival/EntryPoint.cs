@@ -17,7 +17,7 @@ namespace KingSurvival
             IInputProvider provider = new ConsoleInputProvider();
             IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider);
             chessEngine.Initialize();
-           // chessEngine.Start();
+            chessEngine.Start();
             //TODO:add main menu
 
         }

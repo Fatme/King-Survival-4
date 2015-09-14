@@ -31,5 +31,11 @@ namespace KingSurvival.Renderers
                 Console.WriteLine();
             }
         }
+
+
+        public void PrintErrorMessage(string error)
+        {
+           Console.WriteLine(error);
+        }
     }
 }

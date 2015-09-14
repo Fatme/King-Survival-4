@@ -1,4 +1,6 @@
-﻿using KingSurvival.Figures.Contracts;
+﻿using System.Collections;
+using System.Collections.Generic;
+using KingSurvival.Figures.Contracts;
 
 namespace KingSurvival.Players.Contracts
 {
@@ -11,6 +13,8 @@ namespace KingSurvival.Players.Contracts
         string Name { get; }
 
         void AddFigure(IFigure figure);
+
+        IList<IFigure> Figures { get; }
     }
 }
 

@@ -8,7 +8,7 @@ namespace KingSurvival.Players
   
     public class Player:IPlayer
     {
-        private ICollection<IFigure> figures;
+        private IList<IFigure> figures;
 
         public Player(string name,ChessColor color)
         {
@@ -26,6 +26,12 @@ namespace KingSurvival.Players
         public void AddFigure(IFigure figure)
         {
            this.figures.Add(figure);
+        }
+
+        public IList<IFigure> Figures
+        {
+            get { return this.figures; }
+            private set { this.figures = value; }
         }
     }
 }
