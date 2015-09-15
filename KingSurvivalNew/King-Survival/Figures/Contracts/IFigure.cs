@@ -6,7 +6,7 @@
     {
         ChessColor Color { get; }
 
-        Position Position { get; }
+        Position Position { get; set; }
     }
 }
 

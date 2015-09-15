@@ -46,6 +46,14 @@ namespace KingSurvival.Board
             return this.board[position.Row, position.Col];
         }
 
-        
+
+
+
+        public void RemoveFigure(IFigure figure, Position position)
+        {
+            Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
+            Position.CheckIfValid(position);
+            this.board[position.Row, position.Col] = null;
+        }
     }
 }

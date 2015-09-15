@@ -12,5 +12,7 @@
         void AddFigure(IFigure figure,Position position);
 
         IFigure GetFigureAtPosition(Position position);
+
+        void RemoveFigure(IFigure figure, Position position);
     }
 }

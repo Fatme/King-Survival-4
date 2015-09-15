@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Engine
+﻿using KingSurvival.Figures.Contracts;
+
+namespace KingSurvival.Engine
 {
     using System;
     using System.Linq;
@@ -94,12 +96,25 @@
                 try
                 {
                     var player = this.GetNextPlayer();
+                   
                     Move move = this.provider.GetNextMoveFigure(player);
+                   
                     var from = move.From;
                     var to = move.To;
+                   
                     var figure=this.board.GetFigureAtPosition(from);
+                    this.board.RemoveFigure(figure,from);
+                    figure.Position = new Position(to.Row,to.Col);
+                   
                     this.board.AddFigure(figure,to);
                     this.renderer.RenderBoard(this.board);
+                    if (KingWon(player))
+                    {
+                        Console.WriteLine("The king won");
+                        return;
+                    }
+                   
+
                 }
                 catch (Exception ex)
                 {
@@ -107,9 +122,6 @@
                     this.renderer.PrintErrorMessage("Erroorr");
                 }
             }
-
-
-
 
         }
 
@@ -139,8 +151,26 @@
 
         public void WinningConditions()
         {
-            throw new NotImplementedException();
+          
         }
+        public bool KingWon(IPlayer player)
+        {
+            if (player.Figures[0].Color == ChessColor.K)
+            {
+                if (player.Figures[0].Position.Row == 0) //check if king is on the first row
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
+      
+        
+
+      
 
     }
 }
