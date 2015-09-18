@@ -110,17 +110,26 @@ namespace KingSurvival.Engine
                     this.renderer.RenderBoard(this.board);
                     if (KingWon(player))
                     {
-                        Console.WriteLine("The king won");
+                        this.renderer.PrintErrorMessage("The king won");
                         return;
                     }
                    
 
                 }
-                catch (Exception ex)
+                catch (IndexOutOfRangeException ex)
                 {
-                    //TODO:MAke a good error
-                    this.renderer.PrintErrorMessage("Erroorr");
+                   
+                    this.renderer.PrintErrorMessage(ex.Message);
                 }
+                catch(ArgumentOutOfRangeException ex)
+                {
+                    this.renderer.PrintErrorMessage(ex.Message);
+                }
+                catch(ArgumentNullException ex) 
+                {
+                    this.renderer.PrintErrorMessage(ex.Message);
+                }
+                
             }
 
         }

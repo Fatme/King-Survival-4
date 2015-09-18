@@ -53,6 +53,7 @@ namespace KingSurvival.Input
 
             if (command.Length != 3)
             {
+                //TODO:change the exception to custom exception
                 throw new ArgumentOutOfRangeException("The command should contain three symbols");
             }
 
@@ -87,6 +88,7 @@ namespace KingSurvival.Input
 
             if (command.Length != 3)
             {
+                //TODO:Change the exception to custom exception
                 throw new ArgumentOutOfRangeException("The command should contain three symbols");
             }
 
@@ -105,7 +107,8 @@ namespace KingSurvival.Input
                     { indexOfChange = 2; }
                     break;
                 default:
-                    break;
+                    //TODO:change the exception to custom exception
+                    throw new ArgumentOutOfRangeException("The command is not correct");
             }
             int pawnIndex = -1;
             switch (command[0])
