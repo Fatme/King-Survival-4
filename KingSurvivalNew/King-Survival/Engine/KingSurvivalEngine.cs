@@ -1,18 +1,17 @@
-﻿using KingSurvival.Figures.Contracts;
-
-namespace KingSurvival.Engine
+﻿namespace KingSurvival.Engine
 {
     using System;
     using System.Linq;
     using System.Collections.Generic;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Players.Contracts;
-    using Board.Contracts;
+    using KingSurvival.Board.Contracts;
     using KingSurvival.Common;
     using KingSurvival.Figures;
     using KingSurvival.Renderers.Contracts;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Board;
+    using KingSurvival.Figures.Contracts;
 
 
 
@@ -55,26 +54,28 @@ namespace KingSurvival.Engine
             this.ValidateGameInitialization();
 
             var firstPlayer = players[0];
-            var secondPlayer = players[1];
+            var positionKing = new Position(7, 3);
+            var king = new King(ChessColor.K,positionKing);
+         
+            firstPlayer.AddFigure(king);
+            this.board.AddFigure(king, positionKing);
+
+            var secondPlayer = players[1];             
             int positionColPawn = 0;
             for (var i = 0; i < Constants.numberOfPawns; i++)
             {
                 var positionPawn = new Position(0, positionColPawn);
                 var pawn = new Pawn((ChessColor)(i + 2),positionPawn);
-                firstPlayer.AddFigure(pawn);
+                secondPlayer.AddFigure(pawn);
                 this.board.AddFigure(pawn, positionPawn);
                 positionColPawn += 2;
             }
             this.SetFirstPlayerIndex();
-            var positionKing = new Position(7, 3);
-            var king = new King(ChessColor.K,positionKing);
-         
-            secondPlayer.AddFigure(king);
-            this.board.AddFigure(king, positionKing);
+           
             this.renderer.RenderBoard(this.board);
         }
 
-
+        //TODO:add the validation in validator class
         private void ValidateGameInitialization()
         {
             if (this.players.Count != Constants.StandardNumberOfPlayers)
@@ -136,13 +137,14 @@ namespace KingSurvival.Engine
 
         private IPlayer GetNextPlayer()
         {
-            this.currentPlayerIndex++;
+           
             if (currentPlayerIndex >= this.players.Count)
             {
                 this.currentPlayerIndex = 0;
             }
-         
-            return this.players[this.currentPlayerIndex];
+            var currentPlayer=this.players[this.currentPlayerIndex];
+            this.currentPlayerIndex++;
+            return currentPlayer;
         }
 
 
