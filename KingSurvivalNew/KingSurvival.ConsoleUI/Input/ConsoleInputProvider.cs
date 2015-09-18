@@ -9,7 +9,7 @@ using KingSurvival.Input.Contracts;
 using KingSurvival.Players;
 using KingSurvival.Players.Contracts;
 
-namespace KingSurvival.Input
+namespace KingSurvivalUI.Input
 {
     public class ConsoleInputProvider : IInputProvider
     {

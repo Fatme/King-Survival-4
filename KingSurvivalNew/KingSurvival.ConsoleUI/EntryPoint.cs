@@ -1,12 +1,12 @@
-﻿using KingSurvival.Engine;
-using KingSurvival.Engine.Contracts;
-using KingSurvival.Input;
-using KingSurvival.Input.Contracts;
-
-namespace KingSurvival
+﻿namespace KingSurvivalUI
 {
+    using KingSurvival.Engine;
+    using KingSurvival.Engine.Contracts;
+    using KingSurvival.Input.Contracts;
     using KingSurvival.Renderers;
     using KingSurvival.Renderers.Contracts;
+    using KingSurvivalUI.Input;
+    using KingSurvivalUI.Renderers;
 
     public class EntryPoint
     {

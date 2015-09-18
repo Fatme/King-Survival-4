@@ -6,7 +6,7 @@ namespace KingSurvival.Engine.Contracts
 
     using KingSurvival.Players.Contracts;
 
-    interface IChessEngine
+   public interface IChessEngine
     {
         IEnumerable<IPlayer> Players { get; } 
 
