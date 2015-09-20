@@ -57,7 +57,7 @@
             for (var i = 0; i < Constants.numberOfPawns; i++)
             {
                 var positionPawn = new Position(0, positionColPawn);
-                var pawn = new Pawn((ChessColor)(i + 2),positionPawn);
+                var pawn = new Pawn((ChessColor)(i+2),positionPawn);
                 secondPlayer.AddFigure(pawn);
                 this.board.AddFigure(pawn, positionPawn);
                 positionColPawn += 2;
@@ -158,15 +158,5 @@
             return false;
         }
 
-
-
-
-
-
-
-        public IEnumerable<IPlayer> Players
-        {
-            get { throw new NotImplementedException(); }
-        }
     }
 }

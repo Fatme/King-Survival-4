@@ -16,15 +16,17 @@ namespace KingSurvivalUI.Input
         public IList<IPlayer> GetPlayers(int numberOfPlayers)
         {
             var players = new List<IPlayer>();
-            for (int i = 0; i < numberOfPlayers; i++)
-            {
-                Console.Clear();
-                Console.Write(string.Format("Enter player {0} name ", i));
-                string name = Console.ReadLine();
+            //for (int i = 0; i < numberOfPlayers; i++)
+            // {
+            //Console.Clear();
+            //Console.Write(string.Format("Enter player {0} name ", i));
+            //string name = Console.ReadLine();
 
-                var player = new Player(name, (ChessColor)(i));
-                players.Add(player);
-            }
+            var kingPlayer = new Player("King", (ChessColor.K));
+            var pawnPlayer = new Player("Pawn", ChessColor.A);
+            players.Add(kingPlayer);
+            players.Add(pawnPlayer);
+            // }
             return players;
         }
 

@@ -8,7 +8,7 @@ namespace KingSurvival.Engine.Contracts
 
    public interface IChessEngine
     {
-        IEnumerable<IPlayer> Players { get; } 
+        
 
         void Initialize();
 
