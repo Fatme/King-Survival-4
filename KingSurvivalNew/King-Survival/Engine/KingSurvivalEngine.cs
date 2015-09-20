@@ -46,21 +46,19 @@
             Validator.ValidateGameInitialization(this.players,this.board);
 
             var firstPlayer = players[0];
-            var positionKing = new Position(7, 3);
-            var king = new King(ChessColor.K,positionKing);
+            IFiguresFactory figures = new FiguresFactory();
+            IFigure king = figures.CreateKing();
+            IList<IFigure> pawns = figures.CreatePawns();   
          
             firstPlayer.AddFigure(king);
-            this.board.AddFigure(king, positionKing);
+            this.board.AddFigure(king, king.Position);
 
             var secondPlayer = players[1];             
-            int positionColPawn = 0;
-            for (var i = 0; i < Constants.numberOfPawns; i++)
-            {
-                var positionPawn = new Position(0, positionColPawn);
-                var pawn = new Pawn((ChessColor)(i+2),positionPawn);
-                secondPlayer.AddFigure(pawn);
-                this.board.AddFigure(pawn, positionPawn);
-                positionColPawn += 2;
+         
+            for (var i = 0; i < pawns.Count; i++)
+            {               
+                secondPlayer.AddFigure(pawns[i]);
+                this.board.AddFigure(pawns[i], pawns[i].Position);                
             }
             this.SetFirstPlayerIndex();
            
@@ -71,16 +69,17 @@
        
         public void Start()
         {
+            bool validCommand = true;
       
             while (true)
             {
                       
                 try
                 {
-                    var player = this.GetNextPlayer();
-                   
-                    Move move = this.provider.GetNextMoveFigure(player);
-                   
+
+                    var player = this.GetNextPlayer();       
+            
+                    Move move = this.provider.GetNextMoveFigure(player);                   
                     var from = move.From;
                     var to = move.To;
                    
@@ -88,7 +87,8 @@
                     this.board.RemoveFigure(figure,from);
                     figure.Position = new Position(to.Row,to.Col);
                    
-                    this.board.AddFigure(figure,to);
+                        this.board.AddFigure(figure, to);
+                    
                     this.renderer.RenderBoard(this.board);
                     if (KingWon(player))
                     {

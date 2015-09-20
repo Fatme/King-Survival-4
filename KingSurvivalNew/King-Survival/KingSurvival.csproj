@@ -58,6 +58,8 @@
     <Compile Include="Engine\KingSurvivalEngine.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
     <Compile Include="Figures\Contracts\Figure.cs" />
+    <Compile Include="Engine\Contracts\IFiguresFactory.cs" />
+    <Compile Include="Engine\FiguresFactory.cs" />
     <Compile Include="Figures\King.cs" />
     <Compile Include="Figures\Pawn.cs" />
     <Compile Include="Input\Contracts\IInputProvider.cs" />
