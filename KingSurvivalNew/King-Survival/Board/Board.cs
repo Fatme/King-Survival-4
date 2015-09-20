@@ -10,7 +10,7 @@ namespace KingSurvival.Board
     {
         private IFigure[,] board;
 
-        public Board(int rows=Constants.StandardChessRows, int columns=Constants.StandarsChessColumns)
+        public Board(int rows=Constants.StandardChessRows, int columns=Constants.StandardChessColumns)
         {
             this.NumberOfColumns = columns;
             this.NumberOfRows = rows;
@@ -25,10 +25,9 @@ namespace KingSurvival.Board
         public void AddFigure(IFigure figure, Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
-            Position.CheckIfValid(position);
-            
+            Position.CheckIfValid(position,GlobalErrorMessages.PositionNotValidMessage);            
             this.board[position.Row, position.Col] = figure;
-            //the logic for adding figure
+         
         }
 
         private int GetArrayRow(int chessRow)
@@ -52,7 +51,7 @@ namespace KingSurvival.Board
         public void RemoveFigure(IFigure figure, Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
-            Position.CheckIfValid(position);
+            Position.CheckIfValid(position,GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = null;
         }
     }

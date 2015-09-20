@@ -3,7 +3,7 @@
     public class Constants
     {
         public const int StandardChessRows = 8;
-        public const int StandarsChessColumns = 8;
+        public const int StandardChessColumns = 8;
 
         public const int MinimumRowValueOnBoard = 0;
         public const int MaximumRowValueOnBoard = 7;

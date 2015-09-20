@@ -37,21 +37,13 @@
 
             // players=new List<IPlayer>();
         }
-
-
-
-
-        public IEnumerable<IPlayer> Players
-        {
-            get { throw new NotImplementedException(); }
-        }
-
+       
         public void Initialize()
         {
             //TODO:Extract to another class and interface
             this.players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
 
-            this.ValidateGameInitialization();
+            Validator.ValidateGameInitialization(this.players,this.board);
 
             var firstPlayer = players[0];
             var positionKing = new Position(7, 3);
@@ -76,18 +68,7 @@
         }
 
         //TODO:add the validation in validator class
-        private void ValidateGameInitialization()
-        {
-            if (this.players.Count != Constants.StandardNumberOfPlayers)
-            {
-                throw new InvalidOperationException("King Survival Engine must have two player");
-            }
-
-            if (this.board.NumberOfRows != BoardTotalNUmberOfRows || this.board.NumberOfColumns != BoardTotalNUmberOfColumns)
-            {
-                throw new InvalidOperationException("King survial has 8x8 board");
-            }
-        }
+       
         public void Start()
         {
       
@@ -175,13 +156,17 @@
             }
 
             return false;
-
         }
 
-      
-        
 
-      
 
+
+
+
+
+        public IEnumerable<IPlayer> Players
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

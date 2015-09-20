@@ -10,19 +10,19 @@ namespace KingSurvival.Common
             this.Col = col;
         }
 
-        public static void CheckIfValid(Position position)
+        public static void CheckIfValid(Position position,string errorMessage)
         {
 
             if (position.Row < Constants.MinimumRowValueOnBoard
                 || position.Row > Constants.MaximumRowValueOnBoard)
             {
-                throw new IndexOutOfRangeException("Selected row position on the board is not valid!");
+                throw new IndexOutOfRangeException(errorMessage);
             }
 
             if (position.Col < Constants.MinimumColumnValueOnBoard
                 || position.Col > Constants.MaximumColumnValueOnBoard)
             {
-                throw new IndexOutOfRangeException("Selected column position on the board is not valid!");
+                throw new IndexOutOfRangeException(errorMessage);
             }
         }
         public int Row { get; private set; }

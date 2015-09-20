@@ -30,7 +30,7 @@ namespace KingSurvivalUI.Input
 
         public Move GetNextMoveFigure(IPlayer player)
         {
-            Console.Write("{0} is next", player.Name);
+            Console.Write("{0} is next ", player.Name);
             var command = Console.ReadLine();
             if (player.Figures[0].Color == ChessColor.K)
             {
