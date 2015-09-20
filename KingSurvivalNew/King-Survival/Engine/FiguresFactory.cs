@@ -13,7 +13,7 @@ namespace KingSurvival.Figures
         public IFigure CreateKing()
         {
             var positionKing = new Position(7,3);
-            var king = new King(ChessColor.K, positionKing);
+            var king = new King(FigureSign.K, positionKing);
             return king;
         }
         public IList<IFigure> CreatePawns()
@@ -23,7 +23,7 @@ namespace KingSurvival.Figures
             for (var i = 0; i < Constants.numberOfPawns; i++)
             {
                 var positionPawn = new Position(0, positionColPawn);
-                var pawn = new Pawn((ChessColor)(i + 2), positionPawn);
+                var pawn = new Pawn((FigureSign)(i), positionPawn);
                 pawns.Add(pawn);
                 positionColPawn += 2;
                

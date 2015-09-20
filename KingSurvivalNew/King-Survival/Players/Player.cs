@@ -6,18 +6,16 @@ namespace KingSurvival.Players
     using System.Collections.Generic;
     using KingSurvival.Players.Contracts;
   
-    public class Player:IPlayer
+    public abstract class Player:IPlayer
     {
         private IList<IFigure> figures;
 
-        public Player(string name,ChessColor color)
+        public Player(string name)
         {
-            this.Color = color;
+            
             this.Name = name;
             this.figures=new List<IFigure>();
         }
-
-        public ChessColor Color { get; private set; }
 
 
         public string Name { get; private set; }
@@ -33,5 +31,9 @@ namespace KingSurvival.Players
             get { return this.figures; }
             private set { this.figures = value; }
         }
+
+       
+        public abstract Move Move(string command);
+       
     }
 }

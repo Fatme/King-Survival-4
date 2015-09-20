@@ -1,9 +1,7 @@
 ﻿namespace KingSurvival.Common
 {
-    public enum ChessColor
+    public enum FigureSign
     {
-        White,
-        Black,
         A,
         B,
         C,

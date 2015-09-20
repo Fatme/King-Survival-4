@@ -1,12 +1,14 @@
 ﻿namespace KingSurvival.Figures.Contracts
 {
     using KingSurvival.Common;
+    using KingSurvival.Players.Contracts;
 
     public interface IFigure
     {
-        ChessColor Color { get; }
+        FigureSign Sign { get; }
 
         Position Position { get; set; }
+
     }
 }
 

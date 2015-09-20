@@ -93,7 +93,7 @@
                     if (WinningConditions(player))
                     {
                         this.renderer.PrintErrorMessage("The king won");
-                        return;
+                        break;
                     }
 
 
@@ -139,7 +139,7 @@
         {
             for (int i = 0; i < this.players.Count; i++)
             {
-                if (this.players[i].Color == ChessColor.K)
+                if (this.players[i].Figures[i].Sign == FigureSign.K)
                 {
                     this.currentPlayerIndex = i;
                     return;
@@ -159,7 +159,7 @@
         }
         public bool KingWon(IPlayer player)
         {
-            if (player.Figures[0].Color == ChessColor.K)
+            if (player.Figures[0].Sign == FigureSign.K)
             {
                 if (player.Figures[0].Position.Row == 0) //check if king is on the first row
                 {

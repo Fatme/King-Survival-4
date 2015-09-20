@@ -33,23 +33,23 @@ namespace KingSurvival.Common.Console
             else
             {
                 //TODO:put this logic to separate class
-                if (figure.Color == ChessColor.A)
+                if (figure.Sign == FigureSign.A)
                 {
                     Console.Write('A');
                 }
-                if (figure.Color == ChessColor.B)
+                if (figure.Sign == FigureSign.B)
                 {
                     Console.Write('B');
                 }
-                if (figure.Color == ChessColor.C)
+                if (figure.Sign == FigureSign.C)
                 {
                     Console.Write('C');
                 }
-                if (figure.Color == ChessColor.D)
+                if (figure.Sign == FigureSign.D)
                 {
                     Console.Write('D');
                 }
-                if (figure.Color == ChessColor.K)
+                if (figure.Sign == FigureSign.K)
                 {
                     Console.Write('K');
                 }

@@ -8,13 +8,16 @@ namespace KingSurvival.Players.Contracts
 
     public interface IPlayer
     {
-        ChessColor Color { get; }
-
+       
         string Name { get; }
 
         void AddFigure(IFigure figure);
 
         IList<IFigure> Figures { get; }
+
+        Move Move(string command);
+
+        
     }
 }
 

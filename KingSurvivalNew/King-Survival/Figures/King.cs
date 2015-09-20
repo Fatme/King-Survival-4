@@ -2,13 +2,20 @@
 {
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common;
+    using KingSurvival.Players.Contracts;
+    using System;
 
 
     public class King : Figure, IFigure
     {
-        public King(ChessColor color,Position position):base(color,position)
+        public King(FigureSign sign, Position position)
+            : base(sign, position)
         {
         }
+
+
+       
+
 
     }
 }
