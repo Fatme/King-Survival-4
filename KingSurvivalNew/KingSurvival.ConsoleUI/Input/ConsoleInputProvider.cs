@@ -68,7 +68,8 @@ namespace KingSurvivalUI.Input
                 case "kdl": { indexOfChange = 2; } break;
                 case "kul": { indexOfChange = 3; } break;
                 default:
-                    break;
+                    //TODO:change the exception to custom exception
+                    throw new ArgumentOutOfRangeException("The command is not correct");
 
 
             }

@@ -37,93 +37,99 @@
 
             // players=new List<IPlayer>();
         }
-       
+
         public void Initialize()
         {
             //TODO:Extract to another class and interface
             this.players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
 
-            Validator.ValidateGameInitialization(this.players,this.board);
+            Validator.ValidateGameInitialization(this.players, this.board);
 
             var firstPlayer = players[0];
             IFiguresFactory figures = new FiguresFactory();
             IFigure king = figures.CreateKing();
-            IList<IFigure> pawns = figures.CreatePawns();   
-         
+            IList<IFigure> pawns = figures.CreatePawns();
+
             firstPlayer.AddFigure(king);
             this.board.AddFigure(king, king.Position);
 
-            var secondPlayer = players[1];             
-         
+            var secondPlayer = players[1];
+
             for (var i = 0; i < pawns.Count; i++)
-            {               
+            {
                 secondPlayer.AddFigure(pawns[i]);
-                this.board.AddFigure(pawns[i], pawns[i].Position);                
+                this.board.AddFigure(pawns[i], pawns[i].Position);
             }
             this.SetFirstPlayerIndex();
-           
+
             this.renderer.RenderBoard(this.board);
         }
 
         //TODO:add the validation in validator class
-       
+
         public void Start()
         {
-            bool validCommand = true;
-      
+           
             while (true)
             {
-                      
+
                 try
                 {
 
-                    var player = this.GetNextPlayer();       
-            
-                    Move move = this.provider.GetNextMoveFigure(player);                   
+                    var player = this.GetNextPlayer();
+
+                    Move move = this.provider.GetNextMoveFigure(player);
                     var from = move.From;
                     var to = move.To;
-                   
-                    var figure=this.board.GetFigureAtPosition(from);
-                    this.board.RemoveFigure(figure,from);
-                    figure.Position = new Position(to.Row,to.Col);
-                   
-                        this.board.AddFigure(figure, to);
-                    
+                    Position.CheckIfValid(to, GlobalErrorMessages.PositionNotValidMessage);
+
+                    var figure = this.board.GetFigureAtPosition(from);
+                    this.board.RemoveFigure(figure, from);
+                    figure.Position = new Position(to.Row, to.Col);
+                    this.board.AddFigure(figure, to);
+
                     this.renderer.RenderBoard(this.board);
-                    if (KingWon(player))
+
+                    if (WinningConditions(player))
                     {
                         this.renderer.PrintErrorMessage("The king won");
                         return;
                     }
-                   
+
 
                 }
                 catch (IndexOutOfRangeException ex)
                 {
-                   
+                    currentPlayerIndex--;
+                    this.renderer.RenderBoard(this.board);
                     this.renderer.PrintErrorMessage(ex.Message);
+
                 }
-                catch(ArgumentOutOfRangeException ex)
+                catch (ArgumentOutOfRangeException ex)
                 {
+                    currentPlayerIndex--;
+                    this.renderer.RenderBoard(this.board);
                     this.renderer.PrintErrorMessage(ex.Message);
                 }
-                catch(ArgumentNullException ex) 
+                catch (ArgumentNullException ex)
                 {
+                    currentPlayerIndex--;
+                    this.renderer.RenderBoard(this.board);
                     this.renderer.PrintErrorMessage(ex.Message);
                 }
-                
+
             }
 
         }
 
         private IPlayer GetNextPlayer()
         {
-           
+
             if (currentPlayerIndex >= this.players.Count)
             {
                 this.currentPlayerIndex = 0;
             }
-            var currentPlayer=this.players[this.currentPlayerIndex];
+            var currentPlayer = this.players[this.currentPlayerIndex];
             this.currentPlayerIndex++;
             return currentPlayer;
         }
@@ -141,9 +147,15 @@
             }
         }
 
-        public void WinningConditions()
+        public bool WinningConditions(IPlayer player)
         {
-          
+            if (KingWon(player))
+            {
+                return true;
+            }
+            return false;
+            //TODO:Add more conditions
+
         }
         public bool KingWon(IPlayer player)
         {
@@ -156,6 +168,7 @@
             }
 
             return false;
+            //TODO:Add the rest of the conditions
         }
 
     }

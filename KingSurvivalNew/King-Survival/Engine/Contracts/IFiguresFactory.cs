@@ -8,6 +8,7 @@ namespace KingSurvival.Figures.Contracts
 {
     interface IFiguresFactory
     {
+
         IFigure CreateKing();
 
         IList<IFigure> CreatePawns();

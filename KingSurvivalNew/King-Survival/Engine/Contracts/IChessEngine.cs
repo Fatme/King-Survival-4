@@ -14,7 +14,7 @@ namespace KingSurvival.Engine.Contracts
 
         void Start();
 
-        void WinningConditions();
+        bool WinningConditions(IPlayer player);
 
     }
 }
