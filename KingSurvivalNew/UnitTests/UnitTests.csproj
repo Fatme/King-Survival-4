@@ -60,7 +60,7 @@
     <Compile Include="ValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KingSurvivalNew\King-Survival\KingSurvival.csproj">
+    <ProjectReference Include="..\King-Survival\KingSurvival.csproj">
       <Project>{529ab286-05fa-48e9-bf59-ca383014db5e}</Project>
       <Name>KingSurvival</Name>
     </ProjectReference>
