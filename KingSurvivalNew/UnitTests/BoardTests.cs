@@ -75,7 +75,7 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void CheckIfTheRemoveFigureMethodThrowsCorrectlyNullReferenceExeption()
         {
             var board = new Board();

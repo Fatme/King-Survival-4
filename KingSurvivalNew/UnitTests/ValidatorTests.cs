@@ -12,7 +12,7 @@
     public class ValidatorTests
     {
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void CheckIfTheCheckIfObjectIsNullMethodThrowsCorrectlyNullReferenceException()
         {
             var obj = new Object();
