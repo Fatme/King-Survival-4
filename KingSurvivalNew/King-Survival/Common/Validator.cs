@@ -11,10 +11,10 @@
         {
             if (obj == null)
             {
-                throw new ArgumentNullException(errorMessage);
+                throw new NullReferenceException(errorMessage);
             }
         }
-        public static void ValidateGameInitialization(IList<IPlayer> players,IBoard board)
+        public static void ValidateGameInitialization(IList<IPlayer> players, IBoard board)
         {
             if (players.Count != Constants.StandardNumberOfPlayers)
             {

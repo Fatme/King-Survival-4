@@ -1,15 +1,13 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Common.Console;
-
-namespace KingSurvivalUI.Renderers
+﻿namespace KingSurvivalUI.Renderers
 {
     using System;
     using KingSurvival.Board.Contracts;
     using KingSurvival.Renderers.Contracts;
+    using KingSurvival.Common;
+    using KingSurvival.Common.Console;
 
     public class ConsoleRenderer : IRenderer
     {
-       
         public void RenderMainMenu()
         {
             Console.WriteLine("King Survival Game");
@@ -31,7 +29,6 @@ namespace KingSurvivalUI.Renderers
                 Console.WriteLine();
             }
         }
-
 
         public void PrintErrorMessage(string error)
         {

@@ -1,8 +1,7 @@
 ﻿namespace KingSurvival.Figures.Contracts
 {
-    using KingSurvival.Figures.Contracts;
     using KingSurvival.Common;
-    using KingSurvival.Players.Contracts;
+
     public abstract class Figure : IFigure
     {
         private Position position;

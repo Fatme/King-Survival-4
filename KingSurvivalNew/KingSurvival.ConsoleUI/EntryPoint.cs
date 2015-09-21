@@ -3,7 +3,6 @@
     using KingSurvival.Engine;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Input.Contracts;
-    using KingSurvival.Renderers;
     using KingSurvival.Renderers.Contracts;
     using KingSurvivalUI.Input;
     using KingSurvivalUI.Renderers;

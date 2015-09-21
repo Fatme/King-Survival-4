@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvival.Figures.Contracts
+﻿namespace KingSurvival.Figures.Contracts
 {
+    using System.Collections.Generic;
+
     interface IFiguresFactory
     {
 

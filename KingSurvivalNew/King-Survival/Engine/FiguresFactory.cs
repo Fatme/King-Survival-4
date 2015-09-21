@@ -1,14 +1,11 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Figures.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvival.Figures
+﻿namespace KingSurvival.Engine
 {
-    public class FiguresFactory:IFiguresFactory
+    using KingSurvival.Common;
+    using KingSurvival.Figures.Contracts;
+    using System.Collections.Generic;
+    using KingSurvival.Figures;
+
+    public class FiguresFactory : IFiguresFactory
     {
         public IFigure CreateKing()
         {
@@ -16,6 +13,7 @@ namespace KingSurvival.Figures
             var king = new King(FigureSign.K, positionKing);
             return king;
         }
+
         public IList<IFigure> CreatePawns()
         {
             int positionColPawn = 0;

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace KingSurvival.Board
+﻿namespace KingSurvival.Board
 {
     using KingSurvival.Board.Contracts;
     using KingSurvival.Figures.Contracts;
@@ -10,7 +8,7 @@ namespace KingSurvival.Board
     {
         private IFigure[,] board;
 
-        public Board(int rows=Constants.StandardChessRows, int columns=Constants.StandardChessColumns)
+        public Board(int rows = Constants.StandardChessRows, int columns = Constants.StandardChessColumns)
         {
             this.NumberOfColumns = columns;
             this.NumberOfRows = rows;
@@ -44,9 +42,6 @@ namespace KingSurvival.Board
         {
             return this.board[position.Row, position.Col];
         }
-
-
-
 
         public void RemoveFigure(IFigure figure, Position position)
         {

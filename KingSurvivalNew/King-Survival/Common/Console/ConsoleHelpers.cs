@@ -1,8 +1,4 @@
-﻿
-
-using KingSurvival.Figures;
-
-namespace KingSurvival.Common.Console
+﻿namespace KingSurvival.Common.Console
 {
     using KingSurvival.Figures.Contracts;
     using System;

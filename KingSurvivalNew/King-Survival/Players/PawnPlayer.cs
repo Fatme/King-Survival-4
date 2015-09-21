@@ -1,14 +1,9 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Figures.Contracts;
-using KingSurvival.Players.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvival.Players
+﻿namespace KingSurvival.Players
 {
+    using KingSurvival.Common;
+    using KingSurvival.Players.Contracts;
+    using System;
+
     public class PawnPlayer : Player, IPlayer
     {
         public PawnPlayer(string name)
@@ -21,10 +16,8 @@ namespace KingSurvival.Players
         {
 
             int[] deltaRed = { -1, +1, +1, -1 }; //UR, DR, DL, UL
-
             int[] deltaColona = { +1, +1, -1, -1 };
             int indexOfChange = -1;
-
 
             if (command.Length != 3)
             {
@@ -75,9 +68,6 @@ namespace KingSurvival.Players
             int pawnNewColum = oldPosition.Col + deltaColona[indexOfChange];
             var newPosition = new Position(pawnNewRow, pawnNewColum);
             return new Move(oldPosition, newPosition);
-
         }
-
-      
     }
 }

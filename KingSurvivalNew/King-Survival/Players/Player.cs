@@ -1,8 +1,8 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Figures.Contracts;
-
-namespace KingSurvival.Players
+﻿namespace KingSurvival.Players
 {
+    using KingSurvival.Common;
+    using KingSurvival.Figures.Contracts;
+
     using System.Collections.Generic;
     using KingSurvival.Players.Contracts;
   

@@ -1,23 +1,18 @@
 ﻿namespace KingSurvival.Engine
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
     using KingSurvival.Common;
-    using KingSurvival.Figures;
     using KingSurvival.Renderers.Contracts;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Board;
     using KingSurvival.Figures.Contracts;
 
-
-
     public class KingSurvivalEngine : IChessEngine
     {
-
         private const int BoardTotalNUmberOfColumns = 8;
         private const int BoardTotalNUmberOfRows = 8;
 

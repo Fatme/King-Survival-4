@@ -1,6 +1,7 @@
-﻿using System;
-namespace KingSurvival.Common
+﻿namespace KingSurvival.Common
 {
+    using System;
+
     public struct Position
     {
         public Position(int row, int col)
@@ -10,7 +11,7 @@ namespace KingSurvival.Common
             this.Col = col;
         }
 
-        public static void CheckIfValid(Position position,string errorMessage)
+        public static void CheckIfValid(Position position, string errorMessage)
         {
 
             if (position.Row < Constants.MinimumRowValueOnBoard
