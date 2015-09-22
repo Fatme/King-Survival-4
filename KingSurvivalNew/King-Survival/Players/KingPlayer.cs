@@ -50,6 +50,7 @@ namespace KingSurvival.Players
             int newColumn = oldPosition.Col + deltaColona[indexOfChange];
             var newPosition = new Position(newRow, newColumn);
             this.Figures[0].Position = newPosition;
+            Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
             return new Move(oldPosition, newPosition);
 
 
