@@ -70,10 +70,13 @@ namespace KingSurvival.Players
                     { pawnIndex = 3; }
                     break;
             }
+          
             var oldPosition = this.Figures[pawnIndex].Position;
             int pawnNewRow = oldPosition.Row + deltaRed[indexOfChange];
             int pawnNewColum = oldPosition.Col + deltaColona[indexOfChange];
             var newPosition = new Position(pawnNewRow, pawnNewColum);
+            Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
+            this.Figures[pawnIndex].Position = newPosition;
             return new Move(oldPosition, newPosition);
 
         }

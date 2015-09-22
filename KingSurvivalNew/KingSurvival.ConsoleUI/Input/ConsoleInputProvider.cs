@@ -34,8 +34,8 @@ namespace KingSurvivalUI.Input
         {
             Console.Write("{0} is next ", player.Name);
             var command = Console.ReadLine();
-            
-            return player.Move(command);
+            Move move = player.Move(command);
+            return move;
 
         }
       

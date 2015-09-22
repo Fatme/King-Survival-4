@@ -55,6 +55,7 @@
 
             var secondPlayer = players[1];
 
+            //TODO:Create function for adding list of figures in player
             for (var i = 0; i < pawns.Count; i++)
             {
                 secondPlayer.AddFigure(pawns[i]);
@@ -69,7 +70,7 @@
 
         public void Start()
         {
-           
+
             while (true)
             {
 
@@ -77,12 +78,10 @@
                 {
 
                     var player = this.GetNextPlayer();
-
+                    //TODO:Do not put the position if not valid
                     Move move = this.provider.GetNextMoveFigure(player);
                     var from = move.From;
                     var to = move.To;
-                    Position.CheckIfValid(to, GlobalErrorMessages.PositionNotValidMessage);
-
                     var figure = this.board.GetFigureAtPosition(from);
                     this.board.RemoveFigure(figure, from);
                     figure.Position = new Position(to.Row, to.Col);
