@@ -51,6 +51,7 @@ namespace KingSurvival.Players
             var newPosition = new Position(newRow, newColumn);
             Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
             this.Figures[0].Position = newPosition;
+            Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
             return new Move(oldPosition, newPosition);
 
 
