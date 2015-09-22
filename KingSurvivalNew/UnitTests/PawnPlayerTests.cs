@@ -171,6 +171,7 @@ namespace UnitTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
         public void CheckIfTheMoveMethodReturnsCorrectlyTheOldPosition()
         {
             var player = new PawnPlayer("Serafim");
