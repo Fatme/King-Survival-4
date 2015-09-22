@@ -47,6 +47,7 @@ namespace UnitTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
         public void CheckIfTheMoveMethodChangeTheKdrDirectionCorrectly()
         {
             var player = new KingPlayer("Serafim");
@@ -54,13 +55,11 @@ namespace UnitTests
             var king = factory.CreateKing();
 
             player.AddFigure(king);
-            var to = player.Move("kdr").To;
-            var position = new Position(8, 4);
-
-            Assert.AreEqual(to, position);
+            player.Move("kdr");
         }
 
         [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
         public void CheckIfTheMoveMethodChangeTheKdlDirectionCorrectly()
         {
             var player = new KingPlayer("Serafim");
@@ -68,10 +67,7 @@ namespace UnitTests
             var king = factory.CreateKing();
 
             player.AddFigure(king);
-            var to = player.Move("kdl").To;
-            var position = new Position(8, 2);
-
-            Assert.AreEqual(to, position);
+            player.Move("kdl");
         }
 
         [TestMethod]

@@ -113,10 +113,7 @@ namespace UnitTests
             player.AddFigure(pawns[2]);
             player.AddFigure(pawns[3]);
 
-            var position = player.Move("adl").To;
-            var position2 = new Position(1, -1);
-            Assert.AreEqual(position, position2);
-            Position.CheckIfValid(position, "Not valid position");
+            player.Move("adl");
         }
 
         [TestMethod]
