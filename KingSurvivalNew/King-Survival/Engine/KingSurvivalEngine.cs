@@ -1,19 +1,17 @@
-﻿namespace KingSurvival.Engine
+﻿using KingSurvival.Renderers.Contracts;
+
+namespace KingSurvival.Engine
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using KingSurvival.FigureFactory;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
     using KingSurvival.Common;
-    using KingSurvival.Figures;
-    using KingSurvival.Renderers.Contracts;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Board;
     using KingSurvival.Figures.Contracts;
-
-
 
     public class KingSurvivalEngine : IChessEngine
     {
@@ -33,9 +31,6 @@
             this.renderer = renderer;
             this.provider = inputProvider;
             board = new Board();
-
-
-            // players=new List<IPlayer>();
         }
 
         public void Initialize()
@@ -46,25 +41,30 @@
             Validator.ValidateGameInitialization(this.players, this.board);
 
             var firstPlayer = players[0];
-            IFiguresFactory figures = new FiguresFactory();
-            IFigure king = figures.CreateKing();
-            IList<IFigure> pawns = figures.CreatePawns();
-
+            IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             firstPlayer.AddFigure(king);
-            this.board.AddFigure(king, king.Position);
+            this.board.AddFigure(king,new Position(Constants.initialKingRow,Constants.initialKingColumn));
 
             var secondPlayer = players[1];
+            IFigure pawnA = new PawnFigureFactory().CreateFigure(FigureSign.A);
+            IFigure pawnB = new PawnFigureFactory().CreateFigure(FigureSign.B);
+            IFigure pawnC = new PawnFigureFactory().CreateFigure(FigureSign.C);
+            IFigure pawnD = new PawnFigureFactory().CreateFigure(FigureSign.D);
+            secondPlayer.AddFigure(pawnA);
+            secondPlayer.AddFigure(pawnB);
+            secondPlayer.AddFigure(pawnC);
+            secondPlayer.AddFigure(pawnD);
+            this.board.AddFigure(pawnA,new Position(Constants.pawnAInitialRow,Constants.pawnAInitialCol));
+            this.board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
+            this.board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
+            this.board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
+           
 
-            //TODO:Create function for adding list of figures in player
-            for (var i = 0; i < pawns.Count; i++)
-            {
-                secondPlayer.AddFigure(pawns[i]);
-                this.board.AddFigure(pawns[i], pawns[i].Position);
-            }
             this.SetFirstPlayerIndex();
 
             this.renderer.RenderBoard(this.board);
         }
+
 
         //TODO:add the validation in validator class
 
@@ -76,20 +76,19 @@
 
                 try
                 {
-
                     var player = this.GetNextPlayer();
-                    //TODO:Do not put the position if not valid
-                    Move move = this.provider.GetNextMoveFigure(player);
+
+                    Move move = this.provider.GetNextMoveFigure(player,this.board);
                     var from = move.From;
                     var to = move.To;
+                    Position.CheckIfValid(to, GlobalErrorMessages.PositionNotValidMessage);
                     var figure = this.board.GetFigureAtPosition(from);
-                    this.board.RemoveFigure(figure, from);
-                    figure.Position = new Position(to.Row, to.Col);
-                    this.board.AddFigure(figure, to);
+                    this.board.RemoveFigure(figure,from);
+                    this.board.AddFigure(figure,to);
 
                     this.renderer.RenderBoard(this.board);
 
-                    if (WinningConditions(player))
+                    if (WinningConditions())
                     {
                         this.renderer.PrintErrorMessage("The king won");
                         break;
@@ -146,9 +145,9 @@
             }
         }
 
-        public bool WinningConditions(IPlayer player)
+        public bool WinningConditions()
         {
-            if (KingWon(player))
+            if (KingWon())
             {
                 return true;
             }
@@ -156,18 +155,22 @@
             //TODO:Add more conditions
 
         }
-        public bool KingWon(IPlayer player)
+        public bool KingWon()
         {
-            if (player.Figures[0].Sign == FigureSign.K)
+            for(var i = 0; i < players.Count; i++)
             {
-                if (player.Figures[0].Position.Row == 0) //check if king is on the first row
+                if (players[i].Figures[0].Sign == FigureSign.K)
                 {
-                    return true;
+                    if (this.board.GetFigurePosition(players[i].Figures[0]).Row == 0)//check if king is on the first row
+                    {
+                        return true;
+                    }
                 }
             }
+           
 
             return false;
-            //TODO:Add the rest of the conditions
+            ////TODO:Add the rest of the conditions
         }
 
     }

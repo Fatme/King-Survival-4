@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Input.Contracts
+﻿using KingSurvival.Board.Contracts;
+
+namespace KingSurvival.Input.Contracts
 {
     using KingSurvival.Players.Contracts;
     using System;
@@ -12,6 +14,6 @@
    {
         IList<IPlayer> GetPlayers(int numberOfPlayers);
 
-        Move GetNextMoveFigure(IPlayer player);
+        Move GetNextMoveFigure(IPlayer player,IBoard board);
    }
 }

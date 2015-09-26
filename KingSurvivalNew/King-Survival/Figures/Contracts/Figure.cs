@@ -5,22 +5,16 @@
     using KingSurvival.Players.Contracts;
     public abstract class Figure : IFigure
     {
-        private Position position;
 
-        protected Figure(FigureSign sign, Position position)
+        protected Figure(FigureSign sign)
         {
            
-            this.Position = position;
+            
             this.Sign = sign;
         }
 
         public FigureSign Sign { get; private set; }
 
-        public Position Position
-        {
-            get { return this.position; }
-            set { this.position = value; }
-        }
 
     }
 }

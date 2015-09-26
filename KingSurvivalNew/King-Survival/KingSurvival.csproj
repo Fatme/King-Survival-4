@@ -55,11 +55,12 @@
     <Compile Include="Common\Validator.cs" />
     <Compile Include="Common\WinningConditions.cs" />
     <Compile Include="Engine\Contracts\IChessEngine.cs" />
+    <Compile Include="FigureFactory\PawnFigureFactory.cs" />
     <Compile Include="Engine\KingSurvivalEngine.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
     <Compile Include="Figures\Contracts\Figure.cs" />
-    <Compile Include="Engine\Contracts\IFiguresFactory.cs" />
-    <Compile Include="Engine\FiguresFactory.cs" />
+    <Compile Include="FigureFactory\Contracts\IFigureFactory.cs" />
+    <Compile Include="FigureFactory\KingFigureFactory.cs" />
     <Compile Include="Figures\Contracts\IMoveable.cs" />
     <Compile Include="Figures\King.cs" />
     <Compile Include="Figures\Pawn.cs" />

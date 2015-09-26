@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using KingSurvival.Board.Contracts;
 using KingSurvival.Figures.Contracts;
 
 namespace KingSurvival.Players.Contracts
@@ -15,7 +16,7 @@ namespace KingSurvival.Players.Contracts
 
         IList<IFigure> Figures { get; }
 
-        Move Move(string command);
+        Move Move(string command,IBoard board);
 
         
     }

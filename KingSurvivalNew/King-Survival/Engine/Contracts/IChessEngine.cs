@@ -1,8 +1,7 @@
-﻿using KingSurvival.Board.Contracts;
-
+﻿
 namespace KingSurvival.Engine.Contracts
 {
-    using System.Collections.Generic;
+   
 
     using KingSurvival.Players.Contracts;
 
@@ -14,7 +13,7 @@ namespace KingSurvival.Engine.Contracts
 
         void Start();
 
-        bool WinningConditions(IPlayer player);
+        bool WinningConditions();
 
     }
 }

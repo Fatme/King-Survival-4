@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KingSurvival.Board.Contracts;
 
 namespace KingSurvival.Players
 {
@@ -17,7 +18,7 @@ namespace KingSurvival.Players
 
         }
 
-        public override Move Move(string command)
+        public override Move Move(string command,IBoard board)
         {
 
             int[] deltaRed = { -1, +1, +1, -1 }; //UR, DR, DL, UL
@@ -70,13 +71,13 @@ namespace KingSurvival.Players
                     { pawnIndex = 3; }
                     break;
             }
-          
-            var oldPosition = this.Figures[pawnIndex].Position;
+            var fig = this.Figures;
+            var oldPosition = board.GetFigurePosition(this.Figures[pawnIndex]);
             int pawnNewRow = oldPosition.Row + deltaRed[indexOfChange];
             int pawnNewColum = oldPosition.Col + deltaColona[indexOfChange];
             var newPosition = new Position(pawnNewRow, pawnNewColum);
-            Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
-            this.Figures[pawnIndex].Position = newPosition;
+            //Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
+           // this.Figures[pawnIndex].Position = newPosition;
             return new Move(oldPosition, newPosition);
 
         }

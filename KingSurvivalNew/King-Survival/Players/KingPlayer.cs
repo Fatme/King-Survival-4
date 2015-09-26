@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KingSurvival.Board.Contracts;
 
 namespace KingSurvival.Players
 {
@@ -16,7 +17,7 @@ namespace KingSurvival.Players
         {
         }
 
-        public override Move Move(string command)
+        public override Move Move(string command,IBoard board)
         {
 
             int[] deltaRed = { -1, +1, +1, -1 }; //UR, DR, DL, UL
@@ -32,7 +33,7 @@ namespace KingSurvival.Players
                 throw new ArgumentOutOfRangeException("The command should contain three symbols");
             }
 
-            var oldPosition = this.Figures[0].Position;
+            var oldPosition = board.GetFigurePosition(this.Figures[0]);
 
             switch (command)
             {
@@ -49,8 +50,8 @@ namespace KingSurvival.Players
             int newRow = oldPosition.Row + deltaRed[indexOfChange];
             int newColumn = oldPosition.Col + deltaColona[indexOfChange];
             var newPosition = new Position(newRow, newColumn);
-            Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
-            this.Figures[0].Position = newPosition;
+            //Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
+          //  this.Figures[0].Position = newPosition;
             return new Move(oldPosition, newPosition);
 
 

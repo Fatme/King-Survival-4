@@ -7,7 +7,7 @@
     {
         FigureSign Sign { get; }
 
-        Position Position { get; set; }
+      
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KingSurvival.Board
 {
@@ -9,6 +10,7 @@ namespace KingSurvival.Board
     public class Board : IBoard
     {
         private IFigure[,] board;
+        private Dictionary<IFigure, Position> figurePositionsOnBoard = new Dictionary<IFigure, Position>();
 
         public Board(int rows=Constants.StandardChessRows, int columns=Constants.StandardChessColumns)
         {
@@ -22,37 +24,43 @@ namespace KingSurvival.Board
         public int NumberOfColumns { get; private set; }
 
 
-        public void AddFigure(IFigure figure, Position position)
+        public void AddFigure(IFigure figure,Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Position.CheckIfValid(position,GlobalErrorMessages.PositionNotValidMessage);            
             this.board[position.Row, position.Col] = figure;
-         
+
+            this.figurePositionsOnBoard[figure] = position;
+
         }
 
-        private int GetArrayRow(int chessRow)
-        {
-            return this.NumberOfRows - chessRow;
-        }
+        //private int GetArrayRow(int chessRow)
+        //{
+        //    return this.NumberOfRows - chessRow;
+        //}
 
-        private int GetArrayCol(char chessCol)
-        {
-            return chessCol - 'a';
-        }
+        //private int GetArrayCol(char chessCol)
+        //{
+        //    return chessCol - 'a';
+        //}
 
         public IFigure GetFigureAtPosition(Position position)
         {
             return this.board[position.Row, position.Col];
         }
 
-
-
-
-        public void RemoveFigure(IFigure figure, Position position)
+        public void RemoveFigure(IFigure figure,Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Position.CheckIfValid(position,GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = null;
+        }
+
+        public Position GetFigurePosition(IFigure figure)
+        {
+            Position position;
+            figurePositionsOnBoard.TryGetValue(figure, out position);
+            return position;
         }
     }
 }

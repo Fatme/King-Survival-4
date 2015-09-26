@@ -1,4 +1,5 @@
-﻿using KingSurvival.Common;
+﻿using KingSurvival.Board.Contracts;
+using KingSurvival.Common;
 using KingSurvival.Figures.Contracts;
 
 namespace KingSurvival.Players
@@ -33,7 +34,7 @@ namespace KingSurvival.Players
         }
 
        
-        public abstract Move Move(string command);
+        public abstract Move Move(string command,IBoard board);
        
     }
 }

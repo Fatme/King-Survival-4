@@ -15,6 +15,20 @@
 
         public const int numberOfPawns=4;
 
+        public const int initialKingRow = 7;
+        public const int initialKingColumn = 3;
+
+        public const int pawnAInitialRow = 0;
+        public const int pawnAInitialCol = 0;
+        public const int pawnBInitialRow = 0;
+        public const int pawnBInitialCol = 2;
+        public const int pawnCInitialRow = 0;
+        public const int pawnCInitialCol = 4;
+        public const int pawnDInitialRow = 0;
+        public const int pawnDInitialCol = 6;
+        
+        
+
 
     }
 }
