@@ -7,13 +7,9 @@ namespace KingSurvival.Engine.Contracts
 
    public interface IChessEngine
     {
-        
-
         void Initialize();
 
         void Start();
-
-        bool WinningConditions();
 
     }
 }

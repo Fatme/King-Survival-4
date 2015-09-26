@@ -1,4 +1,5 @@
-﻿using KingSurvival.Renderers.Contracts;
+﻿using KingSurvival.Common.Contracts;
+using KingSurvival.Renderers.Contracts;
 
 namespace KingSurvival.Engine
 {
@@ -21,15 +22,17 @@ namespace KingSurvival.Engine
 
         private readonly IRenderer renderer;
         private readonly IInputProvider provider;
+        private readonly IWinningConditions winningConditions;
         private IList<IPlayer> players;
         private IBoard board;
 
         private int currentPlayerIndex;
 
-        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider)
+        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IWinningConditions winningConditions)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
+            this.winningConditions = winningConditions;
             board = new Board();
         }
 
@@ -43,7 +46,7 @@ namespace KingSurvival.Engine
             var firstPlayer = players[0];
             IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             firstPlayer.AddFigure(king);
-            this.board.AddFigure(king,new Position(Constants.initialKingRow,Constants.initialKingColumn));
+            this.board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
 
             var secondPlayer = players[1];
             IFigure pawnA = new PawnFigureFactory().CreateFigure(FigureSign.A);
@@ -54,11 +57,11 @@ namespace KingSurvival.Engine
             secondPlayer.AddFigure(pawnB);
             secondPlayer.AddFigure(pawnC);
             secondPlayer.AddFigure(pawnD);
-            this.board.AddFigure(pawnA,new Position(Constants.pawnAInitialRow,Constants.pawnAInitialCol));
+            this.board.AddFigure(pawnA, new Position(Constants.pawnAInitialRow, Constants.pawnAInitialCol));
             this.board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
             this.board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
             this.board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
-           
+
 
             this.SetFirstPlayerIndex();
 
@@ -78,17 +81,17 @@ namespace KingSurvival.Engine
                 {
                     var player = this.GetNextPlayer();
 
-                    Move move = this.provider.GetNextMoveFigure(player,this.board);
+                    Move move = this.provider.GetNextMoveFigure(player, this.board);
                     var from = move.From;
                     var to = move.To;
                     Position.CheckIfValid(to, GlobalErrorMessages.PositionNotValidMessage);
                     var figure = this.board.GetFigureAtPosition(from);
-                    this.board.RemoveFigure(figure,from);
-                    this.board.AddFigure(figure,to);
+                    this.board.RemoveFigure(figure, from);
+                    this.board.AddFigure(figure, to);
 
                     this.renderer.RenderBoard(this.board);
 
-                    if (WinningConditions())
+                    if (this.WinningConditions())
                     {
                         this.renderer.PrintErrorMessage("The king won");
                         break;
@@ -145,33 +148,16 @@ namespace KingSurvival.Engine
             }
         }
 
-        public bool WinningConditions()
+        private bool WinningConditions()
         {
-            if (KingWon())
+            if (winningConditions.KingWon(this.players, this.board))
             {
                 return true;
             }
             return false;
-            //TODO:Add more conditions
 
         }
-        public bool KingWon()
-        {
-            for(var i = 0; i < players.Count; i++)
-            {
-                if (players[i].Figures[0].Sign == FigureSign.K)
-                {
-                    if (this.board.GetFigurePosition(players[i].Figures[0]).Row == 0)//check if king is on the first row
-                    {
-                        return true;
-                    }
-                }
-            }
-           
 
-            return false;
-            ////TODO:Add the rest of the conditions
-        }
 
     }
 }

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\Contracts\IBoard.cs" />
+    <Compile Include="Common\Contracts\IWinningConditions.cs" />
     <Compile Include="Common\FigureSign.cs" />
     <Compile Include="Common\Console\ConsoleHelpers.cs" />
     <Compile Include="Common\Constants.cs" />

@@ -1,4 +1,7 @@
-﻿namespace KingSurvivalUI
+﻿using KingSurvival.Common;
+using KingSurvival.Common.Contracts;
+
+namespace KingSurvivalUI
 {
     using KingSurvival.Engine;
     using KingSurvival.Engine.Contracts;
@@ -15,7 +18,8 @@
             IRenderer renderer = new ConsoleRenderer();
             renderer.RenderMainMenu();
             IInputProvider provider = new ConsoleInputProvider();
-            IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider);
+            IWinningConditions winningConditions=new WinningConditions();
+            IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider,winningConditions);
             chessEngine.Initialize();
             chessEngine.Start();
             //TODO:add main menu
