@@ -7,34 +7,28 @@
     using KingSurvival.Common;
     using KingSurvival.Figures.Contracts;
   
-    public abstract class Player:IPlayer
+    public abstract class Player : IPlayer
     {
         private IList<IFigure> figures;
 
-        public Player(string name)
-        {
-            
-            this.Name = name;
-            this.figures=new List<IFigure>();
-        }
-
-
         public string Name { get; private set; }
 
+        public IList<IFigure> Figures
+        {
+            get { return this.figures; }
+        }
+
+        public Player(string name)
+        {            
+            this.Name = name;
+            this.figures = new List<IFigure>();
+        }
 
         public void AddFigure(IFigure figure)
         {
            this.figures.Add(figure);
         }
 
-        public IList<IFigure> Figures
-        {
-            get { return this.figures; }
-            private set { this.figures = value; }
-        }
-
-       
-        public abstract Move Move(string command,IBoard board);
-       
+        public abstract Move Move(string command, IBoard board);       
     }
 }
