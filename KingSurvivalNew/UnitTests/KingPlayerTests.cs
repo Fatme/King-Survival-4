@@ -24,16 +24,6 @@ namespace UnitTests
             IBoard board = new Board();
             IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
-            IFigure pawnA = new PawnFigureFactory().CreateFigure(FigureSign.A);
-            IFigure pawnB = new PawnFigureFactory().CreateFigure(FigureSign.B);
-            IFigure pawnC = new PawnFigureFactory().CreateFigure(FigureSign.C);
-            IFigure pawnD = new PawnFigureFactory().CreateFigure(FigureSign.D);
-
-            board.AddFigure(pawnA, new Position(Constants.pawnAInitialRow, Constants.pawnAInitialCol));
-            board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
-            board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
-            board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
-
             player.Move("aaaa", board);
         }
 
@@ -45,20 +35,8 @@ namespace UnitTests
             IBoard board = new Board();
             IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
-            IFigure pawnA = new PawnFigureFactory().CreateFigure(FigureSign.A);
-            IFigure pawnB = new PawnFigureFactory().CreateFigure(FigureSign.B);
-            IFigure pawnC = new PawnFigureFactory().CreateFigure(FigureSign.C);
-            IFigure pawnD = new PawnFigureFactory().CreateFigure(FigureSign.D);
-
-            board.AddFigure(pawnA, new Position(Constants.pawnAInitialRow, Constants.pawnAInitialCol));
-            board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
-            board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
-            board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
-
             player.Move("aaa", board);
         }
-
-        //TODO: Set a test for the king position
 
         [TestMethod]
         public void CheckIfTheMoveMethodChangeTheKurDirectionCorrectly()
@@ -85,7 +63,7 @@ namespace UnitTests
             board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
             board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
             board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
-            Move move=firstPlayer.Move("kur", board);
+            Move move = firstPlayer.Move("kur", board);
             var expectedRow = 6;
             Assert.AreEqual(move.To.Row, expectedRow);
         }
@@ -94,7 +72,7 @@ namespace UnitTests
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void CheckIfTheMoveMethodChangeTheKdrDirectionCorrectly()
         {
-            
+
         }
 
         [TestMethod]

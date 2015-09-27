@@ -17,7 +17,9 @@
             var position = new Position(1, 1);
             var figureSign = FigureSign.K;
             var figure = new King(figureSign);
-            board.AddFigure(figure,position);
+            board.AddFigure(figure, position);
+
+            Assert.AreEqual(figure, board.GetFigureAtPosition(position));
         }
 
         [TestMethod]
@@ -25,14 +27,12 @@
         {
             var board = new Board();
             var position = new Position(1, 1);
-            var position2 = new Position(2, 2);
             var figureSign = FigureSign.K;
             var figure = new King(figureSign);
-
-            board.AddFigure(figure,position);
+            board.AddFigure(figure, position);
 
             Assert.AreEqual(figure, board.GetFigureAtPosition(position));
-            Assert.AreNotEqual(figure, board.GetFigureAtPosition(position2));
+
         }
 
         [TestMethod]
@@ -42,9 +42,8 @@
             var position = new Position(1, 1);
             var figureSign = FigureSign.K;
             var figure = new King(figureSign);
-
-            board.AddFigure(figure,position);
-            board.RemoveFigure(figure,position);
+            board.AddFigure(figure, position);
+            board.RemoveFigure(figure, position);
 
             Assert.AreNotEqual(figure, board.GetFigureAtPosition(position));
         }
@@ -56,7 +55,7 @@
             var board = new Board();
             var position = new Position(-1, -1);
             IFigure figure = new King(FigureSign.K);
-            board.AddFigure(figure,position);
+            board.AddFigure(figure, position);
         }
 
         [TestMethod]
@@ -65,11 +64,9 @@
         {
             var board = new Board();
             var position = new Position(9, 9);
-
             var figureSign = FigureSign.K;
             var figure = new King(figureSign);
-
-            board.AddFigure(figure,position);
+            board.AddFigure(figure, position);
         }
 
         [TestMethod]
@@ -80,7 +77,7 @@
             var position = new Position(1, 1);
             IFigure figure = null;
 
-            board.RemoveFigure(figure,position);
+            board.RemoveFigure(figure, position);
         }
 
         [TestMethod]
@@ -93,7 +90,7 @@
             var figureSign = FigureSign.K;
             var figure = new King(figureSign);
 
-            board.RemoveFigure(figure,position);
+            board.RemoveFigure(figure, position);
         }
     }
 }

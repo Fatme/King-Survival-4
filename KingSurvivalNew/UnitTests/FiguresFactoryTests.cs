@@ -13,15 +13,11 @@ namespace UnitTests
     public class FiguresFactoryTests
     {
         [TestMethod]
-        public void CheckIfCreateKingWorksCorrectly()
+        public void CheckIfCreateFigureKingWorksCorrectly()
         {
 
             var king = new KingFigureFactory().CreateFigure(FigureSign.K);
-            IBoard board = new Board();
-            board.AddFigure(king, new Position(7, 3));
-
             var kingAdrian = new King(FigureSign.K);
-
             Assert.AreEqual(king.Sign, kingAdrian.Sign);
         }
 
