@@ -42,7 +42,7 @@ namespace UnitTests
             board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
             board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
 
-            secondPlayer.Move("shshs", board);
+            secondPlayer.Move(new Command("shshs", new List<string>()), board);
         }
 
         [TestMethod]

@@ -4,6 +4,8 @@
     using KingSurvival.Common;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
+using System.Collections.Generic;
+    using KingSurvival.Common.Contracts;
 
     public class KingPlayer : Player, IPlayer
     {
@@ -12,29 +14,23 @@
         {
         }
 
-        public override Move Move(string command,IBoard board)
+        public override IDictionary<string, int> MapCommandToDirection
         {
-            int indexOfChange = -1;
-
-            if (command.Length != 3)
+            get
             {
-                //TODO: change the exception to custom exception
-                throw new ArgumentOutOfRangeException("The command should contain three symbols.");
+                return new Dictionary<string, int>() {
+                    { "kur", 0 },
+                    { "kdr", 1 },
+                    { "kdl", 2 },
+                    { "kul", 3 }
+                };
             }
+        }
 
-            switch (command)
-            {
-                case "kur": { indexOfChange = 0; } break;
-                case "kdr": { indexOfChange = 1; } break;
-                case "kdl": { indexOfChange = 2; } break;
-                case "kul": { indexOfChange = 3; } break;
-                default:
-                    //TODO:change the exception to custom exception
-                    throw new ArgumentOutOfRangeException("The command is not correct");
-            }
-
+        public override Move Move(ICommand command, IBoard board)
+        {
             var oldPosition = board.GetFigurePosition(this.Figures[0]);
-            return this.GenerateNewMove(oldPosition, indexOfChange);
+            return this.GenerateNewMove(oldPosition, this.MapCommandToDirection[command.Name]);
         }
     }
 }

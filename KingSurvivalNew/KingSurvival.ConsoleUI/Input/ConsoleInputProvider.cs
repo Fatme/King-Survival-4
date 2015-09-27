@@ -32,13 +32,9 @@
         public Move GetNextFigureMove(IPlayer player,IBoard board)
         {
             Console.Write("{0} is next ", player.Name);
-            var command = Console.ReadLine();
-            Move move = player.Move(command,board);
+            var command = new Command(Console.ReadLine(), player.MapCommandToDirection.Keys);
+            Move move = player.Move(command, board);
             return move;
-
-        }
-      
-       
-
+        }   
     }
 }

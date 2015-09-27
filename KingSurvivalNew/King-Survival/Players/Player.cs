@@ -6,6 +6,7 @@
     using KingSurvival.Board.Contracts;
     using KingSurvival.Common;
     using KingSurvival.Figures.Contracts;
+    using KingSurvival.Common.Contracts;
   
     public abstract class Player : IPlayer
     {
@@ -32,12 +33,17 @@
            this.figures.Add(figure);
         }
 
-        public abstract Move Move(string command, IBoard board);
-
-        protected Move GenerateNewMove(Position oldPosition, int indexOfChange)
+        public abstract IDictionary<string, int> MapCommandToDirection
         {
-            int newRow = oldPosition.Row + Player.deltaRow[indexOfChange];
-            int newColumn = oldPosition.Col + Player.deltaCol[indexOfChange];
+            get;
+        }
+
+        public abstract Move Move(ICommand command, IBoard board);
+
+        protected Move GenerateNewMove(Position oldPosition, int direction)
+        {
+            int newRow = oldPosition.Row + Player.deltaRow[direction];
+            int newColumn = oldPosition.Col + Player.deltaCol[direction];
             var newPosition = new Position(newRow, newColumn);
             return new Move(oldPosition, newPosition);
         }

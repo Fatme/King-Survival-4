@@ -25,7 +25,7 @@ namespace UnitTests
             IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
             player.AddFigure(king);
-            player.Move("aaaa", board);
+            player.Move(new Command("aaaa", new List<string> { }), board);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace UnitTests
             IBoard board = new Board();
             IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
-            player.Move("aaa", board);
+            player.Move(new Command("aaa",  new List<string>()), board);
         }
 
         [TestMethod]
@@ -64,7 +64,7 @@ namespace UnitTests
             board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
             board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
             board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
-            Move move = firstPlayer.Move("kur", board);
+            Move move = firstPlayer.Move(new Command("kur",  new List<string> { "kur" }), board);
             var expectedRow = 6;
             Assert.AreEqual(move.To.Row, expectedRow);
         }

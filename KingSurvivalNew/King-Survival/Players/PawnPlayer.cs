@@ -5,45 +5,37 @@
     using KingSurvival.Common;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
+    using System.Collections.Generic;
+    using KingSurvival.Common.Contracts;
 
     public class PawnPlayer : Player, IPlayer
     {
         public PawnPlayer(string name)
             : base(name)
         {
+        }
 
+        public override IDictionary<string, int> MapCommandToDirection
+        {
+            get
+            {
+                return new Dictionary<string, int>() {
+                    { "adr", 1 },
+                    { "bdr", 1 },
+                    { "cdr", 1 },
+                    { "ddr", 1 },
+                    { "adl", 2 },
+                    { "bdl", 2 },
+                    { "cdl", 2 },
+                    { "ddl", 2 }
+                };
+            }
         }
         
-        public override Move Move(string command,IBoard board)
+        public override Move Move(ICommand command, IBoard board)
         {
-            int indexOfChange = -1;
-
-            if (command.Length != 3)
-            {
-                //TODO:Change the exception to custom exception
-                throw new ArgumentOutOfRangeException("The command should contain three symbols");
-            }
-
-            switch (command)
-            {
-                case "adr":
-                case "bdr":
-                case "cdr":
-                case "ddr":
-                    { indexOfChange = 1; }
-                    break;
-                case "adl":
-                case "bdl":
-                case "cdl":
-                case "ddl":
-                    { indexOfChange = 2; }
-                    break;
-                default:
-                    //TODO:change the exception to custom exception
-                    throw new ArgumentOutOfRangeException("The command is not correct");
-            }
             int pawnIndex = -1;
-            switch (command[0])
+            switch (command.Name[0])
             {
                 case 'a':
                 case 'A':
@@ -64,9 +56,7 @@
             }
 
             var oldPosition = board.GetFigurePosition(this.Figures[pawnIndex]);
-            return this.GenerateNewMove(oldPosition, indexOfChange);
-        }
-
-      
+            return this.GenerateNewMove(oldPosition, this.MapCommandToDirection[command.Name]);
+        } 
     }
 }
