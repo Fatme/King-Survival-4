@@ -26,12 +26,12 @@
         private IBoard board;
         private int currentPlayerIndex;
 
-        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IWinningConditions winningConditions)
+        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider,IBoard board, IWinningConditions winningConditions)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
-            board = new Board();
+            this.board = board;
         }
 
         public void Initialize()
@@ -71,45 +71,58 @@
             {
                 try
                 {
+                    if (this.winningConditions.KingWon(this.players, this.board))
+                    {
+                        this.renderer.PrintErrorMessage("The king won");
+                        break;
+
+                    }
+                    if (this.winningConditions.KingLost(this.players, this.board))
+                    {
+                        this.renderer.PrintErrorMessage("The king lost");
+                        break;
+                    }
                     var player = this.GetNextPlayer();
                     Move move = this.provider.GetNextFigureMove(player, this.board);
                     var from = move.From;
                     var to = move.To;
-                    Position.CheckIfValid(to, GlobalErrorMessages.PositionNotValidMessage);
+                    Validator.CheckIfPositionValid(to, GlobalErrorMessages.PositionNotValidMessage);
+                    Validator.CheckIfFigureOnTheWay(to, this.board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
                     var figure = this.board.GetFigureAtPosition(from);
                     this.board.RemoveFigure(figure, from);
                     this.board.AddFigure(figure, to);
 
                     this.renderer.RenderBoard(this.board);
 
-                    if (this.WinningConditions())
-                    {
-                        this.renderer.PrintErrorMessage("The king won");
-                        break;
-                    }
+                    
                 }
                 catch (IndexOutOfRangeException ex)
                 {
-                    currentPlayerIndex--;
-                    this.renderer.RenderBoard(this.board);
-                    this.renderer.PrintErrorMessage(ex.Message);
+                    this.HandleException(this.board, ex.Message);
 
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    currentPlayerIndex--;
-                    this.renderer.RenderBoard(this.board);
-                    this.renderer.PrintErrorMessage(ex.Message);
+                    this.HandleException(this.board, ex.Message);
                 }
                 catch (ArgumentNullException ex)
                 {
-                    currentPlayerIndex--;
-                    this.renderer.RenderBoard(this.board);
-                    this.renderer.PrintErrorMessage(ex.Message);
+                    this.HandleException(this.board, ex.Message);
+                }
+                catch (ArgumentException ex)
+                {
+                    this.HandleException(this.board, ex.Message);
                 }
 
             }
 
+        }
+
+        private void HandleException(IBoard board, string message)
+        {
+            this.currentPlayerIndex--;
+            this.renderer.RenderBoard(this.board);
+            this.renderer.PrintErrorMessage(message);
         }
 
         private IPlayer GetNextPlayer()
@@ -136,13 +149,6 @@
             }
         }
 
-        private bool WinningConditions()
-        {
-            if (winningConditions.KingWon(this.players, this.board))
-            {
-                return true;
-            }
-            return false;
-        }
+       
     }
 }

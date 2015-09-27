@@ -29,5 +29,28 @@
                 throw new InvalidOperationException("King survial has 8x8 board");
             }
         }
+        public static void CheckIfFigureOnTheWay(Position position, IBoard board, string message)
+        {
+            if (board.GetFigureAtPosition(position) != null)
+            {
+                throw new ArgumentException(message);
+            }
+
+        }
+        public static void CheckIfPositionValid(Position position, string errorMessage)
+        {
+
+            if (position.Row < Constants.MinimumRowValueOnBoard
+                || position.Row > Constants.MaximumRowValueOnBoard)
+            {
+                throw new IndexOutOfRangeException(errorMessage);
+            }
+
+            if (position.Col < Constants.MinimumColumnValueOnBoard
+                || position.Col > Constants.MaximumColumnValueOnBoard)
+            {
+                throw new IndexOutOfRangeException(errorMessage);
+            }
+        }
     }
 }

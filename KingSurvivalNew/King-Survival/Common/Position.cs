@@ -1,30 +1,17 @@
-﻿namespace KingSurvival.Common
+﻿using KingSurvival.Board.Contracts;
+using KingSurvival.Common.Contracts;
+
+namespace KingSurvival.Common
 {
     using System;
     //TODO:made it to class maybe later
-    public struct Position
+    public class Position:IPosition
     {
         public Position(int row, int col)
-            : this()
+            
         {
             this.Row = row;
             this.Col = col;
-        }
-
-        public static void CheckIfValid(Position position, string errorMessage)
-        {
-
-            if (position.Row < Constants.MinimumRowValueOnBoard
-                || position.Row > Constants.MaximumRowValueOnBoard)
-            {
-                throw new IndexOutOfRangeException(errorMessage);
-            }
-
-            if (position.Col < Constants.MinimumColumnValueOnBoard
-                || position.Col > Constants.MaximumColumnValueOnBoard)
-            {
-                throw new IndexOutOfRangeException(errorMessage);
-            }
         }
 
         public int Row { get; private set; }

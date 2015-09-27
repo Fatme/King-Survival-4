@@ -26,7 +26,7 @@
         public void AddFigure(IFigure figure,Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
-            Position.CheckIfValid(position,GlobalErrorMessages.PositionNotValidMessage);            
+            Validator.CheckIfPositionValid(position,GlobalErrorMessages.PositionNotValidMessage);            
             this.board[position.Row, position.Col] = figure;
 
             this.figurePositionsOnBoard[figure] = position;
@@ -51,7 +51,7 @@
         public void RemoveFigure(IFigure figure,Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
-            Position.CheckIfValid(position,GlobalErrorMessages.PositionNotValidMessage);
+            Validator.CheckIfPositionValid(position,GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = null;
         }
 
