@@ -43,15 +43,15 @@
 			var kingFigureFactory = new KingFigureFactory();
 			IFigure king = kingFigureFactory.CreateFigure();
 
-			var firstPlayer = players[0];
+            var firstPlayer = players[0];
             firstPlayer.AddFigure(king);
             this.board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
 
-			var pawnFigureFactory = new PawnFigureFactory();
-			IFigure pawnA = pawnFigureFactory.CreateFigure(FigureSign.A);
-			IFigure pawnB = pawnFigureFactory.CreateFigure(FigureSign.B);
-			IFigure pawnC = pawnFigureFactory.CreateFigure(FigureSign.C);
-			IFigure pawnD = pawnFigureFactory.CreateFigure(FigureSign.D);
+            var pawnFigureFactory = new PawnFigureFactory();
+            IFigure pawnA = pawnFigureFactory.CreateFigure(FigureSign.A);
+            IFigure pawnB = pawnFigureFactory.CreateFigure(FigureSign.B);
+            IFigure pawnC = pawnFigureFactory.CreateFigure(FigureSign.C);
+            IFigure pawnD = pawnFigureFactory.CreateFigure(FigureSign.D);
 
 			var secondPlayer = players[1];
             secondPlayer.AddFigure(pawnA);
