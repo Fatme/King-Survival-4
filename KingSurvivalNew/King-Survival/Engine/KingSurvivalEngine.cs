@@ -25,7 +25,6 @@ namespace KingSurvival.Engine
         private readonly IWinningConditions winningConditions;
         private IList<IPlayer> players;
         private IBoard board;
-
         private int currentPlayerIndex;
 
         public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IWinningConditions winningConditions)
@@ -40,7 +39,6 @@ namespace KingSurvival.Engine
         {
             //TODO:Extract to another class and interface
             this.players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
-
             Validator.ValidateGameInitialization(this.players, this.board);
 
             var firstPlayer = players[0];
@@ -62,7 +60,6 @@ namespace KingSurvival.Engine
             this.board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
             this.board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
 
-
             this.SetFirstPlayerIndex();
 
             this.renderer.RenderBoard(this.board);
@@ -73,15 +70,13 @@ namespace KingSurvival.Engine
 
         public void Start()
         {
-
             while (true)
             {
-
                 try
                 {
                     var player = this.GetNextPlayer();
 
-                    Move move = this.provider.GetNextMoveFigure(player, this.board);
+                    Move move = this.provider.GetNextFigureMove(player, this.board);
                     var from = move.From;
                     var to = move.To;
                     Position.CheckIfValid(to, GlobalErrorMessages.PositionNotValidMessage);
@@ -96,8 +91,6 @@ namespace KingSurvival.Engine
                         this.renderer.PrintErrorMessage("The king won");
                         break;
                     }
-
-
                 }
                 catch (IndexOutOfRangeException ex)
                 {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KingSurvival.Board.Contracts;
 using KingSurvival.Common;
-using KingSurvival.Common.Console;
+
 using KingSurvival.Input.Contracts;
 using KingSurvival.Players;
 using KingSurvival.Players.Contracts;
@@ -32,7 +32,7 @@ namespace KingSurvivalUI.Input
         }
 
       
-        public Move GetNextMoveFigure(IPlayer player,IBoard board)
+        public Move GetNextFigureMove(IPlayer player,IBoard board)
         {
             Console.Write("{0} is next ", player.Name);
             var command = Console.ReadLine();

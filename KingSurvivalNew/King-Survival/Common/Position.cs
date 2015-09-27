@@ -1,6 +1,7 @@
 ﻿using System;
 namespace KingSurvival.Common
 {
+    //TODO:made it to class maybe later
     public struct Position
     {
         public Position(int row, int col)

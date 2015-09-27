@@ -13,7 +13,7 @@ namespace KingSurvival.Input.Contracts
    public interface IInputProvider
    {
         IList<IPlayer> GetPlayers(int numberOfPlayers);
-
-        Move GetNextMoveFigure(IPlayer player,IBoard board);
+       
+        Move GetNextFigureMove(IPlayer player, IBoard board);
    }
 }

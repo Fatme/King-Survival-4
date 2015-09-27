@@ -8,8 +8,6 @@
 
         protected Figure(FigureSign sign)
         {
-           
-            
             this.Sign = sign;
         }
 

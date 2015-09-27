@@ -17,7 +17,7 @@ namespace KingSurvival.Players
         {
 
         }
-
+        
         public override Move Move(string command,IBoard board)
         {
 

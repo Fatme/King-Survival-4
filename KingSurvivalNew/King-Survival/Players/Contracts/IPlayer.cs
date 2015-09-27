@@ -16,6 +16,7 @@ namespace KingSurvival.Players.Contracts
 
         IList<IFigure> Figures { get; }
 
+        //TODO:Maybe move this method to IMovable interface
         Move Move(string command,IBoard board);
 
         

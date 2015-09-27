@@ -48,7 +48,6 @@
     <Compile Include="Board\Contracts\IBoard.cs" />
     <Compile Include="Common\Contracts\IWinningConditions.cs" />
     <Compile Include="Common\FigureSign.cs" />
-    <Compile Include="Common\Console\ConsoleHelpers.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\GlobalErrorMessages.cs" />
     <Compile Include="Common\Move.cs" />
@@ -59,7 +58,7 @@
     <Compile Include="FigureFactory\PawnFigureFactory.cs" />
     <Compile Include="Engine\KingSurvivalEngine.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
-    <Compile Include="Figures\Contracts\Figure.cs" />
+    <Compile Include="Figures\Figure.cs" />
     <Compile Include="FigureFactory\Contracts\IFigureFactory.cs" />
     <Compile Include="FigureFactory\KingFigureFactory.cs" />
     <Compile Include="Figures\Contracts\IMoveable.cs" />

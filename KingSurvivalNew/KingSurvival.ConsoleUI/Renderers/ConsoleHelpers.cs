@@ -1,8 +1,9 @@
 ﻿
 
+using KingSurvival.Common;
 using KingSurvival.Figures;
 
-namespace KingSurvival.Common.Console
+namespace KingSurvivalUI.Renderers
 {
     using KingSurvival.Figures.Contracts;
     using System;

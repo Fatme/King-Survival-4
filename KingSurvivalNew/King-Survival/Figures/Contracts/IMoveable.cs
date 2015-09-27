@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingSurvival.Figures.Contracts
 {
+    //TODO:Maybe later do it the figure IMoveable not the player
     interface IMoveable
     {
         Move Move(string command);
