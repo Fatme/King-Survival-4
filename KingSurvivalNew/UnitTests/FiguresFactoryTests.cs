@@ -17,7 +17,7 @@ namespace UnitTests
         {
 
             var king = new KingFigureFactory().CreateFigure(FigureSign.K);
-            var kingAdrian = new King(FigureSign.K);
+            var kingAdrian = new King();
             Assert.AreEqual(king.Sign, kingAdrian.Sign);
         }
 

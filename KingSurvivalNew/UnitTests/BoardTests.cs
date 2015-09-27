@@ -15,8 +15,7 @@
         {
             var board = new Board();
             var position = new Position(1, 1);
-            var figureSign = FigureSign.K;
-            var figure = new King(figureSign);
+            var figure = new King();
             board.AddFigure(figure, position);
 
             Assert.AreEqual(figure, board.GetFigureAtPosition(position));
@@ -27,8 +26,7 @@
         {
             var board = new Board();
             var position = new Position(1, 1);
-            var figureSign = FigureSign.K;
-            var figure = new King(figureSign);
+            var figure = new King();
             board.AddFigure(figure, position);
 
             Assert.AreEqual(figure, board.GetFigureAtPosition(position));
@@ -40,8 +38,7 @@
         {
             var board = new Board();
             var position = new Position(1, 1);
-            var figureSign = FigureSign.K;
-            var figure = new King(figureSign);
+            var figure = new King();
             board.AddFigure(figure, position);
             board.RemoveFigure(figure, position);
 
@@ -54,7 +51,7 @@
         {
             var board = new Board();
             var position = new Position(-1, -1);
-            IFigure figure = new King(FigureSign.K);
+            IFigure figure = new King();
             board.AddFigure(figure, position);
         }
 
@@ -64,8 +61,7 @@
         {
             var board = new Board();
             var position = new Position(9, 9);
-            var figureSign = FigureSign.K;
-            var figure = new King(figureSign);
+            var figure = new King();
             board.AddFigure(figure, position);
         }
 
@@ -86,9 +82,7 @@
         {
             var board = new Board();
             var position = new Position(9, 9);
-
-            var figureSign = FigureSign.K;
-            var figure = new King(figureSign);
+            var figure = new King();
 
             board.RemoveFigure(figure, position);
         }

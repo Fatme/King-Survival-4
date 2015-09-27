@@ -8,7 +8,6 @@ namespace KingSurvival.Common
     public class Position:IPosition
     {
         public Position(int row, int col)
-            
         {
             this.Row = row;
             this.Col = col;
@@ -17,6 +16,5 @@ namespace KingSurvival.Common
         public int Row { get; private set; }
 
         public int Col { get; private set; }
-
     }
 }
