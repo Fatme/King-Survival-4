@@ -24,6 +24,7 @@ namespace UnitTests
             IBoard board = new Board();
             IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
+            player.AddFigure(king);
             player.Move("aaaa", board);
         }
 
