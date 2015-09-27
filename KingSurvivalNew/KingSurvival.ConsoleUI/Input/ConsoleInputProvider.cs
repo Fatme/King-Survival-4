@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Board.Contracts;
-using KingSurvival.Common;
-
-using KingSurvival.Input.Contracts;
-using KingSurvival.Players;
-using KingSurvival.Players.Contracts;
-
-namespace KingSurvivalUI.Input
+﻿namespace KingSurvivalUI.Input
 {
+    using System;
+    using System.Collections.Generic;
+    
+    using KingSurvival.Board.Contracts;
+    using KingSurvival.Common;
+    using KingSurvival.Input.Contracts;
+    using KingSurvival.Players;
+    using KingSurvival.Players.Contracts;
+
     public class ConsoleInputProvider : IInputProvider
     {
         public IList<IPlayer> GetPlayers(int numberOfPlayers)

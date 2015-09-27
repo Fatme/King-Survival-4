@@ -1,13 +1,7 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Players.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvival.Figures.Contracts
+﻿namespace KingSurvival.Figures.Contracts
 {
+    using KingSurvival.Common;
+
     //TODO:Maybe later do it the figure IMoveable not the player
     interface IMoveable
     {

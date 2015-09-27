@@ -1,11 +1,10 @@
-﻿using KingSurvival.Common;
-
-
-namespace KingSurvivalUI.Renderers
+﻿namespace KingSurvivalUI.Renderers
 {
     using System;
+
     using KingSurvival.Board.Contracts;
     using KingSurvival.Renderers.Contracts;
+    using KingSurvival.Common;
 
     public class ConsoleRenderer : IRenderer
     {

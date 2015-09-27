@@ -2,9 +2,6 @@
 {
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common;
-    using KingSurvival.Players.Contracts;
-    using System;
-
 
     public class King : Figure, IFigure
     {
@@ -12,10 +9,5 @@
             : base(sign)
         {
         }
-
-
-       
-
-
     }
 }

@@ -1,10 +1,8 @@
-﻿using KingSurvival.Common.Contracts;
-using KingSurvival.Renderers.Contracts;
-
-namespace KingSurvival.Engine
+﻿namespace KingSurvival.Engine
 {
     using System;
     using System.Collections.Generic;
+
     using KingSurvival.FigureFactory;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Players.Contracts;
@@ -13,10 +11,11 @@ namespace KingSurvival.Engine
     using KingSurvival.Input.Contracts;
     using KingSurvival.Board;
     using KingSurvival.Figures.Contracts;
+    using KingSurvival.Common.Contracts;
+    using KingSurvival.Renderers.Contracts;
 
     public class KingSurvivalEngine : IChessEngine
     {
-
         private const int BoardTotalNUmberOfColumns = 8;
         private const int BoardTotalNUmberOfRows = 8;
 
@@ -65,9 +64,7 @@ namespace KingSurvival.Engine
             this.renderer.RenderBoard(this.board);
         }
 
-
         //TODO:add the validation in validator class
-
         public void Start()
         {
             while (true)
@@ -75,7 +72,6 @@ namespace KingSurvival.Engine
                 try
                 {
                     var player = this.GetNextPlayer();
-
                     Move move = this.provider.GetNextFigureMove(player, this.board);
                     var from = move.From;
                     var to = move.To;
@@ -128,7 +124,6 @@ namespace KingSurvival.Engine
             return currentPlayer;
         }
 
-
         private void SetFirstPlayerIndex()
         {
             for (int i = 0; i < this.players.Count; i++)
@@ -148,9 +143,6 @@ namespace KingSurvival.Engine
                 return true;
             }
             return false;
-
         }
-
-
     }
 }

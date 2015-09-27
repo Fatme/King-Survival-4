@@ -1,15 +1,11 @@
-﻿
-namespace KingSurvival.Engine.Contracts
+﻿namespace KingSurvival.Engine.Contracts
 {
-   
-
     using KingSurvival.Players.Contracts;
 
-   public interface IChessEngine
+    public interface IChessEngine
     {
         void Initialize();
 
         void Start();
-
     }
 }

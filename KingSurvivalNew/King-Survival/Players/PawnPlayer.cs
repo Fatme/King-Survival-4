@@ -1,15 +1,11 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Figures.Contracts;
-using KingSurvival.Players.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Board.Contracts;
-
-namespace KingSurvival.Players
+﻿namespace KingSurvival.Players
 {
+    using System;
+
+    using KingSurvival.Common;
+    using KingSurvival.Players.Contracts;
+    using KingSurvival.Board.Contracts;
+
     public class PawnPlayer : Player, IPlayer
     {
         public PawnPlayer(string name)

@@ -1,11 +1,11 @@
-﻿using KingSurvival.Board.Contracts;
-using KingSurvival.Common;
-using KingSurvival.Figures.Contracts;
-
-namespace KingSurvival.Players
+﻿namespace KingSurvival.Players
 {
     using System.Collections.Generic;
+
     using KingSurvival.Players.Contracts;
+    using KingSurvival.Board.Contracts;
+    using KingSurvival.Common;
+    using KingSurvival.Figures.Contracts;
   
     public abstract class Player:IPlayer
     {

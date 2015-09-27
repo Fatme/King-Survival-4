@@ -1,15 +1,10 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Figures.Contracts;
-using KingSurvival.Players.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Board.Contracts;
-
-namespace KingSurvival.Players
+﻿namespace KingSurvival.Players
 {
+    using System;
+    using KingSurvival.Common;
+    using KingSurvival.Players.Contracts;
+    using KingSurvival.Board.Contracts;
+
     public class KingPlayer : Player, IPlayer
     {
         public KingPlayer(string name)
@@ -53,10 +48,6 @@ namespace KingSurvival.Players
             //Position.CheckIfValid(newPosition, GlobalErrorMessages.PositionNotValidMessage);
           //  this.Figures[0].Position = newPosition;
             return new Move(oldPosition, newPosition);
-
-
-
         }
-
     }
 }

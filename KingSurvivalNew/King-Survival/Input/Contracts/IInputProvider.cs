@@ -1,14 +1,10 @@
-﻿using KingSurvival.Board.Contracts;
-
-namespace KingSurvival.Input.Contracts
+﻿namespace KingSurvival.Input.Contracts
 {
-    using KingSurvival.Players.Contracts;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
+    using KingSurvival.Players.Contracts;
     using KingSurvival.Common;
+    using KingSurvival.Board.Contracts;
 
    public interface IInputProvider
    {

@@ -1,7 +1,7 @@
-﻿using KingSurvival.Common;
-
-namespace KingSurvival.FigureFactory.Contracts
+﻿namespace KingSurvival.FigureFactory.Contracts
 {
+    using KingSurvival.Common;
+
     using KingSurvival.Figures.Contracts;
 
     interface IFigureFactory

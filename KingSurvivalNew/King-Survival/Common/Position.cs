@@ -1,6 +1,6 @@
-﻿using System;
-namespace KingSurvival.Common
+﻿namespace KingSurvival.Common
 {
+    using System;
     //TODO:made it to class maybe later
     public struct Position
     {
@@ -11,7 +11,7 @@ namespace KingSurvival.Common
             this.Col = col;
         }
 
-        public static void CheckIfValid(Position position,string errorMessage)
+        public static void CheckIfValid(Position position, string errorMessage)
         {
 
             if (position.Row < Constants.MinimumRowValueOnBoard
@@ -26,6 +26,7 @@ namespace KingSurvival.Common
                 throw new IndexOutOfRangeException(errorMessage);
             }
         }
+
         public int Row { get; private set; }
 
         public int Col { get; private set; }

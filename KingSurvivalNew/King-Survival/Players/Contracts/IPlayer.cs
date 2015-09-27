@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using KingSurvival.Board.Contracts;
-using KingSurvival.Figures.Contracts;
-
-namespace KingSurvival.Players.Contracts
+﻿namespace KingSurvival.Players.Contracts
 {
-    using KingSurvival.Common;
+    using System.Collections.Generic;
 
+    using KingSurvival.Common;
+    using KingSurvival.Board.Contracts;
+    using KingSurvival.Figures.Contracts;
     public interface IPlayer
     {
-       
         string Name { get; }
 
         void AddFigure(IFigure figure);
@@ -18,8 +15,6 @@ namespace KingSurvival.Players.Contracts
 
         //TODO:Maybe move this method to IMovable interface
         Move Move(string command,IBoard board);
-
-        
     }
 }
 

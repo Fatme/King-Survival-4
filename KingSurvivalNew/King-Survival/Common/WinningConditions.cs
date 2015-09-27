@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KingSurvival.Board.Contracts;
-using KingSurvival.Common.Contracts;
-using KingSurvival.Players.Contracts;
-
 namespace KingSurvival.Common
 {
+    using KingSurvival.Common.Contracts;
+    using KingSurvival.Players.Contracts;
+
     public class WinningConditions : IWinningConditions
     {
-
-
         public bool KingWon(IList<IPlayer> players, IBoard board)
         {
             for (var i = 0; i < players.Count; i++)
@@ -25,6 +23,7 @@ namespace KingSurvival.Common
                     }
                 }
             }
+
             return false;
             ////TODO:Add the rest of the conditions
         }

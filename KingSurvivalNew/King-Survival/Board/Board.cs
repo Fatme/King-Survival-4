@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace KingSurvival.Board
+﻿namespace KingSurvival.Board
 {
+    using System.Collections.Generic;
+
     using KingSurvival.Board.Contracts;
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common;

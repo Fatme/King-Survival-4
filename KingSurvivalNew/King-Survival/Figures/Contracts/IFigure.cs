@@ -6,9 +6,6 @@
     public interface IFigure
     {
         FigureSign Sign { get; }
-
-      
-
     }
 }
 

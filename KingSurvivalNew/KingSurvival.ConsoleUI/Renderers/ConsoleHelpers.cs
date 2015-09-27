@@ -1,12 +1,10 @@
-﻿
-
-using KingSurvival.Common;
-using KingSurvival.Figures;
-
-namespace KingSurvivalUI.Renderers
+﻿namespace KingSurvivalUI.Renderers
 {
-    using KingSurvival.Figures.Contracts;
     using System;
+
+    using KingSurvival.Figures.Contracts;
+    using KingSurvival.Common;
+
     public static class ConsoleHelpers
     {
         public const char PawnStartSymbol = 'A';

@@ -1,12 +1,10 @@
-﻿using KingSurvival.Common;
-using KingSurvival.Common.Contracts;
-
-namespace KingSurvivalUI
+﻿namespace KingSurvivalUI
 {
     using KingSurvival.Engine;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Input.Contracts;
-    using KingSurvival.Renderers;
+    using KingSurvival.Common;
+    using KingSurvival.Common.Contracts;
     using KingSurvival.Renderers.Contracts;
     using KingSurvivalUI.Input;
     using KingSurvivalUI.Renderers;
