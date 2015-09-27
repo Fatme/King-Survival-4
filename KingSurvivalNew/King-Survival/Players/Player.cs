@@ -9,6 +9,9 @@
   
     public abstract class Player : IPlayer
     {
+        private static int[] deltaRow = { -1, +1, +1, -1 }; //UR, DR, DL, UL
+        private static int[] deltaCol = { +1, +1, -1, -1 };
+
         private IList<IFigure> figures;
 
         public string Name { get; private set; }
@@ -29,6 +32,14 @@
            this.figures.Add(figure);
         }
 
-        public abstract Move Move(string command, IBoard board);       
+        public abstract Move Move(string command, IBoard board);
+
+        protected Move GenerateNewMove(Position oldPosition, int indexOfChange)
+        {
+            int newRow = oldPosition.Row + Player.deltaRow[indexOfChange];
+            int newColumn = oldPosition.Col + Player.deltaCol[indexOfChange];
+            var newPosition = new Position(newRow, newColumn);
+            return new Move(oldPosition, newPosition);
+        }
     }
 }
