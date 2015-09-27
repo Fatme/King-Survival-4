@@ -10,9 +10,9 @@
 
     public class KingFigureFactory : IFigureFactory
     {
-        public IFigure CreateFigure(FigureSign sign)
+        public IFigure CreateFigure(FigureSign sign = FigureSign.K)
         {
-            IFigure king = new King(sign);
+            IFigure king = new King();
             return king;
         }
     }

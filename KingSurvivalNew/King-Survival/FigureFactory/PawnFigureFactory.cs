@@ -12,6 +12,5 @@
             IFigure pawn = new Pawn(sign);
             return pawn;
         }
-
     }
 }

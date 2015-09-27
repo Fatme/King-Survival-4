@@ -5,8 +5,8 @@
 
     public class King : Figure, IFigure
     {
-        public King(FigureSign sign)
-            : base(sign)
+        public King()
+            : base(FigureSign.K)
         {
         }
     }
