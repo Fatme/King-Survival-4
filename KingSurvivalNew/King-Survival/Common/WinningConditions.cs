@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 
-namespace KingSurvival.Common
+namespace KingSurvival.Commands
 {
     using System;
     using System.Collections.Generic;
 
-    using KingSurvival.Common.Contracts;
+    using KingSurvival.Commands.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
 
@@ -60,7 +60,7 @@ namespace KingSurvival.Common
             return false;
         }
 
-        private bool CheckIfInsideTheBoard(Position position)
+        private bool CheckIfInsideTheBoard(IPosition position)
         {
             try
             {

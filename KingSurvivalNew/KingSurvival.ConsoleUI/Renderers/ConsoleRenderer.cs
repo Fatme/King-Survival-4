@@ -1,4 +1,4 @@
-﻿using KingSurvival.Common.Contracts;
+﻿using KingSurvival.Commands.Contracts;
 using KingSurvival.Figures.Contracts;
 
 namespace KingSurvivalUI.Renderers
@@ -7,7 +7,7 @@ namespace KingSurvivalUI.Renderers
 
     using KingSurvival.Board.Contracts;
     using KingSurvival.Renderers.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
 
     public class ConsoleRenderer : IRenderer
     {

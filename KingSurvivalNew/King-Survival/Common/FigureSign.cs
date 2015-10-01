@@ -1,4 +1,4 @@
-﻿namespace KingSurvival.Common
+﻿namespace KingSurvival.Commands
 {
     public enum FigureSign
     {

@@ -6,8 +6,8 @@ namespace KingSurvivalUI
     using KingSurvival.Engine;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Input.Contracts;
-    using KingSurvival.Common;
-    using KingSurvival.Common.Contracts;
+    using KingSurvival.Commands;
+    using KingSurvival.Commands.Contracts;
     using KingSurvival.Renderers.Contracts;
     using KingSurvivalUI.Input;
     using KingSurvivalUI.Renderers;

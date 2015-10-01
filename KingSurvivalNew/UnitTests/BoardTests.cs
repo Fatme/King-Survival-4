@@ -4,7 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using KingSurvival.Board;
     using KingSurvival.Figures;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Figures.Contracts;
 
     [TestClass]

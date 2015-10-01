@@ -2,7 +2,7 @@
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using System.Collections.Generic;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Players;

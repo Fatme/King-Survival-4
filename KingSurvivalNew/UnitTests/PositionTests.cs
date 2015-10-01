@@ -2,7 +2,7 @@
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
 
     [TestClass]
     public class PositionTests

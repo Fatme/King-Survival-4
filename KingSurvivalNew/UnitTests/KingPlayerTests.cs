@@ -5,7 +5,7 @@ using KingSurvival.Board.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KingSurvival.Players;
 using KingSurvival.Figures;
-using KingSurvival.Common;
+using KingSurvival.Commands;
 using KingSurvival.Engine;
 using KingSurvival.FigureFactory;
 using KingSurvival.Figures.Contracts;

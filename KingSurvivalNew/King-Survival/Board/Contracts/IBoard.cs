@@ -1,6 +1,8 @@
-﻿namespace KingSurvival.Board.Contracts
+﻿using KingSurvival.Commands.Contracts;
+
+namespace KingSurvival.Board.Contracts
 {
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Figures.Contracts;
 
     public interface IBoard
@@ -9,13 +11,13 @@
 
         int NumberOfColumns { get; }
        
-        void AddFigure(IFigure figure,Position position);
+        void AddFigure(IFigure figure,IPosition position);
 
-        IFigure GetFigureAtPosition(Position position);
+        IFigure GetFigureAtPosition(IPosition position);
 
-        void RemoveFigure(IFigure figure,Position position);
+        void RemoveFigure(IFigure figure,IPosition position);
 
-        Position GetFigurePosition(IFigure figure);
+        IPosition GetFigurePosition(IFigure figure);
 
     }
 }

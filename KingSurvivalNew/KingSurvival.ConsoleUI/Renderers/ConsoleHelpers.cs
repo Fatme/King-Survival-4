@@ -3,7 +3,7 @@
     using System;
 
     using KingSurvival.Figures.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
 
     public static class ConsoleHelpers
     {

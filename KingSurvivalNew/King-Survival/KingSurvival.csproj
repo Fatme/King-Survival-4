@@ -46,8 +46,8 @@
   <ItemGroup>
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\Contracts\IBoard.cs" />
-    <Compile Include="Common\Command.cs" />
-    <Compile Include="Common\Contracts\ICommand.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\Contracts\ICommand.cs" />
     <Compile Include="Common\Contracts\IContentProvider.cs" />
     <Compile Include="Common\Contracts\IPosition.cs" />
     <Compile Include="Common\Contracts\IWinningConditions.cs" />

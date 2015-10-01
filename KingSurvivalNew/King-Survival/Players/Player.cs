@@ -4,9 +4,9 @@
 
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Figures.Contracts;
-    using KingSurvival.Common.Contracts;
+    using KingSurvival.Commands.Contracts;
   
     public abstract class Player : IPlayer
     {
@@ -40,7 +40,7 @@
 
         public abstract Move Move(ICommand command, IBoard board);
 
-        protected Move GenerateNewMove(Position oldPosition, int direction)
+        protected Move GenerateNewMove(IPosition oldPosition, int direction)
         {
             int newRow = oldPosition.Row + Player.deltaRow[direction];
             int newColumn = oldPosition.Col + Player.deltaCol[direction];

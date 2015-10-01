@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival.Figures.Contracts
 {
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Players.Contracts;
 
     public interface IFigure

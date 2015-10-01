@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingSurvival.Common.Contracts
+namespace KingSurvival.Commands.Contracts
 {
     public interface IContentProvider
     {

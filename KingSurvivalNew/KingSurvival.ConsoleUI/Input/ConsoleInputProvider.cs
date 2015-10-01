@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     
     using KingSurvival.Board.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Players;
     using KingSurvival.Players.Contracts;

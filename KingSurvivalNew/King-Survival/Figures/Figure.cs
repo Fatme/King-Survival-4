@@ -1,7 +1,7 @@
 ﻿namespace KingSurvival.Figures
 {
-    using KingSurvival.Common;
-    using KingSurvival.Common.Contracts;
+    using KingSurvival.Commands;
+    using KingSurvival.Commands.Contracts;
     using KingSurvival.Figures.Contracts;
 
     public abstract class Figure : IFigure,IContentProvider

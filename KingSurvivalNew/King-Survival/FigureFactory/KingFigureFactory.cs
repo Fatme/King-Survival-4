@@ -2,7 +2,7 @@
 {
     using System;
 
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Figures.Contracts;
     using System.Collections.Generic;
     using KingSurvival.FigureFactory.Contracts;

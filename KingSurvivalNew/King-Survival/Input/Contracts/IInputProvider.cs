@@ -3,7 +3,7 @@
     using System.Collections.Generic;
 
     using KingSurvival.Players.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Board.Contracts;
 
    public interface IInputProvider

@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival.FigureFactory.Contracts
 {
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
 
     using KingSurvival.Figures.Contracts;
 

@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival.Figures.Contracts
 {
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
 
     //TODO:Maybe later do it the figure IMoveable not the player
     interface IMoveable

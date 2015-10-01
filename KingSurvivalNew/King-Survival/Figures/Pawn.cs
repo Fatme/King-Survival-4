@@ -1,9 +1,9 @@
-﻿using KingSurvival.Common.Contracts;
+﻿using KingSurvival.Commands.Contracts;
 
 namespace KingSurvival.Figures
 {
     using KingSurvival.Figures.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
 
     public class Pawn : Figure, IFigure,IContentProvider
     {

@@ -1,4 +1,4 @@
-﻿namespace KingSurvival.Common.Contracts
+﻿namespace KingSurvival.Commands.Contracts
 {
     using System.Collections.Generic;
 

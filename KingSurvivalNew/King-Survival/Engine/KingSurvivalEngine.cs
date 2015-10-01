@@ -7,11 +7,11 @@
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Board;
     using KingSurvival.Figures.Contracts;
-    using KingSurvival.Common.Contracts;
+    using KingSurvival.Commands.Contracts;
     using KingSurvival.Renderers.Contracts;
 
     public class KingSurvivalEngine : IChessEngine

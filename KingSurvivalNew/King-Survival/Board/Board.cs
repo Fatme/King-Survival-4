@@ -1,4 +1,4 @@
-﻿using KingSurvival.Common.Contracts;
+﻿using KingSurvival.Commands.Contracts;
 
 namespace KingSurvival.Board
 {
@@ -6,12 +6,12 @@ namespace KingSurvival.Board
 
     using KingSurvival.Board.Contracts;
     using KingSurvival.Figures.Contracts;
-    using KingSurvival.Common;
+    using KingSurvival.Commands;
     
     public class Board : IBoard
     {
         private IFigure[,] board;
-        private Dictionary<IFigure, Position> figurePositionsOnBoard = new Dictionary<IFigure, Position>();
+        private Dictionary<IFigure, IPosition> figurePositionsOnBoard = new Dictionary<IFigure,IPosition>();
 
         public Board(int rows=Constants.StandardChessRows, int columns=Constants.StandardChessColumns)
         {
@@ -25,7 +25,7 @@ namespace KingSurvival.Board
         public int NumberOfColumns { get; private set; }
 
 
-        public void AddFigure(IFigure figure,Position position)
+        public void AddFigure(IFigure figure,IPosition position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Validator.CheckIfPositionValid(position,GlobalErrorMessages.PositionNotValidMessage);            
@@ -45,22 +45,22 @@ namespace KingSurvival.Board
         //    return chessCol - 'a';
         //}
 
-        public IFigure GetFigureAtPosition(Position position)
+        public IFigure GetFigureAtPosition(IPosition position)
         {
             return this.board[position.Row, position.Col];
         }
 
       
-        public void RemoveFigure(IFigure figure,Position position)
+        public void RemoveFigure(IFigure figure,IPosition position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Validator.CheckIfPositionValid(position,GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = null;
         }
 
-        public Position GetFigurePosition(IFigure figure)
+        public IPosition GetFigurePosition(IFigure figure)
         {
-            Position position;
+            IPosition position;
             figurePositionsOnBoard.TryGetValue(figure, out position);
             return position;
         }
