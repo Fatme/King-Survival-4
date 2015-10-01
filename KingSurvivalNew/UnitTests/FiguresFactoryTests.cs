@@ -7,7 +7,7 @@ namespace UnitTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using KingSurvival.Engine;
     using KingSurvival.Figures;
-    using KingSurvival.Commands;
+    using KingSurvival.Common;
 
     [TestClass]
     public class FiguresFactoryTests

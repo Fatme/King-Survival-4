@@ -1,22 +1,32 @@
 ﻿namespace KingSurvival.Figures
 {
-    using KingSurvival.Commands;
-    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common;
+    using KingSurvival.Common.Contracts;
     using KingSurvival.Figures.Contracts;
 
-    public abstract class Figure : IFigure,IContentProvider
+    public  class Figure : IFigure,IContentProvider,IFigurePrototype
     {
-        protected Figure(FigureSign sign)
+        public Figure()
         {
-            this.Sign = sign;
+            
         }
 
-        public FigureSign Sign { get; private set; }
+        public FigureSign Sign { get;  set; }
 
         public string ProvideContent()
         {
             return this.Sign.ToString();
         }
 
+        public void AddSign(FigureSign sign)
+        {
+            this.Sign = sign;
+        }
+
+
+        public IFigure Clone()
+        {
+            return this.MemberwiseClone() as IFigure;
+        }
     }
 }

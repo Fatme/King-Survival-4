@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingSurvival.Common.Contracts
+namespace KingSurvival.Renderers.Contracts
 {
-    public interface IPosition
+    public interface IBoardBorderRender
     {
-         int Row { get; }
-         int Col { get;}
+        void RenderBorder();
     }
 }

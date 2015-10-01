@@ -1,13 +1,11 @@
-﻿using KingSurvival.Commands.Contracts;
-
-namespace KingSurvival.Commands
+﻿namespace KingSurvival.Common
 {
     public class Move
     {
-        public IPosition From { get; private set; }
-        public IPosition To { get; private set; }
+        public Position From { get; private set; }
+        public Position To { get; private set; }
 
-        public Move(IPosition from,IPosition to)
+        public Move(Position from,Position to)
         {
             this.From = from;
             this.To = to;

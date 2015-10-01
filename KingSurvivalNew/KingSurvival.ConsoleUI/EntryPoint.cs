@@ -6,8 +6,8 @@ namespace KingSurvivalUI
     using KingSurvival.Engine;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Input.Contracts;
-    using KingSurvival.Commands;
-    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common;
+    using KingSurvival.Common.Contracts;
     using KingSurvival.Renderers.Contracts;
     using KingSurvivalUI.Input;
     using KingSurvivalUI.Renderers;
@@ -21,6 +21,7 @@ namespace KingSurvivalUI
             IInputProvider provider = new ConsoleInputProvider();
             IWinningConditions winningConditions=new WinningConditions();
             IBoard board=new Board();
+           
             IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider,board,winningConditions);
             chessEngine.Initialize();
             chessEngine.Start();

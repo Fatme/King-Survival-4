@@ -1,7 +1,7 @@
 ﻿using KingSurvival.Board.Contracts;
-using KingSurvival.Commands.Contracts;
+using KingSurvival.Common.Contracts;
 
-namespace KingSurvival.Commands
+namespace KingSurvival.Common
 {
     using System;
     //TODO:made it to class maybe later

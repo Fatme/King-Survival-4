@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingSurvival.Common.Contracts
+namespace KingSurvival.Figures.Contracts
 {
-    public interface IPosition
+    public interface IFigurePrototype
     {
-         int Row { get; }
-         int Col { get;}
+        IFigure Clone();
     }
 }

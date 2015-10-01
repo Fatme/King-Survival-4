@@ -1,4 +1,4 @@
-﻿namespace KingSurvival.Commands
+﻿namespace KingSurvival.Common
 {
     public class Constants
     {

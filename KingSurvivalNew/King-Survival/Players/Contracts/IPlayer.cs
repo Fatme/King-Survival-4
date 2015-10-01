@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
 
-    using KingSurvival.Commands;
+    using KingSurvival.Common;
     using KingSurvival.Board.Contracts;
     using KingSurvival.Figures.Contracts;
-    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common.Contracts;
     public interface IPlayer
     {
         string Name { get; }

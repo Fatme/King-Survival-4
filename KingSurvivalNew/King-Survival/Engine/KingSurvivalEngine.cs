@@ -7,12 +7,13 @@
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
-    using KingSurvival.Commands;
+    using KingSurvival.Common;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Board;
     using KingSurvival.Figures.Contracts;
-    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common.Contracts;
     using KingSurvival.Renderers.Contracts;
+    using FigureFactory.Contracts;
 
     public class KingSurvivalEngine : IChessEngine
     {
@@ -26,12 +27,14 @@
         private IBoard board;
         private int currentPlayerIndex;
 
-        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider,IBoard board, IWinningConditions winningConditions)
+
+        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
             this.board = board;
+
         }
 
         public void Initialize()
@@ -39,30 +42,42 @@
             //TODO:Extract to another class and interface
             this.players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
             Validator.ValidateGameInitialization(this.players, this.board);
-
-			var kingFigureFactory = new KingFigureFactory();
-			IFigure king = kingFigureFactory.CreateFigure();
-
             var firstPlayer = players[0];
+            var secondPlayer = players[1];
+
+            var figureFactory = new FigureFactory();
+            IFigure figure = figureFactory.CreateFigure();
+
+            var king = figure.Clone();
+            king.AddSign(FigureSign.K);
             firstPlayer.AddFigure(king);
             this.board.AddFigure(king, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
 
-            var pawnFigureFactory = new PawnFigureFactory();
-            IFigure pawnA = pawnFigureFactory.CreateFigure(FigureSign.A);
-            IFigure pawnB = pawnFigureFactory.CreateFigure(FigureSign.B);
-            IFigure pawnC = pawnFigureFactory.CreateFigure(FigureSign.C);
-            IFigure pawnD = pawnFigureFactory.CreateFigure(FigureSign.D);
 
-			var secondPlayer = players[1];
+            var pawnA = figure.Clone();
+            pawnA.AddSign(FigureSign.A);
             secondPlayer.AddFigure(pawnA);
-            secondPlayer.AddFigure(pawnB);
-            secondPlayer.AddFigure(pawnC);
-            secondPlayer.AddFigure(pawnD);
-
             this.board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
+
+            var pawnB = figure.Clone();
+            pawnB.AddSign(FigureSign.B);
+            secondPlayer.AddFigure(pawnB);
             this.board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
+           
+            var pawnC = figure.Clone();
+            pawnC.AddSign(FigureSign.C);
+            secondPlayer.AddFigure(pawnC);
             this.board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
+            
+            var pawnD = figure.Clone();
+            pawnD.AddSign(FigureSign.D);
+            secondPlayer.AddFigure(pawnD);
             this.board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
+
+
+
+
+
 
             this.SetFirstPlayerIndex();
 

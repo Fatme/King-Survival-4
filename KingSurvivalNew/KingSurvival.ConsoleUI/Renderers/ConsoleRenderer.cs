@@ -1,4 +1,4 @@
-﻿using KingSurvival.Commands.Contracts;
+﻿using KingSurvival.Common.Contracts;
 using KingSurvival.Figures.Contracts;
 
 namespace KingSurvivalUI.Renderers
@@ -7,7 +7,7 @@ namespace KingSurvivalUI.Renderers
 
     using KingSurvival.Board.Contracts;
     using KingSurvival.Renderers.Contracts;
-    using KingSurvival.Commands;
+    using KingSurvival.Common;
 
     public class ConsoleRenderer : IRenderer
     {
@@ -21,12 +21,15 @@ namespace KingSurvivalUI.Renderers
 
         public void RenderBoard(IBoard board)
         {
+            this.PrintHorizontalNumbers();
             for (int row = 0; row < board.NumberOfRows; row++)
             {
+                Console.Write(row + "| ");
                 for (int column = 0; column < board.NumberOfColumns; column++)
                 {
                     Position position = new Position(row, column);
                     var figure = board.GetFigureAtPosition(position);
+
                     if (figure != null)
                     {
                         this.PrintFigure((IContentProvider)figure);
@@ -36,13 +39,15 @@ namespace KingSurvivalUI.Renderers
                         this.PrintCell(position);
                     }
                 }
+                Console.Write("|");
                 Console.WriteLine();
             }
+            this.PrintHorizontalLines();
         }
 
         private void PrintFigure(IContentProvider figure)
         {
-            Console.Write(figure.ProvideContent());
+            Console.Write(figure.ProvideContent() + " ");
         }
 
         private void PrintCell(Position position)
@@ -50,17 +55,37 @@ namespace KingSurvivalUI.Renderers
 
             if ((position.Row + position.Col) % 2 != 0)
             {
-                Console.Write(EmptyWhiteCell);
+                Console.Write(EmptyWhiteCell + " ");
             }
             else
             {
-                Console.Write(EmptyBlackCell);
+                Console.Write(EmptyBlackCell + " ");
             }
         }
 
+        private void PrintHorizontalNumbers()
+        {
+            Console.Write("   ");
+            for (var i = 0; i < Constants.StandardChessColumns; i++)
+            {
+                Console.Write(i + " ");
+            }
+
+            Console.WriteLine();
+            
+            PrintHorizontalLines();
+        }
+
+        private void PrintHorizontalLines()
+        {
+            Console.Write("   ");
+            Console.WriteLine("---------------"); 
+        }
         public void PrintMessage(string error)
         {
             Console.WriteLine(error);
         }
+
+
     }
 }

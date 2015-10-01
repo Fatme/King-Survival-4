@@ -1,11 +1,11 @@
 ﻿namespace KingSurvival.Players
 {
     using System;
-    using KingSurvival.Commands;
+    using KingSurvival.Common;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
 using System.Collections.Generic;
-    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common.Contracts;
 
     public class KingPlayer : Player, IPlayer
     {

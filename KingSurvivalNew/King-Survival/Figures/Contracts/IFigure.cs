@@ -1,11 +1,14 @@
 ﻿namespace KingSurvival.Figures.Contracts
 {
-    using KingSurvival.Commands;
+    using KingSurvival.Common;
     using KingSurvival.Players.Contracts;
 
-    public interface IFigure
+    public interface IFigure : IFigurePrototype
     {
         FigureSign Sign { get; }
+
+        void AddSign(FigureSign sign);
+
     }
 }
 

@@ -45,7 +45,6 @@
     <Compile Include="Input\ConsoleInputProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\ConsoleRenderer.cs" />
-    <Compile Include="Renderers\ConsoleHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

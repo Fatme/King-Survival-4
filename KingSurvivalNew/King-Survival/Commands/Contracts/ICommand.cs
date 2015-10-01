@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingSurvival.Commands.Contracts
+namespace KingSurvival.Common.Contracts
 {
     public interface ICommand
     {

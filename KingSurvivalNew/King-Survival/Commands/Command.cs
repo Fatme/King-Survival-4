@@ -1,11 +1,11 @@
-﻿using KingSurvival.Commands.Contracts;
+﻿using KingSurvival.Common.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingSurvival.Commands
+namespace KingSurvival.Common
 {
     public class Command : ICommand
     {
