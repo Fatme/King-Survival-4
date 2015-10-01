@@ -16,13 +16,13 @@ namespace KingSurvival.Common
             if (name.Length != 3)
             {
                 //TODO: change the exception to custom exception
-                throw new ArgumentOutOfRangeException("The command should contain three symbols.");
+                throw new ArgumentOutOfRangeException(GlobalErrorMessages.CommandCanBeThreeSymbolsOnlyMessage);
             }
 
             if (!supportedCommands.Contains(name))
             {
                 //TODO: change the exception to custom exception
-                throw new ArgumentOutOfRangeException("The command is not correct. The valid commands are {0}.", string.Join(", ", supportedCommands));
+                throw new ArgumentOutOfRangeException(string.Format(GlobalErrorMessages.CommandNotCorrectMessage,string.Join(", ", supportedCommands)));
             }
 
             this.Name = name;
