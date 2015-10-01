@@ -26,7 +26,7 @@ namespace UnitTests
             var firstPlayer = players[0];
             IFigure king = new KingFigureFactory().CreateFigure(FigureSign.K);
             firstPlayer.AddFigure(king);
-            board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
+            board.AddFigure(king, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
 
             var secondPlayer = players[1];
             IFigure pawnA = new PawnFigureFactory().CreateFigure(FigureSign.A);
@@ -37,10 +37,10 @@ namespace UnitTests
             secondPlayer.AddFigure(pawnB);
             secondPlayer.AddFigure(pawnC);
             secondPlayer.AddFigure(pawnD);
-            board.AddFigure(pawnA, new Position(Constants.pawnAInitialRow, Constants.pawnAInitialCol));
-            board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
-            board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
-            board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
+            board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
+            board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
+            board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
+            board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
 
             secondPlayer.Move(new Command("shshs", new List<string>()), board);
         }

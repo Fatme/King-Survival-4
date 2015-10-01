@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Board
+﻿using KingSurvival.Common.Contracts;
+
+namespace KingSurvival.Board
 {
     using System.Collections.Generic;
 
@@ -48,6 +50,7 @@
             return this.board[position.Row, position.Col];
         }
 
+      
         public void RemoveFigure(IFigure figure,Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);

@@ -8,6 +8,6 @@
 
         void RenderBoard(IBoard board);
 
-        void PrintErrorMessage(string error);
+        void PrintMessage(string error);
     }
 }

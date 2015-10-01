@@ -1,9 +1,10 @@
 ﻿namespace KingSurvival.Figures
 {
     using KingSurvival.Common;
+    using KingSurvival.Common.Contracts;
     using KingSurvival.Figures.Contracts;
 
-    public abstract class Figure : IFigure
+    public abstract class Figure : IFigure,IContentProvider
     {
         protected Figure(FigureSign sign)
         {
@@ -11,5 +12,11 @@
         }
 
         public FigureSign Sign { get; private set; }
+
+        public string ProvideContent()
+        {
+            return this.Sign.ToString();
+        }
+
     }
 }

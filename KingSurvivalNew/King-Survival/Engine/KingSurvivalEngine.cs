@@ -45,7 +45,7 @@
 
             var firstPlayer = players[0];
             firstPlayer.AddFigure(king);
-            this.board.AddFigure(king, new Position(Constants.initialKingRow, Constants.initialKingColumn));
+            this.board.AddFigure(king, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
 
             var pawnFigureFactory = new PawnFigureFactory();
             IFigure pawnA = pawnFigureFactory.CreateFigure(FigureSign.A);
@@ -59,10 +59,10 @@
             secondPlayer.AddFigure(pawnC);
             secondPlayer.AddFigure(pawnD);
 
-            this.board.AddFigure(pawnA, new Position(Constants.pawnAInitialRow, Constants.pawnAInitialCol));
-            this.board.AddFigure(pawnB, new Position(Constants.pawnBInitialRow, Constants.pawnBInitialCol));
-            this.board.AddFigure(pawnC, new Position(Constants.pawnCInitialRow, Constants.pawnCInitialCol));
-            this.board.AddFigure(pawnD, new Position(Constants.pawnDInitialRow, Constants.pawnDInitialCol));
+            this.board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
+            this.board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
+            this.board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
+            this.board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
 
             this.SetFirstPlayerIndex();
 
@@ -78,13 +78,13 @@
                 {
                     if (this.winningConditions.KingWon(this.players, this.board))
                     {
-                        this.renderer.PrintErrorMessage("The king won");
+                        this.renderer.PrintMessage("The king won");
                         break;
                     }
 
                     if (this.winningConditions.KingLost(this.players, this.board))
                     {
-                        this.renderer.PrintErrorMessage("The king lost");
+                        this.renderer.PrintMessage("The king lost");
                         break;
                     }
 
@@ -126,7 +126,7 @@
         {
             this.currentPlayerIndex--;
             this.renderer.RenderBoard(this.board);
-            this.renderer.PrintErrorMessage(message);
+            this.renderer.PrintMessage(message);
         }
 
         private IPlayer GetNextPlayer()

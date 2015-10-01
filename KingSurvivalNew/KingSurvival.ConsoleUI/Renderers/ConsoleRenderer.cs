@@ -1,4 +1,7 @@
-﻿namespace KingSurvivalUI.Renderers
+﻿using KingSurvival.Common.Contracts;
+using KingSurvival.Figures.Contracts;
+
+namespace KingSurvivalUI.Renderers
 {
     using System;
 
@@ -8,7 +11,9 @@
 
     public class ConsoleRenderer : IRenderer
     {
-       
+        public const char EmptyWhiteCell = '-';
+        public const char EmptyBlackCell = '+';
+
         public void RenderMainMenu()
         {
             Console.WriteLine("King Survival Game");
@@ -20,21 +25,42 @@
             {
                 for (int column = 0; column < board.NumberOfColumns; column++)
                 {
-
-                   // int cell = board[row, colum];
-                    Position position=new Position(row,column);
+                    Position position = new Position(row, column);
                     var figure = board.GetFigureAtPosition(position);
-               
-                    ConsoleHelpers.PrintFigure(figure,position);              
-               }
+                    if (figure != null)
+                    {
+                        this.PrintFigure((IContentProvider)figure);
+                    }
+                    else
+                    {
+                        this.PrintCell(position);
+                    }
+                }
                 Console.WriteLine();
             }
         }
 
-
-        public void PrintErrorMessage(string error)
+        private void PrintFigure(IContentProvider figure)
         {
-           Console.WriteLine(error);
+            Console.Write(figure.ProvideContent());
+        }
+
+        private void PrintCell(Position position)
+        {
+
+            if ((position.Row + position.Col) % 2 != 0)
+            {
+                Console.Write(EmptyWhiteCell);
+            }
+            else
+            {
+                Console.Write(EmptyBlackCell);
+            }
+        }
+
+        public void PrintMessage(string error)
+        {
+            Console.WriteLine(error);
         }
     }
 }
