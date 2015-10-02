@@ -8,7 +8,7 @@ namespace KingSurvival.Common
     using KingSurvival.Common.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
-
+    //TODO:Refactor this class
     public class WinningConditions : IWinningConditions
     {
         public bool KingWon(IList<IPlayer> players, IBoard board)

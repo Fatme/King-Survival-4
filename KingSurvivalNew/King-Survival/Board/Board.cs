@@ -11,7 +11,7 @@ namespace KingSurvival.Board
     public class Board : IBoard
     {
         private IFigure[,] board;
-        private Dictionary<IFigure, Position> figurePositionsOnBoard = new Dictionary<IFigure, Position>();
+        private readonly Dictionary<IFigure, Position> FigurePositionsOnBoard = new Dictionary<IFigure, Position>();
 
         public Board(int rows=Constants.StandardChessRows, int columns=Constants.StandardChessColumns)
         {
@@ -31,25 +31,14 @@ namespace KingSurvival.Board
             Validator.CheckIfPositionValid(position,GlobalErrorMessages.PositionNotValidMessage);            
             this.board[position.Row, position.Col] = figure;
 
-            this.figurePositionsOnBoard[figure] = position;
+            this.FigurePositionsOnBoard[figure] = position;
 
         }
-
-        //private int GetArrayRow(int chessRow)
-        //{
-        //    return this.NumberOfRows - chessRow;
-        //}
-
-        //private int GetArrayCol(char chessCol)
-        //{
-        //    return chessCol - 'a';
-        //}
 
         public IFigure GetFigureAtPosition(Position position)
         {
             return this.board[position.Row, position.Col];
         }
-
       
         public void RemoveFigure(IFigure figure,Position position)
         {
@@ -61,7 +50,7 @@ namespace KingSurvival.Board
         public Position GetFigurePosition(IFigure figure)
         {
             Position position;
-            figurePositionsOnBoard.TryGetValue(figure, out position);
+            this.FigurePositionsOnBoard.TryGetValue(figure, out position);
             return position;
         }
     }

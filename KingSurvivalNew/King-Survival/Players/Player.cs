@@ -8,7 +8,7 @@
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common.Contracts;
   
-    public abstract class Player : IPlayer
+    public abstract class Player : IPlayer,IMoveable
     {
         private static int[] deltaRow = { -1, +1, +1, -1 }; //UR, DR, DL, UL
         private static int[] deltaCol = { +1, +1, -1, -1 };

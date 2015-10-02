@@ -74,7 +74,6 @@
     <Compile Include="Players\PawnPlayer.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderers\Contracts\IBoardBorderRender.cs" />
     <Compile Include="Renderers\Contracts\IRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

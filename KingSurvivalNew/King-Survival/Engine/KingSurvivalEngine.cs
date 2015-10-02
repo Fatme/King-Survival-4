@@ -36,7 +36,7 @@
             
 
         }
-
+        //TODO:think about move this function in the parent class
         public override void Initialize()
         {
             //TODO:Extract to another class and interface
@@ -73,18 +73,13 @@
             pawnD.AddSign(FigureSign.D);
             secondPlayer.AddFigure(pawnD);
             this.Board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
-
-
-
-
-
-
+            
             this.SetFirstPlayerIndex();
 
             this.renderer.RenderBoard(this.Board);
         }
 
-        //TODO:add the validation in validator class
+        //TODO:think about move this function in the parent class
         public override void Start()
         {
             while (true)
