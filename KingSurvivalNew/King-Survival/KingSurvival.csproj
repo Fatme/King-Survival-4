@@ -60,6 +60,7 @@
     <Compile Include="Common\WinningConditions.cs" />
     <Compile Include="Engine\Contracts\IChessEngine.cs" />
     <Compile Include="Engine\KingSurvivalEngine.cs" />
+    <Compile Include="Facade.cs" />
     <Compile Include="FigureFactory\FigureFactory.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
     <Compile Include="Figures\Contracts\IFigurePrototype.cs" />

@@ -11,7 +11,7 @@
             
         }
 
-        public FigureSign Sign { get;  set; }
+        public FigureSign Sign { get;  private set; }
 
         public string ProvideContent()
         {

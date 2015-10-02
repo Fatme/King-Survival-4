@@ -1,4 +1,5 @@
-﻿using KingSurvival.Board;
+﻿using KingSurvival;
+using KingSurvival.Board;
 using KingSurvival.Board.Contracts;
 
 namespace KingSurvivalUI
@@ -17,15 +18,9 @@ namespace KingSurvivalUI
         static void Main(string[] args)
         {
             IRenderer renderer = new ConsoleRenderer();
-            renderer.RenderMainMenu();
             IInputProvider provider = new ConsoleInputProvider();
-            IWinningConditions winningConditions=new WinningConditions();
-            IBoard board=new Board();
-           
-            IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider,board,winningConditions);
-            chessEngine.Initialize();
-            chessEngine.Start();
-            //TODO:add main menu
+            Facade facade=new Facade();
+            facade.Start(renderer,provider);
 
         }
     }
