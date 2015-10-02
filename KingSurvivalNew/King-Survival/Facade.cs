@@ -10,9 +10,12 @@ using KingSurvival.Engine;
 using KingSurvival.Engine.Contracts;
 using KingSurvival.Input.Contracts;
 using KingSurvival.Renderers.Contracts;
+using KingSurvival.Board.Contracts;
+using KingSurvival.Board;
 
 namespace KingSurvival
 {
+    
     public class Facade
     {
         public void Start(IRenderer renderer,IInputProvider provider)
@@ -21,7 +24,7 @@ namespace KingSurvival
             renderer.RenderMainMenu();
             
             IWinningConditions winningConditions = new WinningConditions();
-            IBoard board = new Board.Board();
+            IBoard board=new Board.Board();
 
             IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider, board, winningConditions);
             chessEngine.Initialize();
