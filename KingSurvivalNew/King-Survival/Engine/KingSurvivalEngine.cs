@@ -15,7 +15,7 @@
     using KingSurvival.Renderers.Contracts;
     using FigureFactory.Contracts;
 
-    public class KingSurvivalEngine : IChessEngine
+    public class KingSurvivalEngine :ChessEngine, IChessEngine
     {
         private const int BoardTotalNUmberOfColumns = 8;
         private const int BoardTotalNUmberOfRows = 8;
@@ -28,12 +28,12 @@
         private int currentPlayerIndex;
 
 
-        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions)
+        public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions):base(board)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
-            this.board = board;
+            
 
         }
 

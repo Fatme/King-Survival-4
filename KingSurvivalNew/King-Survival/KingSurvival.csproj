@@ -58,6 +58,7 @@
     <Compile Include="Common\Position.cs" />
     <Compile Include="Common\Validator.cs" />
     <Compile Include="Common\WinningConditions.cs" />
+    <Compile Include="Engine\ChessEngine.cs" />
     <Compile Include="Engine\Contracts\IChessEngine.cs" />
     <Compile Include="Engine\KingSurvivalEngine.cs" />
     <Compile Include="Facade.cs" />
