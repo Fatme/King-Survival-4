@@ -24,7 +24,7 @@
         private readonly IInputProvider provider;
         private readonly IWinningConditions winningConditions;
         private IList<IPlayer> players;
-        private IBoard board;
+        
         private int currentPlayerIndex;
 
 
@@ -37,42 +37,42 @@
 
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
             //TODO:Extract to another class and interface
             this.players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
-            Validator.ValidateGameInitialization(this.players, this.board);
+            Validator.ValidateGameInitialization(this.players, this.Board);
             var firstPlayer = players[0];
             var secondPlayer = players[1];
-
+            //TODO:Cupling between factory and this class :(
             var figureFactory = new FigureFactory();
             IFigure figure = figureFactory.CreateFigure();
 
             var king = figure.Clone();
             king.AddSign(FigureSign.K);
             firstPlayer.AddFigure(king);
-            this.board.AddFigure(king, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
+            this.Board.AddFigure(king, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
 
 
             var pawnA = figure.Clone();
             pawnA.AddSign(FigureSign.A);
             secondPlayer.AddFigure(pawnA);
-            this.board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
+            this.Board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
 
             var pawnB = figure.Clone();
             pawnB.AddSign(FigureSign.B);
             secondPlayer.AddFigure(pawnB);
-            this.board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
+            this.Board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
            
             var pawnC = figure.Clone();
             pawnC.AddSign(FigureSign.C);
             secondPlayer.AddFigure(pawnC);
-            this.board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
+            this.Board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
             
             var pawnD = figure.Clone();
             pawnD.AddSign(FigureSign.D);
             secondPlayer.AddFigure(pawnD);
-            this.board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
+            this.Board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
 
 
 
@@ -81,58 +81,58 @@
 
             this.SetFirstPlayerIndex();
 
-            this.renderer.RenderBoard(this.board);
+            this.renderer.RenderBoard(this.Board);
         }
 
         //TODO:add the validation in validator class
-        public void Start()
+        public override void Start()
         {
             while (true)
             {
                 try
                 {
-                    if (this.winningConditions.KingWon(this.players, this.board))
+                    if (this.winningConditions.KingWon(this.players, this.Board))
                     {
                         this.renderer.PrintMessage("The king won");
                         break;
                     }
 
-                    if (this.winningConditions.KingLost(this.players, this.board))
+                    if (this.winningConditions.KingLost(this.players, this.Board))
                     {
                         this.renderer.PrintMessage("The king lost");
                         break;
                     }
 
                     var player = this.GetNextPlayer();
-                    Move move = this.provider.GetNextFigureMove(player, this.board);
+                    Move move = this.provider.GetNextFigureMove(player, this.Board);
                     var from = move.From;
                     var to = move.To;
 
                     Validator.CheckIfPositionValid(to, GlobalErrorMessages.PositionNotValidMessage);
-                    Validator.CheckIfFigureOnTheWay(to, this.board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
+                    Validator.CheckIfFigureOnTheWay(to, this.Board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
 
-                    var figure = this.board.GetFigureAtPosition(from);
+                    var figure = this.Board.GetFigureAtPosition(from);
 
-                    this.board.RemoveFigure(figure, from);
-                    this.board.AddFigure(figure, to);
+                    this.Board.RemoveFigure(figure, from);
+                    this.Board.AddFigure(figure, to);
 
-                    this.renderer.RenderBoard(this.board);
+                    this.renderer.RenderBoard(this.Board);
                 }
                 catch (IndexOutOfRangeException ex)
                 {
-                    this.HandleException(this.board, ex.Message);
+                    this.HandleException(this.Board, ex.Message);
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    this.HandleException(this.board, ex.Message);
+                    this.HandleException(this.Board, ex.Message);
                 }
                 catch (ArgumentNullException ex)
                 {
-                    this.HandleException(this.board, ex.Message);
+                    this.HandleException(this.Board, ex.Message);
                 }
                 catch (ArgumentException ex)
                 {
-                    this.HandleException(this.board, ex.Message);
+                    this.HandleException(this.Board, ex.Message);
                 }
             }
         }
@@ -140,7 +140,7 @@
         private void HandleException(IBoard board, string message)
         {
             this.currentPlayerIndex--;
-            this.renderer.RenderBoard(this.board);
+            this.renderer.RenderBoard(this.Board);
             this.renderer.PrintMessage(message);
         }
 
