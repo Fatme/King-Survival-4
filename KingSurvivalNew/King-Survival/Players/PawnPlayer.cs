@@ -14,7 +14,7 @@
             : base(name)
         {
         }
-
+        //TODO:The player should not know about the commands..Move it from here
         public override IDictionary<string, int> MapCommandToDirection
         {
             get

@@ -13,7 +13,7 @@ using System.Collections.Generic;
             : base(name)
         {
         }
-
+        //TODO:The player should not know about the commands
         public override IDictionary<string, int> MapCommandToDirection
         {
             get
