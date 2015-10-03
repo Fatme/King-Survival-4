@@ -17,13 +17,13 @@
             }
         }
 
-        public static void ValidateGameInitialization(IList<IPlayer> players,IBoard board)
+        public static void ValidateGameInitialization(IList<IPlayer> players, IBoard board)
         {
             if (players.Count != Constants.StandardNumberOfPlayers)
             {
                 throw new InvalidOperationException("King Survival Engine must have two player");
             }
-
+            
             if (board.NumberOfRows != Constants.StandardChessRows || board.NumberOfColumns != Constants.StandardChessColumns)
             {
                 throw new InvalidOperationException("King survial has 8x8 board");
