@@ -1,6 +1,6 @@
 ﻿using KingSurvival.Board;
 using KingSurvival.Board.Contracts;
-using KingSurvival.FigureFactory;
+
 
 namespace UnitTests
 {

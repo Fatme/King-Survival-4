@@ -27,9 +27,9 @@ namespace UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void CheckIfTheValidateGameInitializationMethodThrowsCorrectlyInvalidOperationExceptionWhenPlayersareIncorrect()
         {
-            var adrian = new KingPlayer("Adrian");
-            var martin = new KingPlayer("Martin");
-            var blajev = new KingPlayer("Blajev");
+            var adrian = new Player("Adrian");
+            var martin = new Player("Martin");
+            var blajev = new Player("Blajev");
 
             var board = new Board();
 
@@ -46,8 +46,8 @@ namespace UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void CheckIfTheValidateGameInitializationMethodThrowsCorrectlyInvalidOperationExceptionWhenColsOrRowsAreIncorrect()
         {
-            var adrian = new KingPlayer("Adrian");
-            var martin = new KingPlayer("Martin");
+            var adrian = new Player("Adrian");
+            var martin = new Player("Martin");
 
             var board = new Board(10, 10);
 
@@ -63,9 +63,9 @@ namespace UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void CheckIfTheValidateGameInitializationMethodThrowsCorrectlyInvalidOperationExceptionWhenPlayersAndBoardAreIncorrect()
         {
-            var adrian = new KingPlayer("Adrian");
-            var martin = new KingPlayer("Martin");
-            var blajev = new KingPlayer("Blajev");
+            var adrian = new Player("Adrian");
+            var martin = new Player("Martin");
+            var blajev = new Player("Blajev");
 
             var board = new Board(10,10);
 

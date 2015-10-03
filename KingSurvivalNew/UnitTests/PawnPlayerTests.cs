@@ -8,7 +8,7 @@ using KingSurvival.Players;
 using KingSurvival.Figures;
 using KingSurvival.Common;
 using KingSurvival.Figures.Contracts;
-using KingSurvival.FigureFactory;
+
 using KingSurvival.Players.Contracts;
 
 namespace UnitTests
