@@ -1,0 +1,13 @@
+Creational
+-Singleton
+-Prototype
+-Factory(part of it..needs refactoring)
+
+Structural
+-Facade
+-Bridge
+
+
+Behavioral
+-Strategy
+-Memento
