@@ -8,8 +8,10 @@
 
    public interface IInputProvider
    {
-        IList<IPlayer> GetPlayers(int numberOfPlayers);
-       
-        Move GetNextFigureMove(IPlayer player, IBoard board);
+       string GetPlayerName { get; }
+
+       string GetCommandName { get;  }
+
+       void PrintPlayerNameForNextMove(string playerName);
    }
 }
