@@ -35,14 +35,7 @@ namespace KingSurvival.Players
            this.figures.Add(figure);
         }
 
-        public abstract IDictionary<string, int> MapCommandToDirection
-        {
-            get;
-        }
-
-        public abstract Move Move(ICommand command, IBoard board);
-
-        protected Move GenerateNewMove(Position oldPosition, int direction)
+        public Move GenerateNewMove(Position oldPosition, int direction)
         {
             int newRow = oldPosition.Row + Player.deltaRow[direction];
             int newColumn = oldPosition.Col + Player.deltaCol[direction];

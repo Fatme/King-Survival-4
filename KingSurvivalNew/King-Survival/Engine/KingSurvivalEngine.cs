@@ -103,18 +103,8 @@
                     }
 
                     var player = this.GetNextPlayer();
-                    // 
-                    Move move = this.GetNextFigureMove(player, this.Board);
-                    var from = move.From;
-                    var to = move.To;
-
-                    Validator.CheckIfPositionValid(to, GlobalErrorMessages.PositionNotValidMessage);
-                    Validator.CheckIfFigureOnTheWay(to, this.Board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
-
-                    var figure = this.Board.GetFigureAtPosition(from);
-
-                    this.Board.RemoveFigure(figure, from);
-                    this.Board.AddFigure(figure, to);
+                    this.ExecutePlayerCommand(player);
+                    
                     //TODO:this should not be here :)
                     //this.Board.RestoreMemento(this.memory.Memento);
                     this.renderer.RenderBoard(this.Board);
@@ -181,15 +171,18 @@
             return players;
         }
 
-        public Move GetNextFigureMove(IPlayer player, IBoard board)
+        public void ExecutePlayerCommand(IPlayer player)
         {
             this.provider.PrintPlayerNameForNextMove(player.Name);
-            var command = new Command(this.provider.GetCommandName, player.MapCommandToDirection.Keys);
-            // command.Execute();
 
+            var commandFactory = new CommandFactory(this.Board);
+            var commandName = this.provider.GetCommandName;
+            var command = commandFactory.CreatePlayerCommand(commandName);
 
-            Move move = player.Move(command, board);
-            return move;
+            var oldPosition = this.Board.GetFigurePosition(player.Figures[command.FigureIndex]);
+            Move move = player.GenerateNewMove(oldPosition, command.Direction);
+
+            command.Execute(move);
         }
     }
 }

@@ -16,8 +16,5 @@
         void RemoveFigure(IFigure figure,Position position);
 
         Position GetFigurePosition(IFigure figure);
-
-
-
     }
 }

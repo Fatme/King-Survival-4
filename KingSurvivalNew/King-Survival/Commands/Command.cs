@@ -1,33 +1,33 @@
-﻿using KingSurvival.Common.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Commands.Contracts;
-using KingSurvival.Common;
-
-namespace KingSurvival.Commands
+﻿namespace KingSurvival.Commands
 {
-    public class Command : ICommand
+    using System;
+    using KingSurvival.Common.Contracts;
+    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common;
+    using System.Collections.Generic;
+    using KingSurvival.Board.Contracts;
+
+    public class Command
     {
-        public string Name { get; private set; }
+        private IBoard board;
 
-        public Command(string name, ICollection<string> supportedCommands)
+        public Command(IBoard board)
         {
-            if (name.Length != 3)
-            {
-                //TODO: change the exception to custom exception
-                throw new ArgumentOutOfRangeException(GlobalErrorMessages.CommandCanBeThreeSymbolsOnlyMessage);
-            }
+            this.board = board;
+        }
 
-            if (!supportedCommands.Contains(name))
-            {
-                //TODO: change the exception to custom exception
-                throw new ArgumentOutOfRangeException(string.Format(GlobalErrorMessages.CommandNotCorrectMessage,string.Join(", ", supportedCommands)));
-            }
+        public void Execute(Move move)
+        {
+            var from = move.From;
+            var to = move.To;
 
-            this.Name = name;
+            Validator.CheckIfPositionValid(to, GlobalErrorMessages.PositionNotValidMessage);
+            Validator.CheckIfFigureOnTheWay(to, this.board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
+
+            var figure = this.board.GetFigureAtPosition(from);
+
+            this.board.RemoveFigure(figure, from);
+            this.board.AddFigure(figure, to);
         }
     }
 }

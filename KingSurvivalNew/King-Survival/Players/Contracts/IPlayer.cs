@@ -12,14 +12,11 @@ namespace KingSurvival.Players.Contracts
     {
         string Name { get; }
 
-        IDictionary<string, int> MapCommandToDirection { get; }
-
         void AddFigure(IFigure figure);
 
         IList<IFigure> Figures { get; }
 
-        //TODO:Maybe move this method to IMovable interface
-        Move Move(ICommand command, IBoard board);
+        Move GenerateNewMove(Position oldPosition, int direction);
     }
 }
 
