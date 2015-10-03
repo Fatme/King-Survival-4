@@ -184,7 +184,7 @@
         public Move GetNextFigureMove(IPlayer player, IBoard board)
         {
             this.provider.PrintPlayerNameForNextMove(player.Name);
-            var command = new Command(Console.ReadLine(), player.MapCommandToDirection.Keys);
+            var command = new Command(this.provider.GetCommandName, player.MapCommandToDirection.Keys);
             // command.Execute();
 
 
