@@ -9,11 +9,10 @@ namespace KingSurvival.Players
     using KingSurvival.Common;
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common.Contracts;
-  
-    public abstract class Player : IPlayer
+
+    public  class Player : IPlayer
     {
-        private static int[] deltaRow = { -1, +1, +1, -1 }; //UR, DR, DL, UL
-        private static int[] deltaCol = { +1, +1, -1, -1 };
+
 
         private IList<IFigure> figures;
 
@@ -25,20 +24,22 @@ namespace KingSurvival.Players
         }
 
         public Player(string name)
-        {            
+        {
             this.Name = name;
             this.figures = new List<IFigure>();
         }
 
         public void AddFigure(IFigure figure)
         {
-           this.figures.Add(figure);
+            this.figures.Add(figure);
         }
 
         public Move GenerateNewMove(Position oldPosition, int direction)
         {
-            int newRow = oldPosition.Row + Player.deltaRow[direction];
-            int newColumn = oldPosition.Col + Player.deltaCol[direction];
+            int[] deltaRow = { -1, +1, +1, -1 }; //UR, DR, DL, UL
+            int[] deltaCol = { +1, +1, -1, -1 };
+            int newRow = oldPosition.Row + deltaRow[direction];
+            int newColumn = oldPosition.Col + deltaCol[direction];
             var newPosition = new Position(newRow, newColumn);
             return new Move(oldPosition, newPosition);
         }

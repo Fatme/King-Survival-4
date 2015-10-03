@@ -1,9 +1,11 @@
-﻿namespace KingSurvival.Engine
+﻿using KingSurvival.Figures;
+
+namespace KingSurvival.Engine
 {
     using System;
     using System.Collections.Generic;
 
-    using KingSurvival.FigureFactory;
+    
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
@@ -13,7 +15,7 @@
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common.Contracts;
     using KingSurvival.Renderers.Contracts;
-    using FigureFactory.Contracts;
+   
     using KingSurvival.Players;
     using KingSurvival.Commands;
 
@@ -48,8 +50,8 @@
             var firstPlayer = players[0];
             var secondPlayer = players[1];
             //TODO:Cupling between factory and this class :(
-            var figureFactory = new FigureFactory();
-            IFigure figure = figureFactory.CreateFigure();
+           
+            IFigure figure = new Figure();
 
             var king = figure.Clone();
             king.AddSign(FigureSign.K);
@@ -162,16 +164,16 @@
         {
             var players = new List<IPlayer>();
 
-            var kingPlayer = new KingPlayer(this.provider.GetPlayerName);
+            var kingPlayer = new Player(this.provider.GetPlayerName);
             players.Add(kingPlayer);
 
-            var pawnPlayer = new PawnPlayer(this.provider.GetPlayerName);
+            var pawnPlayer = new Player(this.provider.GetPlayerName);
             players.Add(pawnPlayer);
 
             return players;
         }
 
-        public void ExecutePlayerCommand(IPlayer player)
+        private void ExecutePlayerCommand(IPlayer player)
         {
             this.provider.PrintPlayerNameForNextMove(player.Name);
 
