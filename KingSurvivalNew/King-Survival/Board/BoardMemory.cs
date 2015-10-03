@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingSurvival.Commands.Contracts
+namespace KingSurvival.Board
 {
-    public interface ICommand
+    public class BoardMemory
     {
-        string Name { get; }
+       public Memento Memento { get; set; }
     }
 }

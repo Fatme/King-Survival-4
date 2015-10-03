@@ -3,7 +3,7 @@
     using KingSurvival.Common;
     using KingSurvival.Figures.Contracts;
 
-    public interface IBoard
+    public interface IBoard:IMemorizable
     {
         int NumberOfRows { get; }
 
@@ -16,6 +16,8 @@
         void RemoveFigure(IFigure figure,Position position);
 
         Position GetFigurePosition(IFigure figure);
+
+
 
     }
 }

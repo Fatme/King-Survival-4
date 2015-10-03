@@ -7,13 +7,13 @@ namespace KingSurvival.Board
     using KingSurvival.Board.Contracts;
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common;
-    
-    public class Board : IBoard
+
+    public class Board : IBoard, IMemorizable
     {
         private IFigure[,] board;
-        private readonly Dictionary<IFigure, Position> FigurePositionsOnBoard = new Dictionary<IFigure, Position>();
+        private Dictionary<IFigure, Position> figurePositionsOnBoard = new Dictionary<IFigure, Position>();
 
-        public Board(int rows=Constants.StandardChessRows, int columns=Constants.StandardChessColumns)
+        public Board(int rows = Constants.StandardChessRows, int columns = Constants.StandardChessColumns)
         {
             this.NumberOfColumns = columns;
             this.NumberOfRows = rows;
@@ -25,13 +25,15 @@ namespace KingSurvival.Board
         public int NumberOfColumns { get; private set; }
 
 
-        public void AddFigure(IFigure figure,Position position)
+
+
+        public void AddFigure(IFigure figure, Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
-            Validator.CheckIfPositionValid(position,GlobalErrorMessages.PositionNotValidMessage);            
+            Validator.CheckIfPositionValid(position, GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = figure;
 
-            this.FigurePositionsOnBoard[figure] = position;
+            this.figurePositionsOnBoard[figure] = position;
 
         }
 
@@ -39,19 +41,32 @@ namespace KingSurvival.Board
         {
             return this.board[position.Row, position.Col];
         }
-      
-        public void RemoveFigure(IFigure figure,Position position)
+
+        public void RemoveFigure(IFigure figure, Position position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
-            Validator.CheckIfPositionValid(position,GlobalErrorMessages.PositionNotValidMessage);
+            Validator.CheckIfPositionValid(position, GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = null;
         }
 
         public Position GetFigurePosition(IFigure figure)
         {
             Position position;
-            this.FigurePositionsOnBoard.TryGetValue(figure, out position);
+            this.figurePositionsOnBoard.TryGetValue(figure, out position);
             return position;
         }
+
+        public Memento SaveMemento()
+        {
+            return new Memento(this.board, this.figurePositionsOnBoard);
+        }
+
+        public void RestoreMemento(Memento memento)
+        {
+            this.board = memento.Board;
+            this.figurePositionsOnBoard = memento.FigurePositionsOnBoard;
+            
+        }
+       
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Players
+﻿using KingSurvival.Commands.Contracts;
+
+namespace KingSurvival.Players
 {
     using System;
 

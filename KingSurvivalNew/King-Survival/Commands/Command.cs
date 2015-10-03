@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KingSurvival.Commands.Contracts;
+using KingSurvival.Common;
 
-namespace KingSurvival.Common
+namespace KingSurvival.Commands
 {
     public class Command : ICommand
     {

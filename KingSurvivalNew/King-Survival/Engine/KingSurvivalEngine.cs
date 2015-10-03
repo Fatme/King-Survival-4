@@ -19,13 +19,14 @@
     {
         private const int BoardTotalNUmberOfColumns = 8;
         private const int BoardTotalNUmberOfRows = 8;
-
+        
         private readonly IRenderer renderer;
         private readonly IInputProvider provider;
         private readonly IWinningConditions winningConditions;
         private IList<IPlayer> players;
         
         private int currentPlayerIndex;
+        private BoardMemory memory=new BoardMemory();
 
 
         public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions):base(board)
@@ -75,7 +76,7 @@
             this.Board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
             
             this.SetFirstPlayerIndex();
-
+          
             this.renderer.RenderBoard(this.Board);
         }
 
@@ -86,6 +87,7 @@
             {
                 try
                 {
+                    this.memory.Memento = this.Board.SaveMemento();
                     if (this.winningConditions.KingWon(this.players, this.Board))
                     {
                         this.renderer.PrintMessage("The king won");
@@ -110,7 +112,8 @@
 
                     this.Board.RemoveFigure(figure, from);
                     this.Board.AddFigure(figure, to);
-
+                    //TODO:this should not be here :)
+                    //this.Board.RestoreMemento(this.memory.Memento);
                     this.renderer.RenderBoard(this.Board);
                 }
                 catch (IndexOutOfRangeException ex)

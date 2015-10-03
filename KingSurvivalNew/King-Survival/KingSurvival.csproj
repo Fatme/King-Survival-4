@@ -45,7 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board\Board.cs" />
+    <Compile Include="Board\BoardMemory.cs" />
     <Compile Include="Board\Contracts\IBoard.cs" />
+    <Compile Include="Board\Contracts\IBoardPrototype.cs" />
+    <Compile Include="Board\IMemorizable.cs" />
+    <Compile Include="Board\Memento.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Contracts\ICommand.cs" />
     <Compile Include="Common\Contracts\IContentProvider.cs" />

@@ -1,4 +1,6 @@
-﻿namespace KingSurvivalUI.Input
+﻿using KingSurvival.Commands;
+
+namespace KingSurvivalUI.Input
 {
     using System;
     using System.Collections.Generic;

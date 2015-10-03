@@ -26,7 +26,7 @@
 
         public IFigure Clone()
         {
-            return this.MemberwiseClone() as IFigure;
+            return (IFigure) this.MemberwiseClone();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Players
+﻿using KingSurvival.Commands.Contracts;
+
+namespace KingSurvival.Players
 {
     using System;
     using KingSurvival.Common;
@@ -13,7 +15,7 @@ using System.Collections.Generic;
             : base(name)
         {
         }
-        //TODO:The player should not know about the commands
+        //TODO:The player should not know about the commands..Move it from here
         public override IDictionary<string, int> MapCommandToDirection
         {
             get
@@ -32,5 +34,7 @@ using System.Collections.Generic;
             var oldPosition = board.GetFigurePosition(this.Figures[0]);
             return this.GenerateNewMove(oldPosition, this.MapCommandToDirection[command.Name]);
         }
+
+
     }
 }

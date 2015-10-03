@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KingSurvival.Commands.Contracts
+namespace KingSurvival.Board.Contracts
 {
-    public interface ICommand
+    public interface IBoardPrototype
     {
-        string Name { get; }
+        IBoard Clone();
     }
 }

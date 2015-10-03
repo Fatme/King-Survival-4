@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Players.Contracts
+﻿using KingSurvival.Commands.Contracts;
+
+namespace KingSurvival.Players.Contracts
 {
     using System.Collections.Generic;
 
