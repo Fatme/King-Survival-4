@@ -13,30 +13,27 @@ namespace KingSurvivalUI.Input
 
     public class ConsoleInputProvider : IInputProvider
     {
-        public IList<IPlayer> GetPlayers(int numberOfPlayers)
+        public string GetPlayerName
         {
-            var players = new List<IPlayer>();
-            //for (int i = 0; i < numberOfPlayers; i++)
-            // {
-            //Console.Clear();
-            //Console.Write(string.Format("Enter player {0} name ", i));
-            //string name = Console.ReadLine();
-
-            var kingPlayer = new KingPlayer("King");
-            var pawnPlayer = new PawnPlayer("Pawn");
-            players.Add(kingPlayer);
-            players.Add(pawnPlayer);
-            // }
-            return players;
+            get
+            {
+                var playerName = Console.ReadLine();
+                return playerName;
+            }
         }
 
-      
-        public Move GetNextFigureMove(IPlayer player,IBoard board)
+        public string GetCommandName
         {
-            Console.Write("{0} is next ", player.Name);
-            var command = new Command(Console.ReadLine(), player.MapCommandToDirection.Keys);
-            Move move = player.Move(command, board);
-            return move;
-        }   
+            get
+            {
+                var commandName = Console.ReadLine();
+                return commandName;
+            }
+        }
+
+        public void PrintPlayerNameForNextMove(string playerName)
+        {
+            Console.Write("{0} is next ", playerName);
+        }
     }
 }

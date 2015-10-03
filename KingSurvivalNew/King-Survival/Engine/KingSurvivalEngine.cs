@@ -14,6 +14,8 @@
     using KingSurvival.Common.Contracts;
     using KingSurvival.Renderers.Contracts;
     using FigureFactory.Contracts;
+    using KingSurvival.Players;
+    using KingSurvival.Commands;
 
     public class KingSurvivalEngine :ChessEngine, IChessEngine
     {
@@ -41,7 +43,7 @@
         public override void Initialize()
         {
             //TODO:Extract to another class and interface
-            this.players = provider.GetPlayers(Constants.StandardNumberOfPlayers);
+            this.players = this.CreatePlayers();
             Validator.ValidateGameInitialization(this.players, this.Board);
             var firstPlayer = players[0];
             var secondPlayer = players[1];
@@ -101,7 +103,8 @@
                     }
 
                     var player = this.GetNextPlayer();
-                    Move move = this.provider.GetNextFigureMove(player, this.Board);
+                    // 
+                    Move move = this.GetNextFigureMove(player, this.Board);
                     var from = move.From;
                     var to = move.To;
 
@@ -163,6 +166,30 @@
                     return;
                 }
             }
+        }
+
+        private IList<IPlayer> CreatePlayers()
+        {
+            var players = new List<IPlayer>();
+
+            var kingPlayer = new KingPlayer(this.provider.GetPlayerName);
+            players.Add(kingPlayer);
+
+            var pawnPlayer = new PawnPlayer(this.provider.GetPlayerName);
+            players.Add(pawnPlayer);
+
+            return players;
+        }
+
+        public Move GetNextFigureMove(IPlayer player, IBoard board)
+        {
+            this.provider.PrintPlayerNameForNextMove(player.Name);
+            var command = new Command(Console.ReadLine(), player.MapCommandToDirection.Keys);
+            // command.Execute();
+
+
+            Move move = player.Move(command, board);
+            return move;
         }
     }
 }
