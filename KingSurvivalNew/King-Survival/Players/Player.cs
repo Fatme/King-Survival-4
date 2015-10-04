@@ -12,8 +12,6 @@ namespace KingSurvival.Players
 
     public  class Player : IPlayer
     {
-
-
         private IList<IFigure> figures;
 
         public string Name { get; private set; }
@@ -32,16 +30,6 @@ namespace KingSurvival.Players
         public void AddFigure(IFigure figure)
         {
             this.figures.Add(figure);
-        }
-
-        public Move GenerateNewMove(Position oldPosition, int direction)
-        {
-            int[] deltaRow = { -1, +1, +1, -1 }; //UR, DR, DL, UL
-            int[] deltaCol = { +1, +1, -1, -1 };
-            int newRow = oldPosition.Row + deltaRow[direction];
-            int newColumn = oldPosition.Col + deltaCol[direction];
-            var newPosition = new Position(newRow, newColumn);
-            return new Move(oldPosition, newPosition);
         }
     }
 }

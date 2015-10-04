@@ -15,8 +15,6 @@ namespace KingSurvival.Players.Contracts
         void AddFigure(IFigure figure);
 
         IList<IFigure> Figures { get; }
-
-        Move GenerateNewMove(Position oldPosition, int direction);
     }
 }
 

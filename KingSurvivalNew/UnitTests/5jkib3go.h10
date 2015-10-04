@@ -43,7 +43,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheKurDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodChangeTheKurDirectionCorrectly()
         {
             //List<IPlayer> players = new List<IPlayer>();
             //players.Add(new KingPlayer("king"));
@@ -75,23 +75,22 @@ namespace UnitTests
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIfTheKdrDirectionIsCorrectlyChanged()
+        public void CheckIfKdrDirectionCorrectly()
         {
 
         }
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIfTheKdlDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodChangeTheKdlDirectionCorrectly()
         {
             var player = new Player("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
 
-            var board = new Board();
-            var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
-            board.AddFigure(king, position);
+            var board = new Board(); 
+            board.AddFigure(king, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
 
             var commandFactory = new CommandFactory(board);
             var playerCommand = commandFactory.CreatePlayerCommand("kdl");
@@ -99,7 +98,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheKulDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodChangeTheKulDirectionCorrectly()
         {
             //var player = new KingPlayer("Serafim");
             //var king = new KingFigureFactory().CreateFigure();

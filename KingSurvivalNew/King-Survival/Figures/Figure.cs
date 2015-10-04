@@ -4,11 +4,15 @@
     using KingSurvival.Common.Contracts;
     using KingSurvival.Figures.Contracts;
 
-    public  class Figure : IFigure,IContentProvider,IFigurePrototype
+    public  class Figure : IFigure, IContentProvider, IFigurePrototype
     {
         public Figure()
         {
-            
+        }
+
+        public Figure(FigureSign sign)
+        {
+            this.Sign = sign;
         }
 
         public FigureSign Sign { get;  private set; }
@@ -22,7 +26,6 @@
         {
             this.Sign = sign;
         }
-
 
         public IFigure Clone()
         {

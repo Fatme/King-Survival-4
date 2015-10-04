@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingSurvival.Commands
 {
-    public class PawnBDownLeftCommand : Command, IPlayerCommand
+    public class PawnBDownLeftCommand : PlayerCommand, IPlayerCommand
     {
         public PawnBDownLeftCommand(IBoard board)
             : base(board)
@@ -20,12 +20,12 @@ namespace KingSurvival.Commands
             get { return "bdl"; }
         }
 
-        public int Direction
+        public override int Direction
         {
             get { return 2; }
         }
 
-        public int FigureIndex
+        public override int FigureIndex
         {
             get { return 1; }
         }

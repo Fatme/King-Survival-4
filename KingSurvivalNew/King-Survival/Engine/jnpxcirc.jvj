@@ -175,6 +175,9 @@
             var commandFactory = new CommandFactory(this.Board);
             var commandName = this.provider.GetCommandName;
             var command = commandFactory.CreatePlayerCommand(commandName);
+
+            var figure = [command.FigureIndex];
+
             command.Execute(player.Figures);
         }
     }

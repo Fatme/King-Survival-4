@@ -3,7 +3,7 @@
     using KingSurvival.Board.Contracts;
     using KingSurvival.Commands.Contracts;
 
-    public class KingUpRightCommand : Command, IPlayerCommand
+    public class KingUpRightCommand : PlayerCommand, IPlayerCommand
     {
         public KingUpRightCommand(IBoard board)
             : base(board)
@@ -15,12 +15,12 @@
             get { return "kur"; }
         }
 
-        public int Direction
+        public override int Direction
         {
             get { return 0; }
         }
 
-        public int FigureIndex
+        public override int FigureIndex
         {
             get { return 0; }
         }

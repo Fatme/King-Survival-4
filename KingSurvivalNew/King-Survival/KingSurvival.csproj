@@ -50,7 +50,7 @@
     <Compile Include="Board\Contracts\IBoardPrototype.cs" />
     <Compile Include="Board\IMemorizable.cs" />
     <Compile Include="Board\Memento.cs" />
-    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\PlayerCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\Contracts\ICommand.cs" />
     <Compile Include="Commands\Contracts\ICommandFactory.cs" />

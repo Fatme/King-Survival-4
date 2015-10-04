@@ -1,5 +1,6 @@
 ﻿using KingSurvival.Board.Contracts;
 using KingSurvival.Common;
+using KingSurvival.Figures.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace KingSurvival.Commands.Contracts
     {
         string Name { get; }
 
-        void Execute(Move move);
+        void Execute(IList<IFigure> figures);
     }
 }
