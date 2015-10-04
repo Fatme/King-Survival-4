@@ -18,219 +18,271 @@ namespace UnitTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CheckIfTheMoveMethodThrowsCorrectlyWhenTheCommandIsNotExactlyThreeSymbols()
+        public void CheckIfAnExceptionIsThrownWhenTheCommandIsNotExactlyThreeSymbols()
         {
-            //List<IPlayer> players = new List<IPlayer>();
-            //players.Add(new PawnPlayer("pawn"));
-            //players.Add(new KingPlayer("king"));
-            //IBoard board = new Board();
-            //var firstPlayer = players[0];
-            //IFigure king = new FigureFactory().CreateFigure();
-            //king.AddSign(FigureSign.K);
-            //firstPlayer.AddFigure(king);
-            //board.AddFigure(king, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
+            var player = new Player("Serafim");
 
-            //var secondPlayer = players[1];
-            //IFigure pawnA = new PawnFigureFactory().CreateFigure(FigureSign.A);
-            //IFigure pawnB = new PawnFigureFactory().CreateFigure(FigureSign.B);
-            //IFigure pawnC = new PawnFigureFactory().CreateFigure(FigureSign.C);
-            //IFigure pawnD = new PawnFigureFactory().CreateFigure(FigureSign.D);
-            //secondPlayer.AddFigure(pawnA);
-            //secondPlayer.AddFigure(pawnB);
-            //secondPlayer.AddFigure(pawnC);
-            //secondPlayer.AddFigure(pawnD);
-            //board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
-            //board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
-            //board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
-            //board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
+            var king = new Figure(FigureSign.A);
+            player.AddFigure(king);
 
-            //secondPlayer.Move(new Command("shshs", new List<string>()), board);
+            var board = new Board();
+            var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
+            board.AddFigure(king, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("aaaa");
+            playerCommand.Execute(player.Figures);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CheckIfTheMoveMethodThrowsCorrectlyIfTheCommandIsThreeSymbolsLongButStillNotCorrect()
+        public void CheckIfAnExceptionIsThrownWhenTheCommandIsThreeSymbolsLongButStillNotCorrect()
         {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var player = new Player("Serafim");
 
-            //player.Move("aaa");
+            var king = new Figure(FigureSign.A);
+            player.AddFigure(king);
+
+            var board = new Board();
+            var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
+            board.AddFigure(king, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("bbb");
+            playerCommand.Execute(player.Figures);
         }
 
         [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheAdrCommand()
+        public void CheckIfTheAdrDirectionIsCorrectlyChanged()
         {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var player = new Player("Serafim");
 
-            //var position = new Position(1, 1);
-            //var to = player.Move("adr").To;
+            var pawn = new Figure(FigureSign.A);
+            player.AddFigure(pawn);
 
-            //Assert.AreEqual(to, position);
+            var board = new Board();
+            var position = new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol);
+            board.AddFigure(pawn, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("adr");
+            playerCommand.Execute(player.Figures);
+
+            var actualPosition = board.GetFigurePosition(pawn);
+            var expectedPosition = new Position(1, 1);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+            Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }
 
         [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheBdrCommand()
+        public void CheckIfTheBdrDirectionIsCorrectlyChanged()
         {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var player = new Player("Serafim");
 
-            //var position = new Position(1, 3);
-            //var to = player.Move("bdr").To;
+            var pawnA = new Figure(FigureSign.A);
+            player.AddFigure(pawnA);
 
-            //Assert.AreEqual(to, position);
+            var pawnB = new Figure(FigureSign.B);
+            player.AddFigure(pawnB);
+
+            var board = new Board();
+            var position = new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol);
+
+            board.AddFigure(pawnA, position);
+            board.AddFigure(pawnB, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("bdr");
+            playerCommand.Execute(player.Figures);
+
+            var actualPosition = board.GetFigurePosition(pawnB);
+            var expectedPosition = new Position(1, 3);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+            Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }
 
         [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheCdrCommand()
+        public void CheckIfTheCdrDirectionIsCorrectlyChanged()
         {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var player = new Player("Serafim");
 
-            //var position = new Position(1, 5);
-            //var to = player.Move("cdr").To;
+            var pawnA = new Figure(FigureSign.A);
+            player.AddFigure(pawnA);
 
-            //Assert.AreEqual(to, position);
+            var pawnB = new Figure(FigureSign.B);
+            player.AddFigure(pawnB);
+
+            var pawnC = new Figure(FigureSign.C);
+            player.AddFigure(pawnC);
+
+            var board = new Board();
+            var position = new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol);
+
+            board.AddFigure(pawnA, position);
+            board.AddFigure(pawnB, position);
+            board.AddFigure(pawnC, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("cdr");
+            playerCommand.Execute(player.Figures);
+
+            var actualPosition = board.GetFigurePosition(pawnC);
+            var expectedPosition = new Position(1, 5);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+            Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }
 
         [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheDdrCommand()
+        public void CheckIfTheDdrDirectionIsCorrectlyChanged()
         {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var player = new Player("Serafim");
 
-            //var position = new Position(1, 7);
-            //var to = player.Move("ddr").To;
+            var pawnA = new Figure(FigureSign.A);
+            player.AddFigure(pawnA);
 
-            //Assert.AreEqual(to, position);
-        }
+            var pawnB = new Figure(FigureSign.B);
+            player.AddFigure(pawnB);
 
-        [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheAdlCommand()
-        {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var pawnC = new Figure(FigureSign.C);
+            player.AddFigure(pawnC);
 
-            //player.Move("adl");
-        }
+            var pawnD = new Figure(FigureSign.D);
+            player.AddFigure(pawnD);
 
-        [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheBdlCommand()
-        {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var board = new Board();
+            var position = new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol);
 
-            //var position = new Position(1, 1);
-            //var to = player.Move("bdl").To;
+            board.AddFigure(pawnA, position);
+            board.AddFigure(pawnB, position);
+            board.AddFigure(pawnC, position);
+            board.AddFigure(pawnD, position);
 
-            //Assert.AreEqual(to, position);
-        }
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("ddr");
+            playerCommand.Execute(player.Figures);
 
-        [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheCdlCommand()
-        {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
+            var actualPosition = board.GetFigurePosition(pawnD);
+            var expectedPosition = new Position(1, 7);
 
-            //var position = new Position(1, 3);
-            //var to = player.Move("cdl").To;
-
-            //Assert.AreEqual(to, position);
-        }
-
-        [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheDdlCommand()
-        {
-        //    var player = new PawnPlayer("Serafim");
-        //    IFigure pawnA = new PawnA().CreateFigure();
-        //    IFigure pawnB = new PawnB().CreateFigure();
-        //    IFigure pawnC = new PawnC().CreateFigure();
-        //    IFigure pawnD = new PawnD().CreateFigure();
-        //    player.AddFigure(pawnA);
-        //    player.AddFigure(pawnB);
-        //    player.AddFigure(pawnC);
-        //    player.AddFigure(pawnD);
-
-        //    var position = new Position(1, 5);
-        //    var to = player.Move("ddl").To;
-
-        //    Assert.AreEqual(to, position);
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+            Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIfTheMoveMethodReturnsCorrectlyTheOldPosition()
+        public void CheckIfTheAdlDirectionIsCorrectlyChanged()
         {
-            //var player = new PawnPlayer("Serafim");
-            //IFigure pawnA = new PawnA().CreateFigure();
-            //IFigure pawnB = new PawnB().CreateFigure();
-            //IFigure pawnC = new PawnC().CreateFigure();
-            //IFigure pawnD = new PawnD().CreateFigure();
-            //player.AddFigure(pawnA);
-            //player.AddFigure(pawnB);
-            //player.AddFigure(pawnC);
-            //player.AddFigure(pawnD);
-            //var position = new Position(0, 0);
-            //var to = player.Move("adl").From;
+            var player = new Player("Serafim");
 
-            //Assert.AreEqual(to, position);
+            var pawn = new Figure(FigureSign.A);
+            player.AddFigure(pawn);
+
+            var board = new Board();
+            var position = new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol);
+            board.AddFigure(pawn, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("adl");
+            playerCommand.Execute(player.Figures);
+        }
+
+        [TestMethod]
+        public void CheckIfTheBdlDirectionIsCorrectlyChanged()
+        {
+            var player = new Player("Serafim");
+
+            var pawnA = new Figure(FigureSign.A);
+            player.AddFigure(pawnA);
+
+            var pawnB = new Figure(FigureSign.B);
+            player.AddFigure(pawnB);
+
+            var board = new Board();
+            var position = new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol);
+
+            board.AddFigure(pawnA, position);
+            board.AddFigure(pawnB, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("bdl");
+            playerCommand.Execute(player.Figures);
+
+            var actualPosition = board.GetFigurePosition(pawnB);
+            var expectedPosition = new Position(1, 1);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+            Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
+        }
+
+        [TestMethod]
+        public void CheckIfTheCdlDirectionIsCorrectlyChanged()
+        {
+            var player = new Player("Serafim");
+
+            var pawnA = new Figure(FigureSign.A);
+            player.AddFigure(pawnA);
+
+            var pawnB = new Figure(FigureSign.B);
+            player.AddFigure(pawnB);
+
+            var pawnC = new Figure(FigureSign.C);
+            player.AddFigure(pawnC);
+
+            var board = new Board();
+            var position = new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol);
+
+            board.AddFigure(pawnA, position);
+            board.AddFigure(pawnB, position);
+            board.AddFigure(pawnC, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("cdl");
+            playerCommand.Execute(player.Figures);
+
+            var actualPosition = board.GetFigurePosition(pawnC);
+            var expectedPosition = new Position(1, 3);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+            Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
+        }
+
+        [TestMethod]
+        public void CheckIfTheDdlDirectionIsCorrectlyChanged()
+        {
+            var player = new Player("Serafim");
+
+            var pawnA = new Figure(FigureSign.A);
+            player.AddFigure(pawnA);
+
+            var pawnB = new Figure(FigureSign.B);
+            player.AddFigure(pawnB);
+
+            var pawnC = new Figure(FigureSign.C);
+            player.AddFigure(pawnC);
+
+            var pawnD = new Figure(FigureSign.D);
+            player.AddFigure(pawnD);
+
+            var board = new Board();
+            var position = new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol);
+
+            board.AddFigure(pawnA, position);
+            board.AddFigure(pawnB, position);
+            board.AddFigure(pawnC, position);
+            board.AddFigure(pawnD, position);
+
+            var commandFactory = new CommandFactory(board);
+            var playerCommand = commandFactory.CreatePlayerCommand("ddl");
+            playerCommand.Execute(player.Figures);
+
+            var actualPosition = board.GetFigurePosition(pawnD);
+            var expectedPosition = new Position(1, 5);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+            Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }
     }
 }

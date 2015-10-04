@@ -19,7 +19,7 @@ namespace UnitTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CheckIfTheMoveMethodThrowsCorrectlyWhenTheCommandIsNotExactlyThreeSymbols()
+        public void CheckIfAnExceptionIsThrownWhenTheCommandIsNotExactlyThreeSymbols()
         {
             var player = new Player("Serafim");
 
@@ -37,7 +37,7 @@ namespace UnitTests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CheckIfTheMoveMethodThrowsCorrectlyIfTheCommandIsThreeSymbolsLongButStillNotCorrect()
+        public void CheckIfAnExceptionIsThrownWhenTheCommandIsThreeSymbolsLongButStillNotCorrect()
         {
             var player = new Player("Serafim");
 
