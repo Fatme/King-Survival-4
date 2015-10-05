@@ -76,7 +76,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheBdrCommand()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlyWithTheBdrCommand()
         {
             var player = new PawnPlayer("Serafim");
 
@@ -185,13 +185,14 @@ namespace UnitTests
             player.AddFigure(pawn);
 
             var board = new Board();
-            var position = new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol);
+            var position = new Position(0, 0);
             board.AddFigure(pawn, position);
 
             var commandFactory = new CommandFactory();
            
             var commandContext = new CommandContext(new BoardMemory(), board, player);
             player.ExecuteCommand(commandContext,"adl");
+            
         }
 
         [TestMethod]

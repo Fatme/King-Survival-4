@@ -40,7 +40,7 @@ namespace UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CheckIfAnExceptionIsThrownWhenTheCommandIsThreeSymbolsLongButStillNotCorrect()
         {
-            var player = new PawnPlayer("Serafim");
+            var player = new KingPlayer("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
@@ -132,6 +132,23 @@ namespace UnitTests
 
             Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
             Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CheckIfAnExceptionIsThrownWhenTheCommandIsFromPawnPlayer()
+        {
+            var player = new KingPlayer("Serafim");
+
+            var king = new Figure(FigureSign.K);
+            player.AddFigure(king);
+
+            var board = new Board();
+            var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
+            board.AddFigure(king, position);
+
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext, "adr");
         }
     }
 }
