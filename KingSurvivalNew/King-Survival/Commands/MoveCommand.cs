@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using KingSurvival.Board.Contracts;
 
-    public abstract class MoveCommand:ICommand
+    public abstract class MoveCommand:ICommand,IPlayerCommand
     {
        // protected ICommandContext context;
 
