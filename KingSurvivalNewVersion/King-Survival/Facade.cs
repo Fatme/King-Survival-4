@@ -24,7 +24,6 @@ namespace KingSurvival
         {
             
             renderer.RenderMainMenu();
-            
             IWinningConditions winningConditions = new WinningConditions();
             IBoard board=new Board.Board();
             IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider, board, winningConditions);

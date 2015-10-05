@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Common
+﻿using System.Collections.Generic;
+
+namespace KingSurvival.Common
 {
     public class Constants
     {
@@ -33,8 +35,7 @@
         public const char PawnSignC = 'C';
         public const char PawnSignD = 'D';
 
-
-
+      
 
 
 

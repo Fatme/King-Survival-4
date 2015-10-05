@@ -106,12 +106,11 @@ namespace KingSurvival.Engine
                     }
 
                     var player = this.GetNextPlayer();
-                    
-                    this.ExecutePlayerCommand(player);
-                    
-                    //TODO:this should not be here :)
-                    //this.Board.RestoreMemento(this.memory.Memento);
-                    this.renderer.RenderBoard(this.Board);
+                    //TODO:Get this from constructor ..do not initialize here
+                    context = new CommandContext(this.memory, this.Board, player,this.provider);
+                    player.ExecuteCommand(this.context);
+                   
+                 this.renderer.RenderBoard(this.Board);
                  }
                 catch (IndexOutOfRangeException ex)
                 {
@@ -166,24 +165,14 @@ namespace KingSurvival.Engine
         {
             var players = new List<IPlayer>();
 
-            var kingPlayer = new Player(this.provider.GetPlayerName);
+            var kingPlayer = new KingPlayer("king");
             players.Add(kingPlayer);
 
-            var pawnPlayer = new Player(this.provider.GetPlayerName);
+            var pawnPlayer = new PawnPlayer("pawn");
             players.Add(pawnPlayer);
 
             return players;
         }
-
-        private void ExecutePlayerCommand(IPlayer player)
-        {
-            context=new CommandContext(this.memory,this.Board,player);
-            this.provider.PrintPlayerNameForNextMove(player.Name);
-            var commandFactory = new CommandFactory(context);
-            var commandName = this.provider.GetCommandName;
-            ICommand command = commandFactory.CreatePlayerCommand(commandName);
-            
-            command.Execute();
-        }
+       
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using KingSurvival.Board;
 using KingSurvival.Board.Contracts;
 using KingSurvival.Common;
+using KingSurvival.Input.Contracts;
 using KingSurvival.Players.Contracts;
 
 namespace KingSurvival.Commands.Contracts
@@ -17,5 +18,7 @@ namespace KingSurvival.Commands.Contracts
         IBoard Board { get; }
 
         IPlayer Player { get; set; }
+
+        IInputProvider Provier { get; }
     }
 }
