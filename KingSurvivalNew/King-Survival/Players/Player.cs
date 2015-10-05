@@ -1,4 +1,6 @@
-﻿using KingSurvival.Commands.Contracts;
+﻿using System;
+using KingSurvival.Commands;
+using KingSurvival.Commands.Contracts;
 
 namespace KingSurvival.Players
 {
@@ -10,8 +12,10 @@ namespace KingSurvival.Players
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Common.Contracts;
 
-    public  class Player : IPlayer
+    public abstract class Player : IPlayer
     {
+
+
         private IList<IFigure> figures;
 
         public string Name { get; private set; }
@@ -31,5 +35,27 @@ namespace KingSurvival.Players
         {
             this.figures.Add(figure);
         }
+
+        public  void ExecuteCommand(ICommandContext context,string commandName)
+        {
+            //TODO:THis should not be here
+            //context.Provier.PrintPlayerNameForNextMove(context.Player.Name);
+            var commandFactory = new CommandFactory();
+            //var commandName = context.Provier.GetCommandName;
+
+            if (this.Commands.Contains(commandName))
+            {
+                ICommand command = commandFactory.CreatePlayerCommand(commandName);
+                command.Execute(context);
+            }
+            else
+            {
+                throw new ArgumentException(string.Format("Tnvalid comand for this player. The possible commands are {0} ",string.Join(",",this.Commands)));
+            }
+
+        }
+
+        public abstract List<string> Commands { get; }
+
     }
 }

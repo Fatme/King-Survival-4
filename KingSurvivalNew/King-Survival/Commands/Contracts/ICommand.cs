@@ -1,6 +1,5 @@
 ﻿using KingSurvival.Board.Contracts;
 using KingSurvival.Common;
-using KingSurvival.Figures.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,11 @@ namespace KingSurvival.Commands.Contracts
     public interface ICommand
     {
         string Name { get; }
+        
+        void Execute(ICommandContext cmdContext);
 
-        void Execute(IList<IFigure> figures);
+
+
+
     }
 }

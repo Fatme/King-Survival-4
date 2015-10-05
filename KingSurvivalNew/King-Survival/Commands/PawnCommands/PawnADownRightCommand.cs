@@ -3,26 +3,17 @@
     using KingSurvival.Board.Contracts;
     using KingSurvival.Commands.Contracts;
 
-    public class PawnADownRightCommand : PlayerCommand, IPlayerCommand
+    public class PawnADownRightCommand : MoveCommand, IPlayerCommand
     {
-        public PawnADownRightCommand(IBoard board)
-            : base(board)
+        public PawnADownRightCommand()
+            : base(0,1)
         {
         }
 
-        public string Name
+        public override string Name
         {
             get { return "adr"; }
         }
 
-        public override int Direction
-        {
-            get { return 1; }
-        }
-
-        public override int FigureIndex
-        {
-            get { return 0; }
-        }
     }
 }

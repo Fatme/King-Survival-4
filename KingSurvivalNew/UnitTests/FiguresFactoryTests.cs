@@ -1,4 +1,5 @@
-﻿using KingSurvival.Board.Contracts;
+﻿using KingSurvival.Board;
+using KingSurvival.Board.Contracts;
 
 
 namespace UnitTests

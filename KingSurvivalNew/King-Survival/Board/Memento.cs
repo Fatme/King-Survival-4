@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KingSurvival.Common;
+using KingSurvival.Common.Contracts;
 using KingSurvival.Figures;
 using KingSurvival.Figures.Contracts;
 
@@ -12,7 +13,7 @@ namespace KingSurvival.Board
     public class Memento
     {
         private IFigure[,] board;
-        public Memento(IFigure[,] board, Dictionary<IFigure, Position> figurePositionsOnBoard)
+        public Memento(IFigure[,] board, Dictionary<string, IPosition> figurePositionsOnBoard)
         {
             this.board=new IFigure[board.GetLength(0),board.GetLength(1)];
             this.Board = board;
@@ -41,7 +42,7 @@ namespace KingSurvival.Board
             }
         }
 
-        public Dictionary<IFigure, Position> FigurePositionsOnBoard { get; set; }
+        public Dictionary<string, IPosition> FigurePositionsOnBoard { get; set; }
 
         public int NumberOfColumns { get; private set; }
     }

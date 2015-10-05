@@ -1,33 +1,17 @@
-﻿namespace KingSurvival.Commands
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using KingSurvival.Commands.Contracts;
+
+namespace KingSurvival.Commands
 {
-    using System;
-    using KingSurvival.Common.Contracts;
-    using KingSurvival.Commands.Contracts;
-    using KingSurvival.Common;
-    using System.Collections.Generic;
-    using KingSurvival.Board.Contracts;
-
-    public class Command
+    public abstract class Command : ICommand
     {
-        private IBoard board;
+        public abstract string Name { get; }
 
-        public Command(IBoard board)
-        {
-            this.board = board;
-        }
+        public abstract void Execute(ICommandContext context);
 
-        public void Execute(Move move)
-        {
-            var from = move.From;
-            var to = move.To;
-
-            Validator.CheckIfPositionValid(to, GlobalErrorMessages.PositionNotValidMessage);
-            Validator.CheckIfFigureOnTheWay(to, this.board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
-
-            var figure = this.board.GetFigureAtPosition(from);
-
-            this.board.RemoveFigure(figure, from);
-            this.board.AddFigure(figure, to);
-        }
     }
 }

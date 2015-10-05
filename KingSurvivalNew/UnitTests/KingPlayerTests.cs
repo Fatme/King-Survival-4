@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using KingSurvival.Board;
 using KingSurvival.Board.Contracts;
 using KingSurvival.Commands;
+using KingSurvival.Commands.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KingSurvival.Players;
 using KingSurvival.Figures;
@@ -18,10 +19,10 @@ namespace UnitTests
     public class KingPlayerTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void CheckIfAnExceptionIsThrownWhenTheCommandIsNotExactlyThreeSymbols()
         {
-            var player = new Player("Serafim");
+            var player = new KingPlayer("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
@@ -30,16 +31,16 @@ namespace UnitTests
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("aaaa");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext, "aaaa");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void CheckIfAnExceptionIsThrownWhenTheCommandIsThreeSymbolsLongButStillNotCorrect()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
@@ -48,15 +49,15 @@ namespace UnitTests
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("aaa");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext, "aaa");
         }
 
         [TestMethod]
         public void CheckIfTheKurDirectionIsCorrectlyChanged()
         {
-            var player = new Player("Serafim");
+            var player = new KingPlayer("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
@@ -65,9 +66,8 @@ namespace UnitTests
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("kur");
-            playerCommand.Execute(player.Figures);
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"kur");
 
             var actualPosition = board.GetFigurePosition(king);
             var expectedPosition = new Position(6, 4);
@@ -78,9 +78,9 @@ namespace UnitTests
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIfTheKdrDirectionIsCorrectlyChanged()
+        public void CheckIfTheKdrThrowsWhenPositionIsNotValid()
         {
-            var player = new Player("Serafim");
+            var player = new KingPlayer("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
@@ -88,17 +88,17 @@ namespace UnitTests
             var board = new Board();
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext, "kdr");
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("kdr");
-            playerCommand.Execute(player.Figures);
+           
         }
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIfTheKdlDirectionIsCorrectlyChanged()
+        public void CheckIfTheKdlDirectionThrowsWhenThePositionIsNotValid()
         {
-            var player = new Player("Serafim");
+            var player = new KingPlayer("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
@@ -107,15 +107,14 @@ namespace UnitTests
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("kdl");
-            playerCommand.Execute(player.Figures);
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext, "kdl");
         }
 
         [TestMethod]
         public void CheckIfTheKulDirectionIsCorrectlyChanged()
         {
-            var player = new Player("Serafim");
+            var player = new KingPlayer("Serafim");
 
             var king = new Figure(FigureSign.K);
             player.AddFigure(king);
@@ -124,13 +123,13 @@ namespace UnitTests
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("kul");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"kul");
 
             var actualPosition = board.GetFigurePosition(king);
             var expectedPosition = new Position(6, 2);
-               
+
             Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
             Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }

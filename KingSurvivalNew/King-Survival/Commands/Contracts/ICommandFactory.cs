@@ -8,6 +8,6 @@ namespace KingSurvival.Commands.Contracts
 {
     interface ICommandFactory
     {
-        IPlayerCommand CreatePlayerCommand(string commandName);
+        ICommand CreatePlayerCommand(string commandName);
     }
 }

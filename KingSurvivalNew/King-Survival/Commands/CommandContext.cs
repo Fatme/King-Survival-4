@@ -15,12 +15,12 @@ namespace KingSurvival.Commands
     public class CommandContext : ICommandContext
     {
 
-        public CommandContext(BoardMemory memento, IBoard board, IPlayer player,IInputProvider provider)
+        public CommandContext(BoardMemory memento, IBoard board, IPlayer player)
         {
             this.Memory = memento;
             this.Board = board;
             this.Player = player;
-            this.Provier = provider;
+           
         }
 
         public BoardMemory Memory { get; private set; }
@@ -32,6 +32,6 @@ namespace KingSurvival.Commands
         public IPlayer Player { get; set; }
 
 
-        public IInputProvider Provier { get; private set; }
+        
     }
 }

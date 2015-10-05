@@ -15,6 +15,8 @@ namespace KingSurvival.Players.Contracts
         void AddFigure(IFigure figure);
 
         IList<IFigure> Figures { get; }
+
+        void ExecuteCommand(ICommandContext context,string commandName);
     }
 }
 

@@ -19,6 +19,6 @@ namespace KingSurvival.Commands.Contracts
 
         IPlayer Player { get; set; }
 
-        IInputProvider Provier { get; }
+        
     }
 }

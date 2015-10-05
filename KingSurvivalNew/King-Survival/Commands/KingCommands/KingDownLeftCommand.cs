@@ -3,26 +3,18 @@
     using KingSurvival.Board.Contracts;
 using KingSurvival.Commands.Contracts;
 
-    public class KingDownLeftCommand : PlayerCommand, IPlayerCommand
+    public class KingDownLeftCommand : MoveCommand, IPlayerCommand
     {
-        public KingDownLeftCommand(IBoard board)
-            : base(board)
+        public KingDownLeftCommand()
+            : base(0,2)
         { 
         }
 
-        public string Name
+        public override string Name
         {
             get { return "kdl"; }
         }
 
-        public override int Direction
-        {
-            get { return 2; }
-        }
-
-        public override int FigureIndex
-        {
-            get { return 0; }
-        }
+        
     }
 }

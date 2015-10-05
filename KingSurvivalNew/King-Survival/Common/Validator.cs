@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Common
+﻿using KingSurvival.Common.Contracts;
+
+namespace KingSurvival.Common
 {
     using System;
     using System.Collections.Generic;
@@ -29,7 +31,7 @@
                 throw new InvalidOperationException("King survial has 8x8 board");
             }
         }
-        public static void CheckIfFigureOnTheWay(Position position, IBoard board, string message)
+        public static void CheckIfFigureOnTheWay(IPosition position, IBoard board, string message)
         {
             if (board.GetFigureAtPosition(position) != null)
             {
@@ -37,7 +39,7 @@
             }
 
         }
-        public static void CheckIfPositionValid(Position position, string errorMessage)
+        public static void CheckIfPositionValid(IPosition position, string errorMessage)
         {
 
             if (position.Row < Constants.MinimumRowValueOnBoard

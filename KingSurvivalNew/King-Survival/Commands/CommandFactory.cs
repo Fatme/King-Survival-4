@@ -12,28 +12,29 @@ namespace KingSurvival.Commands
 {
     public class CommandFactory : ICommandFactory
     {
-        private readonly Dictionary<string, IPlayerCommand> commands;
+        private readonly Dictionary<string, ICommand> commands;
 
-        public CommandFactory(IBoard board)
+        public CommandFactory()
         {
-            this.commands = new Dictionary<string, IPlayerCommand>()
+            this.commands = new Dictionary<string, ICommand>()
             {
-                { "kdl", new KingDownLeftCommand(board) },
-                { "kdr", new KingDownRightCommand(board) },
-                { "kul", new KingUpLeftCommand(board) },
-                { "kur", new KingUpRightCommand(board) },
-                { "adl", new PawnADownLeftCommand(board) },
-                { "adr", new PawnADownRightCommand(board) },
-                { "bdl", new PawnBDownLeftCommand(board) },
-                { "bdr", new PawnBDownRightCommand(board) },
-                { "cdl", new PawnCDownLeftCommand(board) },
-                { "cdr", new PawnCDownRightCommand(board) },
-                { "ddl", new PawnDDownLeftCommand(board) },
-                { "ddr", new PawnDDownRightCommand(board) }
+                { "kdl", new KingDownLeftCommand() },
+                { "kdr", new KingDownRightCommand() },
+                { "kul", new KingUpLeftCommand() },
+                { "kur", new KingUpRightCommand() },
+                { "adl", new PawnADownLeftCommand() },
+                { "adr", new PawnADownRightCommand() },
+                { "bdl", new PawnBDownLeftCommand() },
+                { "bdr", new PawnBDownRightCommand() },
+                { "cdl", new PawnCDownLeftCommand() },
+                { "cdr", new PawnCDownRightCommand() },
+                { "ddl", new PawnDDownLeftCommand() },
+                { "ddr", new PawnDDownRightCommand() },
+                {"undo",new UndoCommand()}
             };
         }
 
-        public IPlayerCommand CreatePlayerCommand(string commandName)
+        public ICommand CreatePlayerCommand(string commandName)
         {
             var commandNameLowerCase = commandName.ToLower();
             this.ValidePlayerCommand(commandNameLowerCase);
@@ -42,17 +43,17 @@ namespace KingSurvival.Commands
 
         private void ValidePlayerCommand(string commandName)
         {
-            if (commandName.Length != 3)
-            {
-                //TODO: change the exception to custom exception
-                throw new ArgumentOutOfRangeException(GlobalErrorMessages.CommandCanBeThreeSymbolsOnlyMessage);
-            }
+        //    if (commandName.Length != 3)
+        //    {
+        //        //TODO: change the exception to custom exception
+        //        throw new ArgumentOutOfRangeException(GlobalErrorMessages.CommandCanBeThreeSymbolsOnlyMessage);
+        //    }
 
-            if (!this.commands.Keys.Contains(commandName))
-            {
-                //TODO: change the exception to custom exception
-                throw new ArgumentOutOfRangeException(string.Format(GlobalErrorMessages.CommandNotCorrectMessage, string.Join(", ", this.commands.Keys)));
-            }
+            //if (!this.commands.Keys.Contains(commandName))
+            //{
+            //    //TODO: change the exception to custom exception
+            //    throw new ArgumentOutOfRangeException(string.Format(GlobalErrorMessages.CommandNotCorrectMessage, string.Join(", ", this.commands.Keys)));
+            //}
         }
     }
 }

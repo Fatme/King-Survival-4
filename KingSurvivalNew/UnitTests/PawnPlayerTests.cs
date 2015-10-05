@@ -17,10 +17,10 @@ namespace UnitTests
     public class PawnPlayerTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void CheckIfAnExceptionIsThrownWhenTheCommandIsNotExactlyThreeSymbols()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var king = new Figure(FigureSign.A);
             player.AddFigure(king);
@@ -29,16 +29,16 @@ namespace UnitTests
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("aaaa");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"aaaa");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CheckIfAnExceptionIsThrownWhenTheCommandIsThreeSymbolsLongButStillNotCorrect()
+        [ExpectedException(typeof(ArgumentException))]
+        public void CheckIfTheMoveMethodThrowsCorrectlyIfTheCommandIsThreeSymbolsLongButStillNotCorrect()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var king = new Figure(FigureSign.A);
             player.AddFigure(king);
@@ -47,15 +47,15 @@ namespace UnitTests
             var position = new Position(Constants.InitialKingRow, Constants.InitialKingColumn);
             board.AddFigure(king, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("bbb");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"aaa");
         }
 
         [TestMethod]
-        public void CheckIfTheAdrDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheAdrCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawn = new Figure(FigureSign.A);
             player.AddFigure(pawn);
@@ -64,9 +64,9 @@ namespace UnitTests
             var position = new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol);
             board.AddFigure(pawn, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("adr");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"adr");
 
             var actualPosition = board.GetFigurePosition(pawn);
             var expectedPosition = new Position(1, 1);
@@ -76,9 +76,9 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheBdrDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheBdrCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawnA = new Figure(FigureSign.A);
             player.AddFigure(pawnA);
@@ -92,9 +92,11 @@ namespace UnitTests
             board.AddFigure(pawnA, position);
             board.AddFigure(pawnB, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("bdr");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            
+
+            player.ExecuteCommand(commandContext,"bdr");
 
             var actualPosition = board.GetFigurePosition(pawnB);
             var expectedPosition = new Position(1, 3);
@@ -104,9 +106,9 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheCdrDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheCdrCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawnA = new Figure(FigureSign.A);
             player.AddFigure(pawnA);
@@ -124,9 +126,10 @@ namespace UnitTests
             board.AddFigure(pawnB, position);
             board.AddFigure(pawnC, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("cdr");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"cdr");
 
             var actualPosition = board.GetFigurePosition(pawnC);
             var expectedPosition = new Position(1, 5);
@@ -136,9 +139,9 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheDdrDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheDdrCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawnA = new Figure(FigureSign.A);
             player.AddFigure(pawnA);
@@ -160,9 +163,10 @@ namespace UnitTests
             board.AddFigure(pawnC, position);
             board.AddFigure(pawnD, position);
 
-            var commandFactory = new CommandFactory(board);
+            var commandFactory = new CommandFactory();
             var playerCommand = commandFactory.CreatePlayerCommand("ddr");
-            playerCommand.Execute(player.Figures);
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"ddr");
 
             var actualPosition = board.GetFigurePosition(pawnD);
             var expectedPosition = new Position(1, 7);
@@ -173,9 +177,9 @@ namespace UnitTests
 
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIfTheAdlDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheAdlCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawn = new Figure(FigureSign.A);
             player.AddFigure(pawn);
@@ -184,15 +188,16 @@ namespace UnitTests
             var position = new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol);
             board.AddFigure(pawn, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("adl");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+           
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"adl");
         }
 
         [TestMethod]
-        public void CheckIfTheBdlDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheBdlCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawnA = new Figure(FigureSign.A);
             player.AddFigure(pawnA);
@@ -206,9 +211,10 @@ namespace UnitTests
             board.AddFigure(pawnA, position);
             board.AddFigure(pawnB, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("bdl");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"bdl");
 
             var actualPosition = board.GetFigurePosition(pawnB);
             var expectedPosition = new Position(1, 1);
@@ -218,9 +224,9 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheCdlDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheCdlCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawnA = new Figure(FigureSign.A);
             player.AddFigure(pawnA);
@@ -238,9 +244,10 @@ namespace UnitTests
             board.AddFigure(pawnB, position);
             board.AddFigure(pawnC, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("cdl");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+          
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"cdl");
 
             var actualPosition = board.GetFigurePosition(pawnC);
             var expectedPosition = new Position(1, 3);
@@ -250,9 +257,9 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void CheckIfTheDdlDirectionIsCorrectlyChanged()
+        public void CheckIfTheMoveMethodSetNewPositionsCorrectlywithTheDdlCommand()
         {
-            var player = new Player("Serafim");
+            var player = new PawnPlayer("Serafim");
 
             var pawnA = new Figure(FigureSign.A);
             player.AddFigure(pawnA);
@@ -274,9 +281,10 @@ namespace UnitTests
             board.AddFigure(pawnC, position);
             board.AddFigure(pawnD, position);
 
-            var commandFactory = new CommandFactory(board);
-            var playerCommand = commandFactory.CreatePlayerCommand("ddl");
-            playerCommand.Execute(player.Figures);
+            var commandFactory = new CommandFactory();
+            
+            var commandContext = new CommandContext(new BoardMemory(), board, player);
+            player.ExecuteCommand(commandContext,"ddl");
 
             var actualPosition = board.GetFigurePosition(pawnD);
             var expectedPosition = new Position(1, 5);
@@ -284,5 +292,6 @@ namespace UnitTests
             Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
             Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }
+
     }
 }

@@ -12,10 +12,10 @@ namespace KingSurvival.Commands
 {
     class UndoCommand :Command, ICommand
     {
-        private ICommandContext context;
-        public UndoCommand(ICommandContext context)
+      
+        public UndoCommand()
         {
-            this.context = context;
+           
         }
 
         public override string Name
@@ -23,11 +23,11 @@ namespace KingSurvival.Commands
             get { return "undo"; }
         }
 
-        public override void Execute()
+        public override void Execute(ICommandContext context)
         {
-            if (this.context.Memory.Memento != null)
+            if (context.Memory.Memento != null)
             {
-                this.context.Board.RestoreMemento(this.context.Memory.Memento);
+                context.Board.RestoreMemento(context.Memory.Memento);
                 
             }
 

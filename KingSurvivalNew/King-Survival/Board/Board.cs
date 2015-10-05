@@ -11,7 +11,7 @@ namespace KingSurvival.Board
     public class Board : IBoard, IMemorizable
     {
         private IFigure[,] board;
-        private Dictionary<IFigure, Position> figurePositionsOnBoard = new Dictionary<IFigure, Position>();
+        private Dictionary<string, IPosition> figurePositionsOnBoard = new Dictionary<string, IPosition>();
 
         public Board(int rows = Constants.StandardChessRows, int columns = Constants.StandardChessColumns)
         {
@@ -27,46 +27,52 @@ namespace KingSurvival.Board
 
 
 
-        public void AddFigure(IFigure figure, Position position)
+        public void AddFigure(IFigure figure, IPosition position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Validator.CheckIfPositionValid(position, GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = figure;
 
-            this.figurePositionsOnBoard[figure] = position;
+            this.figurePositionsOnBoard[figure.Sign.ToString()] = position;
 
         }
 
-        public IFigure GetFigureAtPosition(Position position)
+        public IFigure GetFigureAtPosition(IPosition position)
         {
             return this.board[position.Row, position.Col];
         }
 
-        public void RemoveFigure(IFigure figure, Position position)
+        public void RemoveFigure(IFigure figure, IPosition position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Validator.CheckIfPositionValid(position, GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = null;
         }
 
-        public Position GetFigurePosition(IFigure figure)
+        public IPosition GetFigurePosition(IFigure figure)
         {
-            Position position;
-            this.figurePositionsOnBoard.TryGetValue(figure, out position);
+            IPosition position;
+            this.figurePositionsOnBoard.TryGetValue(figure.Sign.ToString(), out position);
             return position;
         }
 
         public Memento SaveMemento()
         {
-            return new Memento(this.board, this.figurePositionsOnBoard);
+            Dictionary<string, IPosition> copiedFigurePositionsOnBoard = new Dictionary<string, IPosition>();
+            foreach (var pair in this.figurePositionsOnBoard)
+            {
+                copiedFigurePositionsOnBoard.Add(pair.Key, new Position(pair.Value.Row,pair.Value.Col));
+
+            }
+            return new Memento(this.board, copiedFigurePositionsOnBoard);
         }
 
         public void RestoreMemento(Memento memento)
         {
             this.board = memento.Board;
             this.figurePositionsOnBoard = memento.FigurePositionsOnBoard;
-            
+
         }
-       
+
     }
 }

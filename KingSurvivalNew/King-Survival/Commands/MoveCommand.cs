@@ -9,11 +9,11 @@
 
     public abstract class MoveCommand:ICommand
     {
-        protected ICommandContext context;
+       // protected ICommandContext context;
 
-        public MoveCommand(ICommandContext context,int figureIndex,int direction)
+        public MoveCommand(int figureIndex,int direction)
         {
-            this.context = context;
+           // this.context = context;
             this.FigureIndex = figureIndex;
             this.Direction = direction;
         }
@@ -22,18 +22,18 @@
 
         public int Direction { get; private set; }
 
-        public virtual void Execute()
+        public virtual void Execute(ICommandContext context)
         {
-            this.context.Memory.Memento = this.context.Board.SaveMemento();
-            var from = this.context.Board.GetFigurePosition(context.Player.Figures[this.FigureIndex]);
+            context.Memory.Memento = context.Board.SaveMemento();
+            var from = context.Board.GetFigurePosition(context.Player.Figures[this.FigureIndex]);
             IPosition to = this.GenerateNewPosition(from, this.Direction);
             Validator.CheckIfPositionValid(to, GlobalErrorMessages.PositionNotValidMessage);
-            Validator.CheckIfFigureOnTheWay(to, this.context.Board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
+            Validator.CheckIfFigureOnTheWay(to, context.Board, GlobalErrorMessages.FigureOnTheWayErrorMessage);
 
-            var figure = this.context.Board.GetFigureAtPosition(from);
+            var figure = context.Board.GetFigureAtPosition(from);
 
-            this.context.Board.RemoveFigure(figure, from);
-            this.context.Board.AddFigure(figure, to);
+            context.Board.RemoveFigure(figure, from);
+            context.Board.AddFigure(figure, to);
         }
         private IPosition GenerateNewPosition(IPosition oldPosition, int direction)
         {
