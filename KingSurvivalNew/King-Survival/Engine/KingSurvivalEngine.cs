@@ -85,6 +85,8 @@ namespace KingSurvival.Engine
         //TODO:think about move this function in the parent class
         public override void Start()
         {
+            IPlayer player = null;
+           
             while (true)
             {
                 try
@@ -92,7 +94,7 @@ namespace KingSurvival.Engine
 
                     if (this.winningConditions.KingWon(this.players, this.Board))
                     {
-                        this.renderer.PrintMessage("The king won");
+                        this.renderer.PrintMessage("The king won with "+player.MovesCount+" valid commands");
                         break;
                     }
 
@@ -102,7 +104,7 @@ namespace KingSurvival.Engine
                         break;
                     }
 
-                    var player = this.GetNextPlayer();
+                    player = this.GetNextPlayer();
                     //TODO:Get this context from constructor ..do not initialize here
                     context = new CommandContext(this.memory, this.Board, player);
                     this.provider.PrintPlayerNameForNextMove(context.Player.Name);

@@ -12,6 +12,8 @@ namespace KingSurvival.Players.Contracts
     {
         string Name { get; }
 
+        int MovesCount { get; set; }
+
         void AddFigure(IFigure figure);
 
         IList<IFigure> Figures { get; }

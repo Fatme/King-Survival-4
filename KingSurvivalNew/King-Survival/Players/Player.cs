@@ -29,6 +29,7 @@ namespace KingSurvival.Players
         {
             this.Name = name;
             this.figures = new List<IFigure>();
+            this.MovesCount = 0;
         }
 
         public void AddFigure(IFigure figure)
@@ -36,7 +37,9 @@ namespace KingSurvival.Players
             this.figures.Add(figure);
         }
 
-        public  void ExecuteCommand(ICommandContext context,string commandName)
+        public int MovesCount { get; set; }
+
+        public virtual  void ExecuteCommand(ICommandContext context,string commandName)
         {
             //TODO:THis should not be here
             //context.Provier.PrintPlayerNameForNextMove(context.Player.Name);
