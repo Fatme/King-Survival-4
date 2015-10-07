@@ -53,10 +53,10 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\CommandContext.cs" />
-    <Compile Include="Commands\CommandFactory.cs" />
+    <Compile Include="Commands\CommandFactory\CommandFactory.cs" />
     <Compile Include="Commands\Contracts\ICommand.cs" />
     <Compile Include="Commands\Contracts\ICommandContext.cs" />
-    <Compile Include="Commands\Contracts\ICommandFactory.cs" />
+    <Compile Include="Commands\CommandFactory\Contracts\ICommandFactory.cs" />
     <Compile Include="Commands\Contracts\IPlayerCommand.cs" />
     <Compile Include="Commands\KingCommands\KingDownLeftCommand.cs" />
     <Compile Include="Commands\KingCommands\KingDownRightCommand.cs" />

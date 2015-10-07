@@ -1,5 +1,6 @@
 ﻿using System;
 using KingSurvival.Commands;
+using KingSurvival.Commands.CommandFactory;
 using KingSurvival.Commands.Contracts;
 
 namespace KingSurvival.Players
