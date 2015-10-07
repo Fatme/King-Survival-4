@@ -1,12 +1,10 @@
-﻿using KingSurvival.Common.Contracts;
-
-namespace KingSurvival.Board
+﻿namespace KingSurvival.Board
 {
     using System.Collections.Generic;
-
     using KingSurvival.Board.Contracts;
-    using KingSurvival.Figures.Contracts;
     using KingSurvival.Common;
+    using KingSurvival.Common.Contracts;
+    using KingSurvival.Figures.Contracts;
 
     public class Board : IBoard, IMemorizable
     {
@@ -24,17 +22,12 @@ namespace KingSurvival.Board
 
         public int NumberOfColumns { get; private set; }
 
-
-
-
         public void AddFigure(IFigure figure, IPosition position)
         {
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Validator.CheckIfPositionValid(position, GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = figure;
-
             this.figurePositionsOnBoard[figure.Sign.ToString()] = position;
-
         }
 
         public IFigure GetFigureAtPosition(IPosition position)
@@ -59,11 +52,12 @@ namespace KingSurvival.Board
         public Memento SaveMemento()
         {
             Dictionary<string, IPosition> copiedFigurePositionsOnBoard = new Dictionary<string, IPosition>();
+
             foreach (var pair in this.figurePositionsOnBoard)
             {
-                copiedFigurePositionsOnBoard.Add(pair.Key, new Position(pair.Value.Row,pair.Value.Col));
-
+                copiedFigurePositionsOnBoard.Add(pair.Key, new Position(pair.Value.Row, pair.Value.Col));
             }
+
             return new Memento(this.board, copiedFigurePositionsOnBoard);
         }
 
@@ -71,8 +65,6 @@ namespace KingSurvival.Board
         {
             this.board = memento.Board;
             this.figurePositionsOnBoard = memento.FigurePositionsOnBoard;
-
         }
-
     }
 }

@@ -47,7 +47,6 @@
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardMemory.cs" />
     <Compile Include="Board\Contracts\IBoard.cs" />
-    <Compile Include="Board\Contracts\IBoardPrototype.cs" />
     <Compile Include="Board\IMemorizable.cs" />
     <Compile Include="Board\Memento.cs" />
     <Compile Include="Commands\Command.cs" />
@@ -70,8 +69,7 @@
     <Compile Include="Commands\PawnCommands\PawnCDownRightCommand.cs" />
     <Compile Include="Commands\PawnCommands\PawnDDownLeftCommand.cs" />
     <Compile Include="Commands\PawnCommands\PawnDDownRightCommand.cs" />
-    <Compile Include="Commands\UndoCommand.cs" />
-    <Compile Include="Common\Contracts\IContentProvider.cs" />
+    <Compile Include="Commands\CommonCommands\UndoCommand.cs" />
     <Compile Include="Common\Contracts\IPosition.cs" />
     <Compile Include="Common\Contracts\IWinningConditions.cs" />
     <Compile Include="Common\FigureSign.cs" />
@@ -91,7 +89,6 @@
     <Compile Include="Figures\Contracts\IFigure.cs" />
     <Compile Include="Figures\Contracts\IFigurePrototype.cs" />
     <Compile Include="Figures\Figure.cs" />
-    <Compile Include="Figures\Contracts\IMoveable.cs" />
     <Compile Include="Input\Contracts\IInputProvider.cs" />
     <Compile Include="Players\Contracts\IPlayer.cs" />
     <Compile Include="Players\KingPlayer.cs" />

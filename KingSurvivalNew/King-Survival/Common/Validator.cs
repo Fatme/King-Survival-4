@@ -1,13 +1,11 @@
-﻿using KingSurvival.Common.Contracts;
-
-namespace KingSurvival.Common
+﻿namespace KingSurvival.Common
 {
     using System;
     using System.Collections.Generic;
 
     using KingSurvival.Board.Contracts;
+    using KingSurvival.Common.Contracts;
     using KingSurvival.Players.Contracts;
-   
 
     public static class Validator
     {
@@ -25,23 +23,23 @@ namespace KingSurvival.Common
             {
                 throw new InvalidOperationException("King Survival Engine must have two player");
             }
-            
+
             if (board.NumberOfRows != Constants.StandardChessRows || board.NumberOfColumns != Constants.StandardChessColumns)
             {
                 throw new InvalidOperationException("King survial has 8x8 board");
             }
         }
+
         public static void CheckIfFigureOnTheWay(IPosition position, IBoard board, string message)
         {
             if (board.GetFigureAtPosition(position) != null)
             {
                 throw new ArgumentException(message);
             }
-
         }
+
         public static void CheckIfPositionValid(IPosition position, string errorMessage)
         {
-
             if (position.Row < Constants.MinimumRowValueOnBoard
                 || position.Row > Constants.MaximumRowValueOnBoard)
             {

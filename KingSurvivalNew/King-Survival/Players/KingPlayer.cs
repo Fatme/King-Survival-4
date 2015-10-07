@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Commands;
-using KingSurvival.Commands.Contracts;
-using KingSurvival.Common;
-using KingSurvival.Players.Contracts;
-
-namespace KingSurvival.Players
+﻿namespace KingSurvival.Players
 {
+    using System.Collections.Generic;
+
+    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Players.Contracts;
+
     public class KingPlayer : Player, IPlayer
     {
         public KingPlayer(string name)

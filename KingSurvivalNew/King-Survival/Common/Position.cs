@@ -1,11 +1,8 @@
-﻿using KingSurvival.Board.Contracts;
-using KingSurvival.Common.Contracts;
-
-namespace KingSurvival.Common
+﻿namespace KingSurvival.Common
 {
-    using System;
-    //TODO:made it to class maybe later
-    public class Position:IPosition
+    using KingSurvival.Common.Contracts;
+
+    public class Position : IPosition
     {
         public Position(int row, int col)
         {

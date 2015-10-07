@@ -54,7 +54,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardTests.cs" />
-    <Compile Include="FiguresFactoryTests.cs" />
     <Compile Include="KingPlayerTests.cs" />
     <Compile Include="MoveClassTests.cs" />
     <Compile Include="PawnPlayerTests.cs" />

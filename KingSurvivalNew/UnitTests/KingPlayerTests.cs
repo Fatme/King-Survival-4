@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using KingSurvival.Board;
 using KingSurvival.Board.Contracts;
 using KingSurvival.Commands;
+using KingSurvival.Commands.CommandFactory;
 using KingSurvival.Commands.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KingSurvival.Players;

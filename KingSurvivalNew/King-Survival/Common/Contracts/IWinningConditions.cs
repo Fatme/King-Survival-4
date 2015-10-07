@@ -7,7 +7,7 @@
 
     public interface IWinningConditions
     {
-        bool KingWon(IList<IPlayer> players,IBoard board );
+        bool KingWon(IList<IPlayer> players, IBoard board);
 
         bool KingLost(IList<IPlayer> players, IBoard board);
     }

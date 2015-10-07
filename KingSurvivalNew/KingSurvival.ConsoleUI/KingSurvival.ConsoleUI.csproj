@@ -7,8 +7,8 @@
     <ProjectGuid>{361F5142-A0ED-4AB9-98C5-2F038C7F31FB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KingSurvivalUI</RootNamespace>
-    <AssemblyName>KingSurvivalUI</AssemblyName>
+    <RootNamespace>KingSurvival.ConsoleUI</RootNamespace>
+    <AssemblyName>KingSurvival.ConsoleUI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
-    <Compile Include="Input\ConsoleInputProvider.cs" />
+    <Compile Include="Input\ConsoleInputProvider.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\ConsoleRenderer.cs" />
   </ItemGroup>

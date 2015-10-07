@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Common;
-using KingSurvival.Common.Contracts;
-using KingSurvival.Figures;
-using KingSurvival.Figures.Contracts;
-
-namespace KingSurvival.Board
+﻿namespace KingSurvival.Board
 {
+    using System.Collections.Generic;
+
+    using KingSurvival.Common.Contracts;
+    using KingSurvival.Figures.Contracts;
+
     public class Memento
     {
         private IFigure[,] board;
+
         public Memento(IFigure[,] board, Dictionary<string, IPosition> figurePositionsOnBoard)
         {
-            this.board=new IFigure[board.GetLength(0),board.GetLength(1)];
+            this.board = new IFigure[board.GetLength(0), board.GetLength(1)];
             this.Board = board;
             this.FigurePositionsOnBoard = figurePositionsOnBoard;
         }
+
         public int NumberOfRows { get; private set; }
 
         public IFigure[,] Board
@@ -27,6 +24,7 @@ namespace KingSurvival.Board
             {
                 return this.board;
             }
+
             private set
             {
                 for (var i = 0; i < value.GetLength(0); i++)

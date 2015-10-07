@@ -1,13 +1,10 @@
-﻿using KingSurvival.Common.Contracts;
-using KingSurvival.Figures.Contracts;
-
-namespace KingSurvivalUI.Renderers
+﻿namespace KingSurvival.ConsoleUI.Renderers
 {
     using System;
 
     using KingSurvival.Board.Contracts;
-    using KingSurvival.Renderers.Contracts;
     using KingSurvival.Common;
+    using KingSurvival.Renderers.Contracts;
 
     public class ConsoleRenderer : IRenderer
     {
@@ -32,27 +29,28 @@ namespace KingSurvivalUI.Renderers
 
                     if (figure != null)
                     {
-                        this.PrintFigure((IContentProvider)figure);
+                        Console.Write(figure.Sign + " ");
                     }
                     else
                     {
                         this.PrintCell(position);
                     }
                 }
+
                 Console.Write("|");
                 Console.WriteLine();
             }
+
             this.PrintHorizontalLines();
         }
 
-        private void PrintFigure(IContentProvider figure)
+        public void PrintMessage(string error)
         {
-            Console.Write(figure.ProvideContent() + " ");
+            Console.WriteLine(error);
         }
 
         private void PrintCell(Position position)
         {
-
             if ((position.Row + position.Col) % 2 != 0)
             {
                 Console.Write(EmptyWhiteCell + " ");
@@ -66,26 +64,21 @@ namespace KingSurvivalUI.Renderers
         private void PrintHorizontalNumbers()
         {
             Console.Write("   ");
+
             for (var i = 0; i < Constants.StandardChessColumns; i++)
             {
                 Console.Write(i + " ");
             }
 
             Console.WriteLine();
-            
-            PrintHorizontalLines();
+
+            this.PrintHorizontalLines();
         }
 
         private void PrintHorizontalLines()
         {
             Console.Write("   ");
-            Console.WriteLine("---------------"); 
+            Console.WriteLine("---------------");
         }
-        public void PrintMessage(string error)
-        {
-            Console.WriteLine(error);
-        }
-
-
     }
 }

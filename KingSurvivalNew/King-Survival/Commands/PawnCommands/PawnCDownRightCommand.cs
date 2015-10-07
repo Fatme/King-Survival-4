@@ -1,12 +1,11 @@
-﻿namespace KingSurvival.Commands
+﻿namespace KingSurvival.Commands.PawnCommands
 {
-    using KingSurvival.Board.Contracts;
     using KingSurvival.Commands.Contracts;
 
-    public class PawnCDownRightCommand : MoveCommand, IPlayerCommand
+    public class PawnCDownRightCommand : MoveCommand, IMoveCommand
     {
         public PawnCDownRightCommand()
-            : base(2,1)
+            : base(2, 1)
         {
         }
 
@@ -14,6 +13,5 @@
         {
             get { return "cdr"; }
         }
-
     }
 }

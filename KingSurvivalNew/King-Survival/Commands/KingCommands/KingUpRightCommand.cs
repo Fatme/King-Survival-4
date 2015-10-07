@@ -1,12 +1,11 @@
-﻿namespace KingSurvival.Commands
+﻿namespace KingSurvival.Commands.KingCommands
 {
-    using KingSurvival.Board.Contracts;
     using KingSurvival.Commands.Contracts;
 
-    public class KingUpRightCommand : MoveCommand, IPlayerCommand
+    public class KingUpRightCommand : MoveCommand, IMoveCommand
     {
         public KingUpRightCommand()
-            : base(0,0)
+            : base(0, 0)
         {
         }
 
@@ -14,6 +13,5 @@
         {
             get { return "kur"; }
         }
-
     }
 }

@@ -1,12 +1,11 @@
 ﻿namespace KingSurvival.Commands
 {
-    using KingSurvival.Board.Contracts;
     using KingSurvival.Commands.Contracts;
 
-    public class KingDownRightCommand : MoveCommand, IPlayerCommand
+    public class KingDownRightCommand : MoveCommand, IMoveCommand
     {
         public KingDownRightCommand()
-            : base(0,1)
+            : base(0, 1)
         {
         }
 
@@ -14,6 +13,5 @@
         {
             get { return "kdr"; }
         }
-
     }
 }

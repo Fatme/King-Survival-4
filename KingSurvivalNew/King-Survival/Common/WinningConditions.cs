@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using KingSurvival.Players;
 
 namespace KingSurvival.Common
 {
@@ -8,6 +8,7 @@ namespace KingSurvival.Common
     using KingSurvival.Common.Contracts;
     using KingSurvival.Players.Contracts;
     using KingSurvival.Board.Contracts;
+
     //TODO:Refactor this class
     public class WinningConditions : IWinningConditions
     {
@@ -24,9 +25,9 @@ namespace KingSurvival.Common
                 }
 
             }
-             for (int i = 0; i < board.NumberOfRows; i += 2) // check if all powns are on the last row
+            for (int i = 0; i < board.NumberOfRows; i += 2) // check if all powns are on the last row
             {
-                if (board.GetFigureAtPosition(new Position(board.NumberOfColumns - 1, i)) == null )
+                if (board.GetFigureAtPosition(new Position(board.NumberOfColumns - 1, i)) == null)
                 {
                     return false;
                 }
@@ -37,22 +38,31 @@ namespace KingSurvival.Common
 
         public bool KingLost(IList<IPlayer> players, IBoard board)
         {
-            var king = players[0];
-            int kingRow = board.GetFigurePosition(king.Figures[0]).Row;
-            int kingCol = board.GetFigurePosition(king.Figures[0]).Col;
-            if (!proverka2(new Position(kingRow + 1, kingCol + 1),board) && !proverka2(new Position(kingRow + 1, kingCol - 1),board) &&
-               !proverka2(new Position(kingRow - 1, kingCol + 1),board) && !proverka2(new Position(kingRow - 1, kingCol - 1),board))
+            IPlayer kingPlayer = null;
+
+            for (var i = 0; i < players.Count; i++)
+            {
+                if (players[i].Figures[0].Sign == FigureSign.K)
+                {
+                    kingPlayer = players[0];
+                }
+            }
+            
+            int kingRow = board.GetFigurePosition(kingPlayer.Figures[0]).Row;
+            int kingCol = board.GetFigurePosition(kingPlayer.Figures[0]).Col;
+            if (!proverka2(new Position(kingRow + 1, kingCol + 1), board) && !proverka2(new Position(kingRow + 1, kingCol - 1), board) &&
+               !proverka2(new Position(kingRow - 1, kingCol + 1), board) && !proverka2(new Position(kingRow - 1, kingCol - 1), board))
             {
                 return true;
             }
             return false;
         }
-        private bool proverka2(Position position,IBoard board)
+        private bool proverka2(Position position, IBoard board)
         {
 
             if (CheckIfInsideTheBoard(position))
             {
-                if (board.GetFigureAtPosition(position)==null)
+                if (board.GetFigureAtPosition(position) == null)
                 {
                     return true;
                 }
@@ -73,6 +83,6 @@ namespace KingSurvival.Common
             }
         }
 
-        
+
     }
 }

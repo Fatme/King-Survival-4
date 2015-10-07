@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KingSurvival.Board.Contracts;
+using KingSurvival.Commands.Contracts;
 using KingSurvival.Common.Contracts;
 using KingSurvival.Engine.Contexts;
 using KingSurvival.Engine.Contracts;

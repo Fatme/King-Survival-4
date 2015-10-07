@@ -1,17 +1,11 @@
-﻿using KingSurvival.Board.Contracts;
-using KingSurvival.Commands.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingSurvival.Commands
+﻿namespace KingSurvival.Commands.PawnCommands
 {
-    public class PawnCDownLeftCommand : MoveCommand, IPlayerCommand
+    using KingSurvival.Commands.Contracts;
+
+    public class PawnCDownLeftCommand : MoveCommand, IMoveCommand
     {
         public PawnCDownLeftCommand()
-            : base(2,2)
+            : base(2, 2)
         {
         }
 
@@ -19,6 +13,5 @@ namespace KingSurvival.Commands
         {
             get { return "cdl"; }
         }
-
     }
 }

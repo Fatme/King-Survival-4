@@ -1,24 +1,24 @@
-﻿using KingSurvival.Commands.Contracts;
-
-namespace KingSurvival.Players.Contracts
+﻿namespace KingSurvival.Players.Contracts
 {
     using System.Collections.Generic;
 
-    using KingSurvival.Common;
     using KingSurvival.Board.Contracts;
-    using KingSurvival.Figures.Contracts;
+    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common;
     using KingSurvival.Common.Contracts;
+   
+    using KingSurvival.Figures.Contracts;
+
     public interface IPlayer
     {
         string Name { get; }
 
         int MovesCount { get; set; }
 
-        void AddFigure(IFigure figure);
-
         IList<IFigure> Figures { get; }
 
-        void ExecuteCommand(ICommandContext context,string commandName);
+        void AddFigure(IFigure figure);
+
+        void ExecuteCommand(ICommandContext context, string commandName);
     }
 }
-

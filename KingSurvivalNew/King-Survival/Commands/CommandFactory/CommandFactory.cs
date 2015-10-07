@@ -1,22 +1,18 @@
-﻿using KingSurvival.Board.Contracts;
-using KingSurvival.Commands.Contracts;
-using KingSurvival.Common;
-using KingSurvival.Players.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Commands.CommandFactory.Contracts;
-
-
+﻿
 namespace KingSurvival.Commands.CommandFactory
 {
+    using System;
+    using System.Collections.Generic;
+
+    using KingSurvival.Commands.CommandFactory.Contracts;
+    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Commands.CommonCommands;
+    using KingSurvival.Commands.KingCommands;
+    using KingSurvival.Commands.PawnCommands;
+
     public class CommandFactory : ICommandFactory
     {
         private readonly Dictionary<string, ICommand> commands;
-
-
 
         public CommandFactory()
         {
@@ -25,7 +21,6 @@ namespace KingSurvival.Commands.CommandFactory
 
         public ICommand CreatePlayerCommand(string commandName)
         {
-
             ICommand resultCommand;
 
             if (this.commands.ContainsKey(commandName))
@@ -77,9 +72,9 @@ namespace KingSurvival.Commands.CommandFactory
                 default:
                     throw new ArgumentException("Incorect command " + commandName);
             }
+
             this.commands.Add(commandName, resultCommand);
             return resultCommand;
         }
-
     }
 }

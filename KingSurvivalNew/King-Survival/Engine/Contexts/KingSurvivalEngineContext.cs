@@ -1,31 +1,24 @@
-﻿using KingSurvival.Commands.Contracts;
-using KingSurvival.Engine.Contexts;
-using KingSurvival.Figures;
-
-namespace KingSurvival.Engine.Contexts
+﻿namespace KingSurvival.Engine.Contexts
 {
     using System;
     using System.Collections.Generic;
 
-
-    using KingSurvival.Engine.Contracts;
-    using KingSurvival.Players.Contracts;
-    using KingSurvival.Board.Contracts;
-    using KingSurvival.Common;
-    using KingSurvival.Input.Contracts;
     using KingSurvival.Board;
-    using KingSurvival.Figures.Contracts;
-    using KingSurvival.Common.Contracts;
-    using KingSurvival.Renderers.Contracts;
-
-    using KingSurvival.Players;
+    using KingSurvival.Board.Contracts;
     using KingSurvival.Commands;
+    using KingSurvival.Commands.Contracts;
+    using KingSurvival.Common;
+    using KingSurvival.Common.Contracts;
+    using KingSurvival.Engine.Contracts;
+    using KingSurvival.Figures;
+    using KingSurvival.Figures.Contracts;
+    using KingSurvival.Input.Contracts;
+    using KingSurvival.Players;
+    using KingSurvival.Players.Contracts;
+    using KingSurvival.Renderers.Contracts;
 
     public class KingSurvivalEngineContext :ChessEngineContext,IChessEngineContext
     {
-        private const int BoardTotalNUmberOfColumns = 8;
-        private const int BoardTotalNUmberOfRows = 8;
-
         private readonly IRenderer renderer;
         private readonly IInputProvider provider;
         private readonly IWinningConditions winningConditions;
@@ -33,10 +26,8 @@ namespace KingSurvival.Engine.Contexts
         private IPlayer kingPlayer;
         private IPlayer pawnPlayer;
         private ICommandContext context;
-
         private int currentPlayerIndex;
         private BoardMemory memory = new BoardMemory();
-
 
         public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions)
             : base(board)
@@ -44,8 +35,8 @@ namespace KingSurvival.Engine.Contexts
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
-
         }
+
         //TODO:think about move this function in the parent class
         public override void Initialize()
         {
@@ -54,7 +45,6 @@ namespace KingSurvival.Engine.Contexts
             this.kingPlayer = this.players[0];
             this.pawnPlayer = this.players[1];
             Validator.ValidateGameInitialization(this.players, this.Board);
-
 
             IFigure figure = new Figure(FigureSign.K);
             this.AddFigureOnTheBoard(figure, FigureSign.K, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
@@ -67,6 +57,7 @@ namespace KingSurvival.Engine.Contexts
 
             this.renderer.RenderBoard(this.Board);
         }
+
         private void AddFigureOnTheBoard(IFigure figure, FigureSign figureSing, Position position)
         {
             var newFigure = figure.Clone();
@@ -83,6 +74,7 @@ namespace KingSurvival.Engine.Contexts
 
             this.Board.AddFigure(newFigure, position);
         }
+
         //TODO:think about move this function in the parent class
         public override void Start()
         {
@@ -92,7 +84,6 @@ namespace KingSurvival.Engine.Contexts
             {
                 try
                 {
-
                     if (this.winningConditions.KingWon(this.players, this.Board))
                     {
                         this.renderer.PrintMessage("The king won with "+player.MovesCount+" valid commands");
@@ -106,8 +97,8 @@ namespace KingSurvival.Engine.Contexts
                     }
 
                     player = this.GetNextPlayer();
-                    //TODO:Get this context from constructor ..do not initialize here
-                    context = new CommandContext(this.memory, this.Board, player);
+                    
+                    this.context = new CommandContext(this.memory, this.Board, player);
                     this.provider.PrintPlayerNameForNextMove(context.Player.Name);
                     var commandName = this.provider.GetCommandName;
                     player.ExecuteCommand(this.context, commandName);

@@ -8,8 +8,5 @@
         FigureSign Sign { get; }
 
         void AddSign(FigureSign sign);
-
     }
 }
-
-
