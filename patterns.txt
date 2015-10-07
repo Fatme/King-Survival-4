@@ -1,7 +1,7 @@
 Creational
--Singleton
+
 -Prototype
--Factory(part of it..needs refactoring)
+-Factory(need to be fixed)
 
 Structural
 -Facade
@@ -11,3 +11,4 @@ Structural
 Behavioral
 -Strategy
 -Memento
+-Command
