@@ -18,9 +18,9 @@ namespace KingSurvival.Engine
         {
             this.Board = board;
         }
-        public abstract void Initialize();
+        public abstract IChessEngine InitializeGame();
 
-        public abstract void Start();
+        public abstract IChessEngine StartGame();
 
     }
 }

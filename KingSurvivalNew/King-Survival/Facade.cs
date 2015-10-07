@@ -27,8 +27,8 @@ namespace KingSurvival
             IWinningConditions winningConditions = new WinningConditions();
             IBoard board=new Board.Board();
             IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider, board, winningConditions);
-            chessEngine.Initialize();
-            chessEngine.Start();
+            chessEngine.InitializeGame().StartGame();
+            
             //TODO:add main menu
         }
     }

@@ -1,7 +1,7 @@
 Creational
-
+-Fluent interface
 -Prototype
--Factory(need to be fixed)
+-Factory
 
 Structural
 -Facade

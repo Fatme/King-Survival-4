@@ -4,8 +4,8 @@
 
     public interface IChessEngine
     {
-        void Initialize();
+        IChessEngine InitializeGame();
 
-        void Start();
+        IChessEngine StartGame();
     }
 }

@@ -82,8 +82,11 @@
     <Compile Include="Common\Validator.cs" />
     <Compile Include="Common\WinningConditions.cs" />
     <Compile Include="Engine\ChessEngine.cs" />
+    <Compile Include="Engine\Contexts\ChessEngineContext.cs" />
+    <Compile Include="Engine\Contracts\IChessEngineContext.cs" />
     <Compile Include="Engine\Contracts\IChessEngine.cs" />
     <Compile Include="Engine\KingSurvivalEngine.cs" />
+    <Compile Include="Engine\Contexts\KingSurvivalEngineContext.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
     <Compile Include="Figures\Contracts\IFigurePrototype.cs" />
