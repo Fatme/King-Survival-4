@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using KingSurvival.Board.Contracts;
 
-    public abstract class MoveCommand:ICommand,IPlayerCommand
+    public abstract class MoveCommand:Command,ICommand,IPlayerCommand
     {
        // protected ICommandContext context;
 
@@ -22,7 +22,7 @@
 
         public int Direction { get; private set; }
 
-        public virtual void Execute(ICommandContext context)
+        public override void Execute(ICommandContext context)
         {
             context.Memory.Memento = context.Board.SaveMemento();
             var from = context.Board.GetFigurePosition(context.Player.Figures[this.FigureIndex]);
@@ -44,7 +44,6 @@
             var newPosition = new Position(newRow, newColumn);
             return newPosition;
         }
-        
-        public  abstract string Name { get; }
+   
     }
 }
