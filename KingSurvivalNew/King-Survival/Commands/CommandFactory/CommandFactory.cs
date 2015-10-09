@@ -12,47 +12,69 @@
     public class CommandFactory : ICommandFactory
     {
         private readonly Dictionary<string, ICommand> commands;
-        private readonly IDictionary<string, ICommand> executedCommands;
 
         public CommandFactory()
         {
-            this.executedCommands = new Dictionary<string, ICommand>();
-            this.commands = new Dictionary<string, ICommand>()
-            {
-               { "kdl", new KingDownLeftCommand() },
-               { "kdr", new KingDownRightCommand() },
-               { "kul", new KingUpLeftCommand() },
-               { "kur", new KingUpRightCommand() },
-               { "adl", new PawnADownLeftCommand() },
-               { "adr", new PawnADownRightCommand() },
-               { "bdl", new PawnBDownLeftCommand() },
-               { "bdr", new PawnBDownRightCommand() },
-               { "cdl", new PawnCDownLeftCommand() },
-               { "cdr", new PawnCDownRightCommand() },
-               { "ddl", new PawnDDownLeftCommand() },
-               { "ddr", new PawnDDownRightCommand() },
-               { "undo", new UndoCommand() }
-           }; 
+            this.commands = new Dictionary<string, ICommand>();
         }
 
         public ICommand CreatePlayerCommand(string commandName)
         {
-            var commandLowerCase = commandName.ToLower();
-
-            if (this.executedCommands.ContainsKey(commandLowerCase))
-            {
-                return this.executedCommands[commandLowerCase];
-            }
-
-            ICommand command;
-            if (!this.commands.TryGetValue(commandLowerCase, out command))
-            {
-                throw new ArgumentException("Incorrect command " + commandName);
-            }
-
-            this.executedCommands.Add(commandLowerCase, command);
-
-            return command;
+             ICommand resultCommand;
+ 
+             if (this.commands.ContainsKey(commandName))
+             {
+                 return this.commands[commandName];
+             }
+ 
+             var commandNameLowerCase = commandName.ToLower();
+             switch (commandNameLowerCase)
+             {
+                 case "kdl":
+                     resultCommand = new KingDownLeftCommand();
+                     break;
+                 case "kdr":
+                     resultCommand = new KingDownRightCommand();
+                     break;
+                 case "kul":
+                     resultCommand = new KingUpLeftCommand();
+                     break;
+                 case "kur":
+                     resultCommand = new KingUpRightCommand();
+                     break;
+                 case "adl":
+                     resultCommand = new PawnADownLeftCommand();
+                     break;
+                 case "adr":
+                     resultCommand = new PawnADownRightCommand();
+                     break;
+                 case "bdl":
+                     resultCommand = new PawnBDownLeftCommand();
+                     break;
+                 case "bdr":
+                     resultCommand = new PawnBDownRightCommand();
+                     break;
+                 case "cdl":
+                     resultCommand = new PawnCDownLeftCommand();
+                     break;
+                 case "cdr":
+                     resultCommand = new PawnCDownRightCommand();
+                     break;
+                 case "ddl":
+                     resultCommand = new PawnDDownLeftCommand();
+                     break;
+                 case "ddr":
+                     resultCommand = new PawnDDownRightCommand();
+                     break;
+                 case "undo":
+                     resultCommand = new UndoCommand();
+                     break;
+                 default:
+                     throw new ArgumentException("Incorrect command " + commandName);
+             }
+ 
+             this.commands.Add(commandName, resultCommand);
+             return resultCommand;
         }
     }
 }
