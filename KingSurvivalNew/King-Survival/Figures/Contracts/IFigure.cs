@@ -6,5 +6,7 @@
     public interface IFigure:IFigurePrototype
     {
         string ProvideFigureShape();
+
+        void CheckIfCommandIsValid(string command);
     }
 }

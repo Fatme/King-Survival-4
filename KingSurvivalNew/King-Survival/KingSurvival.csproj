@@ -96,8 +96,6 @@
     <Compile Include="Figures\PawnDFigure.cs" />
     <Compile Include="Input\Contracts\IInputProvider.cs" />
     <Compile Include="Players\Contracts\IPlayer.cs" />
-    <Compile Include="Players\KingPlayer.cs" />
-    <Compile Include="Players\PawnPlayer.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\Contracts\IRenderer.cs" />

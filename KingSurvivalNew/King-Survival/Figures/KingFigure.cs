@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using KingSurvival.Figures.Contracts;
 
 namespace KingSurvival.Figures
@@ -8,6 +10,15 @@ namespace KingSurvival.Figures
         protected override string ProvideShape()
         {
             return "K";
+        }
+        
+        protected override List<string> ValidCommands
+        {
+            get
+            {
+                return new List<string>(){"kur","kdl","kul","kdr"};
+            }
+          
         }
     }
 }

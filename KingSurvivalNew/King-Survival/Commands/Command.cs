@@ -6,6 +6,6 @@
     {
         public abstract string Name { get; }
 
-        public abstract void Execute(ICommandContext context);
+        public abstract void Execute(ICommandContext context,string commandName);
     }
 }

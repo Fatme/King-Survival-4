@@ -1,4 +1,6 @@
-﻿namespace KingSurvival.Commands
+﻿using System;
+
+namespace KingSurvival.Commands
 {
     using KingSurvival.Commands.Contracts;
     using KingSurvival.Common;
@@ -16,10 +18,13 @@
 
         public int Direction { get; private set; }
 
-        public override void Execute(ICommandContext context)
+        public override void Execute(ICommandContext context, string commandName)
         {
+            // this.CheckIfCommandIsCorrect(commandName);
             context.Memory.Memento = context.Board.SaveMemento();
 
+            var figureToMove = context.Player.Figures[this.FigureIndex];
+            figureToMove.CheckIfCommandIsValid(commandName);
             IPosition from = context.Board.GetFigurePosition(context.Player.Figures[this.FigureIndex]);
             IPosition to = this.GenerateNewPosition(from, this.Direction);
 

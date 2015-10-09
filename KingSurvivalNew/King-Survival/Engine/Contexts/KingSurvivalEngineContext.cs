@@ -41,8 +41,8 @@
         public override void Initialize()
         {
             this.players = new List<IPlayer>();
-            this.kingPlayer = new KingPlayer("king");
-            this.pawnPlayer = new PawnPlayer("pawn");
+            this.kingPlayer = new Player("king");
+            this.pawnPlayer = new Player("pawn");
             this.players.Add(this.kingPlayer);
             this.players.Add(this.pawnPlayer);
             Validator.ValidateGameInitialization(this.players, this.Board);
@@ -94,6 +94,7 @@
                     this.context = new CommandContext(this.memory, this.Board, player);
                     this.provider.PrintPlayerNameForNextMove(this.context.Player.Name);
                     var commandName = this.provider.GetCommandName;
+
                     player.ExecuteCommand(this.context, commandName);
 
                     this.renderer.RenderBoard(this.Board);

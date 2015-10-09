@@ -13,5 +13,12 @@ namespace KingSurvival.Figures
         {
             return "D";
         }
+        protected override List<string> ValidCommands
+        {
+            get
+            {
+                return new List<string>() { "ddr", "ddl" };
+            }
+        }
     }
 }
