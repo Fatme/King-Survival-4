@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Board.Contracts;
-using KingSurvival.Engine.Contracts;
-using KingSurvival.Input.Contracts;
-using KingSurvival.Renderers.Contracts;
-
-namespace KingSurvival.Engine
+﻿namespace KingSurvival.Engine
 {
+    using KingSurvival.Board.Contracts;
+    using KingSurvival.Engine.Contracts;
+
     public abstract class ChessEngine : IChessEngine
     {
         protected readonly IBoard Board;
@@ -18,9 +11,9 @@ namespace KingSurvival.Engine
         {
             this.Board = board;
         }
+
         public abstract IChessEngine InitializeGame();
 
         public abstract IChessEngine StartGame();
-
     }
 }

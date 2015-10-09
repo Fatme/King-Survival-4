@@ -78,7 +78,7 @@ namespace KingSurvival.Common
                 Validator.CheckIfPositionValid(position, GlobalErrorMessages.PositionNotValidMessage);
                 return true;
             }
-            catch (IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException)
             {
                 return false;
             }

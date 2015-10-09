@@ -11,7 +11,6 @@
     using KingSurvival.Common.Contracts;
     using KingSurvival.Engine.Contracts;
     using KingSurvival.Figures;
-    using KingSurvival.Figures.Contracts;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Players;
     using KingSurvival.Players.Contracts;
@@ -27,29 +26,25 @@
         private ICommandContext context;
         private IList<IPlayer> players;
         private int currentPlayerIndex;
-
         private BoardMemory memory;
 
-        public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board,
-            IWinningConditions winningConditions)
+        public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions)
             : base(board)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
-            memory = new BoardMemory();
+            this.memory = new BoardMemory();
             this.currentPlayerIndex = 0;
-            
         }
 
         public override void Initialize()
         {
-            //TODO:Extract to another class and interface
             this.players = new List<IPlayer>();
             this.kingPlayer = new KingPlayer("king");
             this.pawnPlayer = new PawnPlayer("pawn");
-            this.players.Add(kingPlayer);
-            this.players.Add(pawnPlayer);
+            this.players.Add(this.kingPlayer);
+            this.players.Add(this.pawnPlayer);
             Validator.ValidateGameInitialization(this.players, this.Board);
 
             KingFigure kingFigure = new KingFigure();
@@ -72,8 +67,6 @@
             this.pawnPlayer.AddFigure(pawnD);
 
             this.renderer.RenderBoard(this.Board);
-            
-
         }
 
         public override void Start()
@@ -99,7 +92,7 @@
                     player = this.GetNextPlayer();
 
                     this.context = new CommandContext(this.memory, this.Board, player);
-                    this.provider.PrintPlayerNameForNextMove(context.Player.Name);
+                    this.provider.PrintPlayerNameForNextMove(this.context.Player.Name);
                     var commandName = this.provider.GetCommandName;
                     player.ExecuteCommand(this.context, commandName);
 
@@ -123,6 +116,7 @@
                 }
             }
         }
+
         private void HandleException(IBoard board, string message)
         {
             this.currentPlayerIndex--;
@@ -132,16 +126,14 @@
 
         private IPlayer GetNextPlayer()
         {
-            if (currentPlayerIndex >= this.players.Count)
+            if (this.currentPlayerIndex >= this.players.Count)
             {
                 this.currentPlayerIndex = 0;
             }
+
             var currentPlayer = this.players[this.currentPlayerIndex];
             this.currentPlayerIndex++;
             return currentPlayer;
         }
-
-        
-
     }
 }
