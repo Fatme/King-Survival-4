@@ -3,7 +3,7 @@
     public interface ICommand
     {
         string Name { get; }
-        
-        void Execute(ICommandContext cmdContext,string commandName);
+
+        void Execute(ICommandContext cmdContext, string commandName);
     }
 }

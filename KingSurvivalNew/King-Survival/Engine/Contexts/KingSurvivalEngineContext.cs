@@ -36,7 +36,6 @@
             this.winningConditions = winningConditions;
             this.memory = new BoardMemory();
             this.currentPlayerIndex = 0;
-            
         }
 
         public override void Initialize()

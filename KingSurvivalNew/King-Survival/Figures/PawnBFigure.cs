@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Figures.Contracts;
-
-namespace KingSurvival.Figures
+﻿namespace KingSurvival.Figures
 {
+    using System.Collections.Generic;
+    using KingSurvival.Figures.Contracts;
+
     public class PawnBFigure : Figure, IFigure
     {
-        protected override string ProvideShape()
-        {
-            return "B";
-        }
         protected override List<string> ValidCommands
         {
             get
             {
                 return new List<string>() { "bdr", "bdl" };
             }
+        }
+
+        protected override string ProvideShape()
+        {
+            return "B";
         }
     }
 }

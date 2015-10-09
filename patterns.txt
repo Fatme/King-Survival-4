@@ -1,7 +1,7 @@
 Creational
 -Fluent interface
 -Prototype
--Factory
+-Simple Factory
 
 Structural
 -Facade
@@ -12,3 +12,4 @@ Behavioral
 -Strategy
 -Memento
 -Command
+-Template Method

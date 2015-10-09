@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace KingSurvival.Commands
+﻿namespace KingSurvival.Commands
 {
     using KingSurvival.Commands.Contracts;
     using KingSurvival.Common;

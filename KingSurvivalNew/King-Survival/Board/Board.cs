@@ -31,10 +31,7 @@
         }
 
         public IFigure GetFigureAtPosition(IPosition position)
-        {
-            
-            
-            
+        {           
             return this.board[position.Row, position.Col];
         }
 

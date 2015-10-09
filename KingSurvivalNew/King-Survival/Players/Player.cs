@@ -1,6 +1,5 @@
 ﻿namespace KingSurvival.Players
 {
-    using System;
     using System.Collections.Generic;
 
     using KingSurvival.Commands.CommandFactory;
@@ -8,7 +7,7 @@
     using KingSurvival.Figures.Contracts;
     using KingSurvival.Players.Contracts;
 
-    public  class Player : IPlayer
+    public class Player : IPlayer
     {
         private IList<IFigure> figures;
 
@@ -28,19 +27,16 @@
             get { return this.figures; }
         }
 
-       // public abstract List<string> Commands { get; }
-
         public void AddFigure(IFigure figure)
         {
             this.figures.Add(figure);
         }
 
-        public virtual void ExecuteCommand(ICommandContext context, string commandName)
+        public void ExecuteCommand(ICommandContext context, string commandName)
         {
             var commandFactory = new CommandFactory();
             ICommand command = commandFactory.CreatePlayerCommand(commandName);
             command.Execute(context, commandName);
-
         }
     }
 }

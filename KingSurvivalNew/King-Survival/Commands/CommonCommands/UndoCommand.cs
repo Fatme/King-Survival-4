@@ -9,7 +9,7 @@
             get { return "undo"; }
         }
 
-        public override void Execute(ICommandContext context,string commandName)
+        public override void Execute(ICommandContext context, string commandName)
         {
             if (context.Memory.Memento != null)
             {

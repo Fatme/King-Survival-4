@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KingSurvival.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
+    using KingSurvival.Common;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class MoveClassTests
     {
@@ -20,6 +15,7 @@ namespace UnitTests
             int expectedPositionRow = 1;
             Assert.AreEqual(positionFrom.Row, expectedPositionRow);
         }
+
         [TestMethod]
         public void CheckIfMoveConstructorSetsFromColCorrectly()
         {
@@ -29,6 +25,7 @@ namespace UnitTests
             int expectedPositionRow = 3;
             Assert.AreEqual(positionFrom.Col, expectedPositionRow);
         }
+
         [TestMethod]
         public void CheckIfMoveConstructorSetsToColCorrectly()
         {
@@ -38,6 +35,7 @@ namespace UnitTests
             int expectedPositionRow = 4;
             Assert.AreEqual(positionTo.Col, expectedPositionRow);
         }
+
         [TestMethod]
         public void CheckIfMoveConstructorSetsToRowCorrectly()
         {

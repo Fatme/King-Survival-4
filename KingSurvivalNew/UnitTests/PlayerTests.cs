@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using KingSurvival.Board;
-using KingSurvival.Board.Contracts;
-using KingSurvival.Commands;
-using KingSurvival.Commands.CommandFactory;
-using KingSurvival.Commands.Contracts;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using KingSurvival.Players;
-using KingSurvival.Figures;
-using KingSurvival.Common;
-using KingSurvival.Engine;
-
-using KingSurvival.Figures.Contracts;
-using KingSurvival.Players.Contracts;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
+    using System;
+
+    using KingSurvival.Board;
+    using KingSurvival.Commands;
+    using KingSurvival.Commands.CommandFactory;
+    using KingSurvival.Common;
+    using KingSurvival.Figures;
+    using KingSurvival.Players;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class PlayerTests
     {
@@ -91,8 +85,6 @@ namespace UnitTests
             board.AddFigure(king, position);
             var commandContext = new CommandContext(new BoardMemory(), board, player);
             player.ExecuteCommand(commandContext, "kdr");
-
-
         }
 
         [TestMethod]
@@ -134,6 +126,7 @@ namespace UnitTests
             Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
             Assert.AreEqual(expectedPosition.Col, actualPosition.Col);
         }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void CheckIfAnExceptionIsThrownWhenTheCommandIsFromPawnPlayer()
@@ -228,7 +221,6 @@ namespace UnitTests
 
             var commandFactory = new CommandFactory();
             var commandContext = new CommandContext(new BoardMemory(), board, player);
-
 
             player.ExecuteCommand(commandContext, "bdr");
 
@@ -326,7 +318,6 @@ namespace UnitTests
 
             var commandContext = new CommandContext(new BoardMemory(), board, player);
             player.ExecuteCommand(commandContext, "adl");
-
         }
 
         [TestMethod]

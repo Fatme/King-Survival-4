@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace KingSurvival.Figures
+﻿namespace KingSurvival.Figures
 {
+    using System;
+    using System.Collections.Generic;
+
     using KingSurvival.Figures.Contracts;
 
-    public abstract class Figure:IFigure,IFigurePrototype
+    public abstract class Figure : IFigure, IFigurePrototype
     {
+        protected abstract List<string> ValidCommands { get; }
+
         public string ProvideFigureShape()
         {
             return this.ProvideShape();
         }
-
-        protected abstract string ProvideShape();
-        protected abstract List<string> ValidCommands { get; }
 
         public IFigure Clone()
         {
@@ -27,5 +26,7 @@ namespace KingSurvival.Figures
                 throw new ArgumentException("This command is not valid for this player");
             }
         }
+
+        protected abstract string ProvideShape();
     }
 }

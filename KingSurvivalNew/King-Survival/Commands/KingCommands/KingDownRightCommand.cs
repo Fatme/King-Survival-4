@@ -13,7 +13,5 @@
         {
             get { return "kdr"; }
         }
-
-       
     }
 }

@@ -1,9 +1,6 @@
 ﻿namespace KingSurvival.Figures.Contracts
 {
-    using KingSurvival.Common;
-    using KingSurvival.Players.Contracts;
-
-    public interface IFigure:IFigurePrototype
+    public interface IFigure : IFigurePrototype
     {
         string ProvideFigureShape();
 

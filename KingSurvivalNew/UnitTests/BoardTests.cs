@@ -1,13 +1,13 @@
-﻿using KingSurvival.Board.Contracts;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using KingSurvival.Board;
-    using KingSurvival.Figures;
+    using KingSurvival.Board.Contracts;
     using KingSurvival.Common;
+    using KingSurvival.Figures;
     using KingSurvival.Figures.Contracts;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class BoardTests
@@ -31,7 +31,6 @@ namespace UnitTests
             board.AddFigure(figure, position);
 
             Assert.AreEqual(figure, board.GetFigureAtPosition(position));
-
         }
 
         [TestMethod]
@@ -82,29 +81,30 @@ namespace UnitTests
             var board = new Board();
             var position = new Position(9, 9);
             IFigure king = new KingFigure();
-          
+
             board.AddFigure(king, position);
         }
+
         [TestMethod]
         public void CheckIfAddFigureWorksCorrectlyWithCorrectFigureAndCorrectPosition()
         {
             var board = new Board();
             var position = new Position(3, 7);
             IFigure king = new KingFigure();
-            
+
             board.AddFigure(king, position);
-            Assert.AreSame(king,board.GetFigureAtPosition(position));
+            Assert.AreSame(king, board.GetFigureAtPosition(position));
         }
+
         [TestMethod]
         public void CheckIfGetFigureAtPositionWorkCorrectly()
         {
-            var board=new Board();
-            var figure=new KingFigure();
-            board.AddFigure(figure,new Position(1,1));
+            var board = new Board();
+            var figure = new KingFigure();
+            board.AddFigure(figure, new Position(1, 1));
             var realFigure = board.GetFigureAtPosition(new Position(1, 1));
 
             Assert.AreEqual(figure, realFigure);
-
         }
 
         [TestMethod]
@@ -125,7 +125,7 @@ namespace UnitTests
             var figure = new KingFigure();
             board.AddFigure(figure, new Position(1, 1));
             var actual = board.SaveMemento();
-            Assert.AreEqual(actual.Board.GetLength(1),board.NumberOfColumns);
+            Assert.AreEqual(actual.Board.GetLength(1), board.NumberOfColumns);
         }
 
         [TestMethod]
@@ -136,9 +136,7 @@ namespace UnitTests
             board.AddFigure(figure, new Position(1, 1));
             var memento = board.SaveMemento();
             board.RestoreMemento(memento);
-            Assert.AreEqual(memento.Board.GetLength(1),board.NumberOfColumns);
+            Assert.AreEqual(memento.Board.GetLength(1), board.NumberOfColumns);
         }
-
-
     }
 }

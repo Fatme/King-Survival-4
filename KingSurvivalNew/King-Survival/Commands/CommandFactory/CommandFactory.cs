@@ -1,12 +1,11 @@
-﻿
-namespace KingSurvival.Commands.CommandFactory
+﻿namespace KingSurvival.Commands.CommandFactory
 {
     using System;
     using System.Collections.Generic;
 
     using KingSurvival.Commands.CommandFactory.Contracts;
-    using KingSurvival.Commands.Contracts;
     using KingSurvival.Commands.CommonCommands;
+    using KingSurvival.Commands.Contracts;
     using KingSurvival.Commands.KingCommands;
     using KingSurvival.Commands.PawnCommands;
 

@@ -1,14 +1,14 @@
-﻿using KingSurvival.Figures;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using KingSurvival.Common;
     using System.Collections.Generic;
-    using KingSurvival.Players.Contracts;
-    using KingSurvival.Players;
+
     using KingSurvival.Board;
+    using KingSurvival.Common;
+    using KingSurvival.Figures;
+    using KingSurvival.Players;
+    using KingSurvival.Players.Contracts;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class ValidatorTests
@@ -17,8 +17,7 @@ namespace UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void CheckIfTheCheckIfObjectIsNullMethodThrowsCorrectlyNullReferenceException()
         {
-            var obj = new Object();
-            obj = null;
+            object obj = null;
 
             Validator.CheckIfObjectIsNull(obj, "aaa");
         }
@@ -67,7 +66,7 @@ namespace UnitTests
             var martin = new Player("Martin");
             var blajev = new Player("Blajev");
 
-            var board = new Board(10,10);
+            var board = new Board(10, 10);
 
             var list = new List<IPlayer>();
 
@@ -77,16 +76,18 @@ namespace UnitTests
 
             Validator.ValidateGameInitialization(list, board);
         }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void CheckIfCheckFigureOnTheWayWorksProperlyWhenFigureIsOnTheWay()
         {
-            var board=new Board();
+            var board = new Board();
             var figure = new KingFigure();
-            var position=new Position(1,1);
-            board.AddFigure(figure,position);
-            Validator.CheckIfFigureOnTheWay(position,board,"Figure on the way");
+            var position = new Position(1, 1);
+            board.AddFigure(figure, position);
+            Validator.CheckIfFigureOnTheWay(position, board, "Figure on the way");
         }
+
         [TestMethod]
         public void CheckIfCheckFigureOnTheWayWorksProperlyWhenNoFigureOnTheWay()
         {
@@ -94,9 +95,8 @@ namespace UnitTests
             var figure = new KingFigure();
             var position = new Position(1, 1);
             board.AddFigure(figure, position);
-            var expectedPosition=new Position(2,2);
+            var expectedPosition = new Position(2, 2);
             Validator.CheckIfFigureOnTheWay(expectedPosition, board, "No figure on the way");
         }
-
     }
 }

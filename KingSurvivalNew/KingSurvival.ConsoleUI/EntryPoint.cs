@@ -2,19 +2,18 @@
 {
     using KingSurvival;
     using KingSurvival.ConsoleUI.Input;
+    using KingSurvival.ConsoleUI.Renderers;
     using KingSurvival.Input.Contracts;
     using KingSurvival.Renderers.Contracts;
-    using KingSurvival.ConsoleUI.Renderers;
-
+    
     public class EntryPoint
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             IRenderer renderer = new ConsoleRenderer();
             IInputProvider provider = new ConsoleInputProvider();
-            Facade facade=new Facade();
-            facade.Start(renderer,provider);
-
+            Facade facade = new Facade();
+            facade.Start(renderer, provider);
         }
     }
 }

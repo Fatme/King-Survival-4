@@ -7,7 +7,6 @@
     using KingSurvival.Common.Contracts;
     using KingSurvival.Players.Contracts;
 
-
     public class WinningConditions : IWinningConditions
     {
         public bool KingWon(IList<IPlayer> players, IBoard board)
@@ -15,12 +14,14 @@
             var kingPlayer = players[0];
             var pawnPlayer = players[1];
 
-            if (board.GetFigurePosition(kingPlayer.Figures[0]).Row == 0) //check if king is on the first row
+            ////check if king is on the first row
+            if (board.GetFigurePosition(kingPlayer.Figures[0]).Row == 0) 
             {
                 return true;
             }
 
-            for (int i = 0; i < board.NumberOfRows; i += 2) // check if all powns are on the last row
+            //// check if all powns are on the last row
+            for (int i = 0; i < board.NumberOfRows; i += 2) 
             {
                 if (board.GetFigureAtPosition(new Position(board.NumberOfColumns - 1, i)) == null)
                 {
