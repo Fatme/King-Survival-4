@@ -35,6 +35,7 @@ namespace KingSurvival.Commands
 
             context.Board.RemoveFigure(figure, from);
             context.Board.AddFigure(figure, to);
+            context.Player.MovesCount++;
         }
 
         private IPosition GenerateNewPosition(IPosition oldPosition, int direction)
