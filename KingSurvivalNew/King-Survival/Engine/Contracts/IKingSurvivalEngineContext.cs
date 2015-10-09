@@ -1,6 +1,6 @@
 ﻿namespace KingSurvival.Engine.Contracts
 {
-    public interface IChessEngineContext
+    public interface IKingSurvivalEngineContext
     {
         void Initialize();
 

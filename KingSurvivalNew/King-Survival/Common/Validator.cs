@@ -24,7 +24,7 @@
                 throw new InvalidOperationException("King Survival Engine must have two player");
             }
 
-            if (board.NumberOfRows != Constants.StandardChessRows || board.NumberOfColumns != Constants.StandardChessColumns)
+            if (board.NumberOfRows != Constants.StandardBoardRows || board.NumberOfColumns != Constants.StandardBoardColumns)
             {
                 throw new InvalidOperationException("King survial has 8x8 board");
             }

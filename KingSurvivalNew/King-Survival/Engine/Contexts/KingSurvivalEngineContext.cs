@@ -16,8 +16,9 @@
     using KingSurvival.Players.Contracts;
     using KingSurvival.Renderers.Contracts;
 
-    public class KingSurvivalEngineContext : ChessEngineContext, IChessEngineContext
+    public class KingSurvivalEngineContext : IKingSurvivalEngineContext
     {
+        private readonly IBoard Board;
         private readonly IRenderer renderer;
         private readonly IInputProvider provider;
         private readonly IWinningConditions winningConditions;
@@ -29,16 +30,16 @@
         private BoardMemory memory;
 
         public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions)
-            : base(board)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
             this.memory = new BoardMemory();
             this.currentPlayerIndex = 0;
+            this.Board = board;
         }
 
-        public override void Initialize()
+        public void Initialize()
         {
             this.players = new List<IPlayer>();
             this.kingPlayer = new Player("king");
@@ -69,7 +70,7 @@
             this.renderer.RenderBoard(this.Board);
         }
 
-        public override void Start()
+        public void Start()
         {
             IPlayer player = null;
 

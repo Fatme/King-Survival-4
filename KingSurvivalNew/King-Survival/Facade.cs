@@ -14,8 +14,8 @@
             renderer.RenderMainMenu();
             IWinningConditions winningConditions = new WinningConditions();
             var board = new Board.Board();
-            IChessEngine chessEngine = new KingSurvivalEngine(renderer, provider, board, winningConditions);
-            chessEngine.InitializeGame().StartGame();
+            var engine = new KingSurvivalEngine(renderer, provider, board, winningConditions);
+            engine.InitializeGame().StartGame();
         }
     }
 }

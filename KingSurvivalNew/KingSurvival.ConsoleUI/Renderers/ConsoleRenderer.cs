@@ -65,7 +65,7 @@
         {
             Console.Write("   ");
 
-            for (var i = 0; i < Constants.StandardChessColumns; i++)
+            for (var i = 0; i < Constants.StandardBoardColumns; i++)
             {
                 Console.Write(i + " ");
             }

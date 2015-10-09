@@ -7,23 +7,24 @@
     using KingSurvival.Input.Contracts;
     using KingSurvival.Renderers.Contracts;
 
-    public class KingSurvivalEngine : ChessEngine, IChessEngine
+    public class KingSurvivalEngine : IKingSurvivalEngine
     {
         private readonly KingSurvivalEngineContext context;
+        protected readonly IBoard Board;
 
         public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningCondition)
-            : base(board)
         {
             this.context = new KingSurvivalEngineContext(renderer, inputProvider, board, winningCondition);
+            this.Board = board;
         }
 
-        public override IChessEngine InitializeGame()
+        public IKingSurvivalEngine InitializeGame()
         {
             this.context.Initialize();
             return this;
         }
 
-        public override IChessEngine StartGame()
+        public IKingSurvivalEngine StartGame()
         {
             this.context.Start();
             return this;

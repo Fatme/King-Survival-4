@@ -11,7 +11,7 @@
         private IFigure[,] board;
         private Dictionary<string, IPosition> figurePositionsOnBoard = new Dictionary<string, IPosition>();
 
-        public Board(int rows = Constants.StandardChessRows, int columns = Constants.StandardChessColumns)
+        public Board(int rows = Constants.StandardBoardRows, int columns = Constants.StandardBoardColumns)
         {
             this.NumberOfColumns = columns;
             this.NumberOfRows = rows;

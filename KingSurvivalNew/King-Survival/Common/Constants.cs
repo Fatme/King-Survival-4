@@ -2,8 +2,8 @@
 {
     public class Constants
     {
-        public const int StandardChessRows = 8;
-        public const int StandardChessColumns = 8;
+        public const int StandardBoardRows = 8;
+        public const int StandardBoardColumns = 8;
 
         public const int MinimumRowValueOnBoard = 0;
         public const int MaximumRowValueOnBoard = 7;
