@@ -7,8 +7,9 @@
 
     public abstract class Figure : IFigure, IFigurePrototype
     {
-        protected abstract List<string> ValidCommands { get; }
         public abstract string DisplayName { get; }
+
+        protected abstract List<string> ValidCommands { get; }
 
         public IFigure Clone()
         {

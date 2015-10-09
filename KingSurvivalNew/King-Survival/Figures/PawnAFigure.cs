@@ -5,19 +5,19 @@
 
     public class PawnAFigure : Figure, IFigure
     {
-        protected override List<string> ValidCommands
-        {
-            get
-            {
-                return new List<string>() { "adr", "adl" };
-            }
-        }
-
         public override string DisplayName
         {
             get
             {
                 return "A";
+            }
+        }
+
+        protected override List<string> ValidCommands
+        {
+            get
+            {
+                return new List<string>() { "adr", "adl" };
             }
         }
     }
