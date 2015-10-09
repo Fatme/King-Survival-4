@@ -69,7 +69,7 @@
     <Compile Include="Commands\PawnCommands\PawnCDownRightCommand.cs" />
     <Compile Include="Commands\PawnCommands\PawnDDownLeftCommand.cs" />
     <Compile Include="Commands\PawnCommands\PawnDDownRightCommand.cs" />
-    <Compile Include="Commands\CommonCommands\UndoCommand.cs" />
+    <Compile Include="Commands\MenuCommands\UndoCommand.cs" />
     <Compile Include="Common\Contracts\IPosition.cs" />
     <Compile Include="Common\Contracts\IWinningConditions.cs" />
     <Compile Include="Common\FigureSign.cs" />

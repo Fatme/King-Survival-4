@@ -36,7 +36,7 @@
         {
             var commandFactory = new CommandFactory();
             ICommand command = commandFactory.CreatePlayerCommand(commandName);
-            command.Execute(context, commandName);
+            command.Execute(context);
         }
     }
 }

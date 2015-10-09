@@ -16,12 +16,12 @@
 
         public int Direction { get; private set; }
 
-        public override void Execute(ICommandContext context, string commandName)
+        public override void Execute(ICommandContext context)
         {
             context.Memory.Memento = context.Board.SaveMemento();
 
             var figureToMove = context.Player.Figures[this.FigureIndex];
-            figureToMove.CheckIfCommandIsValid(commandName);
+            figureToMove.CheckIfCommandIsValid(this.Name);
             IPosition from = context.Board.GetFigurePosition(context.Player.Figures[this.FigureIndex]);
             IPosition to = this.GenerateNewPosition(from, this.Direction);
 
