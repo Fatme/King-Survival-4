@@ -17,76 +17,76 @@
     using KingSurvival.Players.Contracts;
     using KingSurvival.Renderers.Contracts;
 
-    public class KingSurvivalEngineContext :ChessEngineContext,IChessEngineContext
+    public class KingSurvivalEngineContext : ChessEngineContext, IChessEngineContext
     {
         private readonly IRenderer renderer;
         private readonly IInputProvider provider;
         private readonly IWinningConditions winningConditions;
-        private IList<IPlayer> players;
         private IPlayer kingPlayer;
         private IPlayer pawnPlayer;
         private ICommandContext context;
+        private IList<IPlayer> players;
         private int currentPlayerIndex;
-        private BoardMemory memory = new BoardMemory();
 
-        public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions)
+        private BoardMemory memory;
+
+        public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board,
+            IWinningConditions winningConditions)
             : base(board)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
+            memory = new BoardMemory();
+            this.currentPlayerIndex = 0;
+            
         }
 
-        //TODO:think about move this function in the parent class
         public override void Initialize()
         {
             //TODO:Extract to another class and interface
-            this.players = this.CreatePlayers();
-            this.kingPlayer = this.players[0];
-            this.pawnPlayer = this.players[1];
+            this.players = new List<IPlayer>();
+            this.kingPlayer = new KingPlayer("king");
+            this.pawnPlayer = new PawnPlayer("pawn");
+            this.players.Add(kingPlayer);
+            this.players.Add(pawnPlayer);
             Validator.ValidateGameInitialization(this.players, this.Board);
 
-            IFigure figure = new Figure(FigureSign.K);
-            this.AddFigureOnTheBoard(figure, FigureSign.K, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
-            this.AddFigureOnTheBoard(figure, FigureSign.A, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
-            this.AddFigureOnTheBoard(figure, FigureSign.B, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
-            this.AddFigureOnTheBoard(figure, FigureSign.C, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
-            this.AddFigureOnTheBoard(figure, FigureSign.D, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
+            KingFigure kingFigure = new KingFigure();
+            PawnAFigure pawnA = new PawnAFigure();
+            PawnBFigure pawnB = new PawnBFigure();
+            PawnCFigure pawnC = new PawnCFigure();
+            PawnDFigure pawnD = new PawnDFigure();
 
-            this.SetFirstPlayerIndex();
+            this.Board.AddFigure(kingFigure, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
+            this.Board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
+            this.Board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
+            this.Board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
+            this.Board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
+
+            this.kingPlayer.AddFigure(kingFigure);
+
+            this.pawnPlayer.AddFigure(pawnA);
+            this.pawnPlayer.AddFigure(pawnB);
+            this.pawnPlayer.AddFigure(pawnC);
+            this.pawnPlayer.AddFigure(pawnD);
 
             this.renderer.RenderBoard(this.Board);
+            
+
         }
 
-        private void AddFigureOnTheBoard(IFigure figure, FigureSign figureSing, Position position)
-        {
-            var newFigure = figure.Clone();
-            newFigure.AddSign(figureSing);
-
-            if (figureSing == FigureSign.K)
-            {
-                this.kingPlayer.AddFigure(newFigure);
-            }
-            else
-            {
-                this.pawnPlayer.AddFigure(newFigure);
-            }
-
-            this.Board.AddFigure(newFigure, position);
-        }
-
-        //TODO:think about move this function in the parent class
         public override void Start()
         {
             IPlayer player = null;
-           
+
             while (true)
             {
                 try
                 {
                     if (this.winningConditions.KingWon(this.players, this.Board))
                     {
-                        this.renderer.PrintMessage("The king won with "+player.MovesCount+" valid commands");
+                        this.renderer.PrintMessage("The king won with " + player.MovesCount + " valid commands");
                         break;
                     }
 
@@ -97,7 +97,7 @@
                     }
 
                     player = this.GetNextPlayer();
-                    
+
                     this.context = new CommandContext(this.memory, this.Board, player);
                     this.provider.PrintPlayerNameForNextMove(context.Player.Name);
                     var commandName = this.provider.GetCommandName;
@@ -123,7 +123,6 @@
                 }
             }
         }
-
         private void HandleException(IBoard board, string message)
         {
             this.currentPlayerIndex--;
@@ -142,31 +141,7 @@
             return currentPlayer;
         }
 
-        private void SetFirstPlayerIndex()
-        {
-            for (int i = 0; i < this.players.Count; i++)
-            {
-                if (this.players[i].Figures[i].Sign == FigureSign.K)
-                {
-                    this.currentPlayerIndex = i;
-                    return;
-                }
-            }
-        }
-
-        private IList<IPlayer> CreatePlayers()
-        {
-            var players = new List<IPlayer>();
-
-            var kingPlayer = new KingPlayer("king");
-            players.Add(kingPlayer);
-
-            var pawnPlayer = new PawnPlayer("pawn");
-            players.Add(pawnPlayer);
-
-            return players;
-        }
-
+        
 
     }
 }

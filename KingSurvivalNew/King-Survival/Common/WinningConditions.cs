@@ -16,7 +16,8 @@ namespace KingSurvival.Common
         {
             for (var i = 0; i < players.Count; i++)
             {
-                if (players[i].Figures[0].Sign == FigureSign.K)
+                //TODO:do not check here explicitily
+                if (players[i].Figures[0].ProvideFigureShape() =="K")
                 {
                     if (board.GetFigurePosition(players[i].Figures[0]).Row == 0)//check if king is on the first row
                     {
@@ -42,7 +43,7 @@ namespace KingSurvival.Common
 
             for (var i = 0; i < players.Count; i++)
             {
-                if (players[i].Figures[0].Sign == FigureSign.K)
+                if (players[i].Figures[0].ProvideFigureShape() == "K")
                 {
                     kingPlayer = players[0];
                 }

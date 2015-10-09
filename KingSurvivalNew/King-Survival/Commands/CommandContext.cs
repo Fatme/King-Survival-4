@@ -14,9 +14,9 @@
             this.Player = player;
         }
 
-        public BoardMemory Memory { get; private set; }
+        public BoardMemory Memory { get;  set; }
 
-        public IBoard Board { get; private set; }
+        public IBoard Board { get;  set; }
 
         public IPlayer Player { get; set; }
     }

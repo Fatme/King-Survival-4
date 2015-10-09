@@ -6,9 +6,9 @@
 
     public interface ICommandContext
     {
-        BoardMemory Memory { get; }
+        BoardMemory Memory { get; set; }
 
-        IBoard Board { get; }
+        IBoard Board { get; set; }
 
         IPlayer Player { get; set; }
     }

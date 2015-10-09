@@ -29,7 +29,7 @@
 
                     if (figure != null)
                     {
-                        Console.Write(figure.Sign + " ");
+                        Console.Write(figure.ProvideFigureShape() + " ");
                     }
                     else
                     {

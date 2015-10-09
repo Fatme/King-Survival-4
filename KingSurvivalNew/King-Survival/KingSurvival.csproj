@@ -88,7 +88,12 @@
     <Compile Include="Facade.cs" />
     <Compile Include="Figures\Contracts\IFigure.cs" />
     <Compile Include="Figures\Contracts\IFigurePrototype.cs" />
+    <Compile Include="Figures\KingFigure.cs" />
     <Compile Include="Figures\Figure.cs" />
+    <Compile Include="Figures\PawnAFigure.cs" />
+    <Compile Include="Figures\PawnBFigure.cs" />
+    <Compile Include="Figures\PawnCFigure.cs" />
+    <Compile Include="Figures\PawnDFigure.cs" />
     <Compile Include="Input\Contracts\IInputProvider.cs" />
     <Compile Include="Players\Contracts\IPlayer.cs" />
     <Compile Include="Players\KingPlayer.cs" />

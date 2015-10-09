@@ -27,11 +27,14 @@
             Validator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
             Validator.CheckIfPositionValid(position, GlobalErrorMessages.PositionNotValidMessage);
             this.board[position.Row, position.Col] = figure;
-            this.figurePositionsOnBoard[figure.Sign.ToString()] = position;
+            this.figurePositionsOnBoard[figure.ProvideFigureShape()] = position;
         }
 
         public IFigure GetFigureAtPosition(IPosition position)
         {
+            
+            
+            
             return this.board[position.Row, position.Col];
         }
 
@@ -45,7 +48,7 @@
         public IPosition GetFigurePosition(IFigure figure)
         {
             IPosition position;
-            this.figurePositionsOnBoard.TryGetValue(figure.Sign.ToString(), out position);
+            this.figurePositionsOnBoard.TryGetValue(figure.ProvideFigureShape(), out position);
             return position;
         }
 
