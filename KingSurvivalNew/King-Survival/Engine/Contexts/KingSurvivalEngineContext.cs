@@ -38,6 +38,8 @@
             this.memory = new BoardMemory();
             this.currentPlayerIndex = 0;
             this.board = board;
+            this.kingPlayer = this.players[0];
+            this.pawnPlayer = this.players[1];
         }
 
         public IBoard Board
@@ -51,27 +53,8 @@
         public void Initialize()
         {
             Validator.ValidateGameInitialization(this.players, this.Board);
-            this.kingPlayer = this.players[0];
-            this.pawnPlayer = this.players[1];
-            KingFigure kingFigure = new KingFigure();
-            PawnAFigure pawnA = new PawnAFigure();
-            PawnBFigure pawnB = new PawnBFigure();
-            PawnCFigure pawnC = new PawnCFigure();
-            PawnDFigure pawnD = new PawnDFigure();
 
-            this.Board.AddFigure(kingFigure, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
-            this.Board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
-            this.Board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
-            this.Board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
-            this.Board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
-
-            this.kingPlayer.AddFigure(kingFigure);
-
-            this.pawnPlayer.AddFigure(pawnA);
-            this.pawnPlayer.AddFigure(pawnB);
-            this.pawnPlayer.AddFigure(pawnC);
-            this.pawnPlayer.AddFigure(pawnD);
-
+            this.CreateFigures();
             this.renderer.RenderBoard(this.Board);
         }
 
@@ -122,6 +105,31 @@
                     this.HandleException(this.Board, ex.Message);
                 }
             }
+        }
+
+        private void CreateFigures()
+        {
+            KingFigure kingFigure = new KingFigure();
+            this.Board.AddFigure(kingFigure, new Position(Constants.InitialKingRow, Constants.InitialKingColumn));
+
+            PawnAFigure pawnA = new PawnAFigure();
+            this.Board.AddFigure(pawnA, new Position(Constants.PawnAInitialRow, Constants.PawnAInitialCol));
+
+            PawnBFigure pawnB = new PawnBFigure();
+            this.Board.AddFigure(pawnB, new Position(Constants.PawnBInitialRow, Constants.PawnBInitialCol));
+
+            PawnCFigure pawnC = new PawnCFigure();
+            this.Board.AddFigure(pawnC, new Position(Constants.PawnCInitialRow, Constants.PawnCInitialCol));
+
+            PawnDFigure pawnD = new PawnDFigure();
+            this.Board.AddFigure(pawnD, new Position(Constants.PawnDInitialRow, Constants.PawnDInitialCol));
+
+            this.kingPlayer.AddFigure(kingFigure);
+
+            this.pawnPlayer.AddFigure(pawnA);
+            this.pawnPlayer.AddFigure(pawnB);
+            this.pawnPlayer.AddFigure(pawnC);
+            this.pawnPlayer.AddFigure(pawnD);
         }
 
         private void HandleException(IBoard board, string message)

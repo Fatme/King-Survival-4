@@ -29,7 +29,7 @@
 
                     if (figure != null)
                     {
-                        Console.Write(figure.ProvideFigureShape() + " ");
+                        Console.Write(figure.DisplayName + " ");
                     }
                     else
                     {

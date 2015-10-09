@@ -8,11 +8,7 @@
     public abstract class Figure : IFigure, IFigurePrototype
     {
         protected abstract List<string> ValidCommands { get; }
-
-        public string ProvideFigureShape()
-        {
-            return this.ProvideShape();
-        }
+        public abstract string DisplayName { get; }
 
         public IFigure Clone()
         {
@@ -26,7 +22,5 @@
                 throw new ArgumentException("This command is not valid for this player");
             }
         }
-
-        protected abstract string ProvideShape();
     }
 }

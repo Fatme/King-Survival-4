@@ -14,9 +14,12 @@
             }
         }
 
-        protected override string ProvideShape()
+        public override string DisplayName
         {
-            return "C";
+            get
+            {
+                return "C";
+            }
         }
     }
 }

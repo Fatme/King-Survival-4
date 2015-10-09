@@ -2,7 +2,7 @@
 {
     public interface IFigure : IFigurePrototype
     {
-        string ProvideFigureShape();
+        string DisplayName { get; }
 
         void CheckIfCommandIsValid(string command);
     }
