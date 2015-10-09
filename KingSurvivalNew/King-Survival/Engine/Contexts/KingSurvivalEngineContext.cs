@@ -28,25 +28,22 @@
         private int currentPlayerIndex;
         private BoardMemory memory;
 
-        public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions)
+        public KingSurvivalEngineContext(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningConditions, IList<IPlayer> players)
             : base(board)
         {
             this.renderer = renderer;
             this.provider = inputProvider;
             this.winningConditions = winningConditions;
+            this.players = players;
             this.memory = new BoardMemory();
             this.currentPlayerIndex = 0;
         }
 
         public override void Initialize()
         {
-            this.players = new List<IPlayer>();
-            this.kingPlayer = new Player("king");
-            this.pawnPlayer = new Player("pawn");
-            this.players.Add(this.kingPlayer);
-            this.players.Add(this.pawnPlayer);
             Validator.ValidateGameInitialization(this.players, this.Board);
-
+            this.kingPlayer = this.players[0];
+            this.pawnPlayer = this.players[1];
             KingFigure kingFigure = new KingFigure();
             PawnAFigure pawnA = new PawnAFigure();
             PawnBFigure pawnB = new PawnBFigure();
