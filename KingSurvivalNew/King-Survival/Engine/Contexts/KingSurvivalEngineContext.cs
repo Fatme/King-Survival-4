@@ -18,7 +18,7 @@
 
     public class KingSurvivalEngineContext : IKingSurvivalEngineContext
     {
-        private readonly IBoard Board;
+        private readonly IBoard board;
         private readonly IRenderer renderer;
         private readonly IInputProvider provider;
         private readonly IWinningConditions winningConditions;
@@ -37,7 +37,15 @@
             this.players = players;
             this.memory = new BoardMemory();
             this.currentPlayerIndex = 0;
-            this.Board = board;
+            this.board = board;
+        }
+
+        public IBoard Board
+        {
+            get
+            {
+                return this.board;
+            }
         }
 
         public void Initialize()

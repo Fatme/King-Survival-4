@@ -13,12 +13,10 @@
     public class KingSurvivalEngine : IKingSurvivalEngine
     {
         private readonly KingSurvivalEngineContext context;
-        protected readonly IBoard Board;
 
         public KingSurvivalEngine(IRenderer renderer, IInputProvider inputProvider, IBoard board, IWinningConditions winningCondition, IList<IPlayer> players)
         {
             this.context = new KingSurvivalEngineContext(renderer, inputProvider, board, winningCondition, players);
-            this.Board = board;
         }
 
         public IKingSurvivalEngine InitializeGame()
