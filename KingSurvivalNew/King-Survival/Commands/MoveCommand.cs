@@ -20,7 +20,6 @@ namespace KingSurvival.Commands
 
         public override void Execute(ICommandContext context, string commandName)
         {
-            // this.CheckIfCommandIsCorrect(commandName);
             context.Memory.Memento = context.Board.SaveMemento();
 
             var figureToMove = context.Player.Figures[this.FigureIndex];

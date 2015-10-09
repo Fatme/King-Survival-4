@@ -27,9 +27,9 @@ namespace UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void CheckIfTheValidateGameInitializationMethodThrowsCorrectlyInvalidOperationExceptionWhenPlayersareIncorrect()
         {
-            var adrian = new KingPlayer("Adrian");
-            var martin = new KingPlayer("Martin");
-            var blajev = new PawnPlayer("Blajev");
+            var adrian = new Player("Adrian");
+            var martin = new Player("Martin");
+            var blajev = new Player("Blajev");
 
             var board = new Board();
 
@@ -46,8 +46,8 @@ namespace UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void CheckIfTheValidateGameInitializationMethodThrowsCorrectlyInvalidOperationExceptionWhenColsOrRowsAreIncorrect()
         {
-            var adrian = new KingPlayer("Adrian");
-            var martin = new PawnPlayer("Martin");
+            var adrian = new Player("Adrian");
+            var martin = new Player("Martin");
 
             var board = new Board(10, 10);
 
@@ -63,9 +63,9 @@ namespace UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void CheckIfTheValidateGameInitializationMethodThrowsCorrectlyInvalidOperationExceptionWhenPlayersAndBoardAreIncorrect()
         {
-            var adrian = new KingPlayer("Adrian");
-            var martin = new KingPlayer("Martin");
-            var blajev = new PawnPlayer("Blajev");
+            var adrian = new Player("Adrian");
+            var martin = new Player("Martin");
+            var blajev = new Player("Blajev");
 
             var board = new Board(10,10);
 
@@ -82,7 +82,7 @@ namespace UnitTests
         public void CheckIfCheckFigureOnTheWayWorksProperlyWhenFigureIsOnTheWay()
         {
             var board=new Board();
-            var figure = new Figure(FigureSign.K);
+            var figure = new KingFigure();
             var position=new Position(1,1);
             board.AddFigure(figure,position);
             Validator.CheckIfFigureOnTheWay(position,board,"Figure on the way");
@@ -91,7 +91,7 @@ namespace UnitTests
         public void CheckIfCheckFigureOnTheWayWorksProperlyWhenNoFigureOnTheWay()
         {
             var board = new Board();
-            var figure = new Figure(FigureSign.K);
+            var figure = new KingFigure();
             var position = new Position(1, 1);
             board.AddFigure(figure, position);
             var expectedPosition=new Position(2,2);

@@ -17,8 +17,7 @@ namespace UnitTests
         {
             var board = new Board();
             var position = new Position(1, 1);
-            var figure = new Figure();
-            figure.AddSign(FigureSign.K);
+            var figure = new KingFigure();
             board.AddFigure(figure, position);
             Assert.AreEqual(figure, board.GetFigureAtPosition(position));
         }
@@ -28,7 +27,7 @@ namespace UnitTests
         {
             var board = new Board();
             var position = new Position(1, 1);
-            var figure = new Figure();
+            var figure = new KingFigure();
             board.AddFigure(figure, position);
 
             Assert.AreEqual(figure, board.GetFigureAtPosition(position));
@@ -40,7 +39,7 @@ namespace UnitTests
         {
             var board = new Board();
             var position = new Position(1, 1);
-            var figure = new Figure();
+            var figure = new KingFigure();
             board.AddFigure(figure, position);
             board.RemoveFigure(figure, position);
 
@@ -53,7 +52,7 @@ namespace UnitTests
         {
             var board = new Board();
             var position = new Position(9, 9);
-            var figure = new Figure();
+            var figure = new KingFigure();
 
             board.RemoveFigure(figure, position);
         }
@@ -82,8 +81,8 @@ namespace UnitTests
         {
             var board = new Board();
             var position = new Position(9, 9);
-            IFigure king = new Figure();
-            king.AddSign(FigureSign.K);
+            IFigure king = new KingFigure();
+          
             board.AddFigure(king, position);
         }
         [TestMethod]
@@ -91,8 +90,8 @@ namespace UnitTests
         {
             var board = new Board();
             var position = new Position(3, 7);
-            IFigure king = new Figure();
-            king.AddSign(FigureSign.K);
+            IFigure king = new KingFigure();
+            
             board.AddFigure(king, position);
             Assert.AreSame(king,board.GetFigureAtPosition(position));
         }
@@ -100,7 +99,7 @@ namespace UnitTests
         public void CheckIfGetFigureAtPositionWorkCorrectly()
         {
             var board=new Board();
-            var figure=new Figure();
+            var figure=new KingFigure();
             board.AddFigure(figure,new Position(1,1));
             var realFigure = board.GetFigureAtPosition(new Position(1, 1));
 
@@ -112,7 +111,7 @@ namespace UnitTests
         public void CheckIfGetFigurePositionRowWorksCorrectlyWhenCorrectInput()
         {
             var board = new Board();
-            var figure = new Figure();
+            var figure = new KingFigure();
             board.AddFigure(figure, new Position(1, 1));
             var actualPosition = board.GetFigurePosition(figure);
             var expectedPosition = new Position(1, 1);
@@ -123,7 +122,7 @@ namespace UnitTests
         public void CheckIfSaveMementoSavesBoardCorrectly()
         {
             var board = new Board();
-            var figure = new Figure();
+            var figure = new KingFigure();
             board.AddFigure(figure, new Position(1, 1));
             var actual = board.SaveMemento();
             Assert.AreEqual(actual.Board.GetLength(1),board.NumberOfColumns);
@@ -133,7 +132,7 @@ namespace UnitTests
         public void CheckIfRestoreMementoRestoresBoardCorrectly()
         {
             var board = new Board();
-            var figure = new Figure();
+            var figure = new KingFigure();
             board.AddFigure(figure, new Position(1, 1));
             var memento = board.SaveMemento();
             board.RestoreMemento(memento);
